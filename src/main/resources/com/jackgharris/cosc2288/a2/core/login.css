@@ -26,8 +26,15 @@
 #login .text-field{
     -fx-background-color: #ececec;
     -fx-background-radius: 15px;
-    -fx-border-color: transparent;
     -fx-padding: 4px;
+    -fx-border-color: #ececec!important;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+}
+
+#login .text-field-error{
+    -fx-border-color: #c72929!important;
 }
 
 #login .text-field:hover{
@@ -52,4 +59,18 @@
 #login .button-alt:hover{
     -fx-background-color: #ef0a60;
     -fx-cursor: hand;
+}
+
+#login .notification{
+    -fx-background-color: #c72929;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 8px;
+    -fx-font-weight: bold;
+}
+
+#login .notification-hidden{
+    -fx-background-color: transparent!important;
+    -fx-text-fill: transparent!important;
+
 }
