@@ -1,0 +1,55 @@
+.parent{
+    -fx-font-family: Raleway;
+    -fx-background-color: transparent;
+}
+
+#login .h1{
+    -fx-text-fill: #cecece;
+    -fx-font-size: 24px;
+}
+
+#login #welcome-message{
+    -fx-text-fill: #e7e7e7;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#login #title{
+    -fx-text-fill: #e7e7e7;
+    -fx-font-size: 40px;
+}
+
+#login .login-label{
+    -fx-text-fill: #a4a4a4;
+}
+
+#login .text-field{
+    -fx-background-color: #ececec;
+    -fx-background-radius: 15px;
+    -fx-border-color: transparent;
+    -fx-padding: 4px;
+}
+
+#login .text-field:hover{
+    -fx-background-color: #d5d5d5;
+}
+
+#login .button{
+    -fx-background-color: #ef0a60;
+    -fx-background-radius: 25px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+#login .button:hover{
+    -fx-background-color: #b20844;
+}
+
+#login .button-alt{
+    -fx-background-color: transparent;
+}
+
+#login .button-alt:hover{
+    -fx-background-color: #ef0a60;
+    -fx-cursor: hand;
+}
