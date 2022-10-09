@@ -1,0 +1,55 @@
+.parent{
+    -fx-font-family: Raleway;
+    -fx-background-color: #363742;
+}
+
+.parent .button{
+    -fx-background-color: #ef0a60;
+    -fx-background-radius: 25px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.parent .button:hover{
+    -fx-background-color: #b20844;
+}
+
+.parent .menu-bar{
+    -fx-background-color: transparent;
+    -fx-alignment: center-right;
+}
+
+.parent .menu-bar .label{
+    -fx-text-fill: white;
+}
+
+.parent #menu{
+    -fx-background-color: #414150;
+    -fx-spacing: 16px;
+}
+
+.parent #menu .button{
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-background-radius:  0px!important;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: transparent;
+}
+
+.parent #menu .button:hover{
+    -fx-border-color: white;
+}
+
+.parent #menu .button .label{
+    -fx-text-fill: #b20844;
+    -fx-font-size: 16px;
+}
+
+.parent #menu #recent{
+    -fx-background-color: #b20844;
+}
+
+
+
