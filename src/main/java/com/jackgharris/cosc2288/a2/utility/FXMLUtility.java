@@ -14,6 +14,8 @@ public class FXMLUtility {
     public static URL loginFXML = MyHealth.class.getResource("login.fxml");
     public static URL registrationFXML = MyHealth.class.getResource("registration.fxml");
 
+    public static URL dashboardFXML = MyHealth.class.getResource("dashboard.fxml");
+
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(sceneURL);
