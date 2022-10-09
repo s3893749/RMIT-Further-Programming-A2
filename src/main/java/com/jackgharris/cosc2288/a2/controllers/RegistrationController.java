@@ -17,7 +17,7 @@ public class RegistrationController {
 
     public void backButton(ActionEvent event) throws IOException {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(FXMLUtility.loadScene(FXMLUtility.loginFXML,stage, MyHealth.css));
+        stage.setScene(FXMLUtility.loadScene(FXMLUtility.loginFXML,stage, MyHealth.launcherCSS));
         stage.show();
     }
 
