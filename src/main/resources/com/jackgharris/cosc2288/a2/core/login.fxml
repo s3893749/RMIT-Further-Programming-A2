@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" styleClass="parent" stylesheets="@login.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.LoginController">
+   <children>
+      <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@login-bg-small.png" />
+         </image>
+      </ImageView>
+      <Pane id="login" layoutX="480.0" prefHeight="540.0" prefWidth="474.0" stylesheets="@login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="480.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="294.0" layoutY="487.0" minWidth="32.0" mnemonicParsing="false" onAction="#helpButton" prefHeight="39.0" prefWidth="83.0" styleClass="button-alt" stylesheets="@login.css" text="Help">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@help_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextField layoutX="68.0" layoutY="216.0" prefHeight="39.0" prefWidth="339.0" promptText="john.smith@example.com" />
+            <Button layoutX="73.0" layoutY="382.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="39.0" prefWidth="171.0" text="Login" />
+            <Button layoutX="261.0" layoutY="382.0" mnemonicParsing="false" onAction="#registerButton" prefHeight="39.0" prefWidth="154.0" text="Register" />
+            <PasswordField layoutX="67.0" layoutY="304.0" prefHeight="39.0" prefWidth="339.0" promptText="*******" />
+            <Label layoutX="68.0" layoutY="275.0" prefHeight="18.0" prefWidth="74.0" styleClass="login-label" text="Password" />
+            <Label layoutX="67.0" layoutY="193.0" prefHeight="18.0" prefWidth="56.0" styleClass="login-label" text="Email" />
+            <Label id="title" layoutX="146.0" layoutY="93.0" stylesheets="@login.css" text="My Health" />
+            <Label id="welcome-message" layoutX="188.0" layoutY="65.0" prefHeight="39.0" prefWidth="99.0" text="WELCOME TO" textAlignment="CENTER" />
+            <Button layoutX="377.0" layoutY="487.0" minWidth="32.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="39.0" prefWidth="83.0" styleClass="button-alt" stylesheets="@login.css" text="Close">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@close_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
