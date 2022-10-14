@@ -8,8 +8,11 @@ import java.util.Objects;
 public class Resource {
 
     public static Image favicon(){
-
         return new Image(Objects.requireNonNull(MyHealth.class.getResourceAsStream("favicon.png")));
     };
+
+    public static Image settingsFavicon(){
+        return new Image(Objects.requireNonNull(MyHealth.class.getResourceAsStream("settings_icon_alt.png")));
+    }
 
 }
