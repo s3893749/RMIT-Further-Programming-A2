@@ -1,6 +1,7 @@
 package com.jackgharris.cosc2288.a2.utility;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -15,6 +16,12 @@ public class FXMLUtility {
     public static URL registrationFXML = MyHealth.class.getResource("registration.fxml");
 
     public static URL dashboardFXML = MyHealth.class.getResource("dashboard.fxml");
+
+    public static URL settingsFXML = MyHealth.class.getResource("settings.fxml");
+
+    public static URL terminalFXML = MyHealth.class.getResource("terminal.fxml");
+    public static URL themeSettingsFXML = MyHealth.class.getResource("themeSettings.fxml");
+
 
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
