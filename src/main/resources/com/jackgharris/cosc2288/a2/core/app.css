@@ -25,7 +25,6 @@
 
 .parent #menu{
     -fx-background-color: #414150;
-    -fx-spacing: 16px;
 }
 
 .parent #menu .button{
@@ -36,10 +35,11 @@
     -fx-border-style: solid;
     -fx-border-width: 0 0 2px 0;
     -fx-border-color: transparent;
+    -fx-padding:10px;
 }
 
 .parent #menu .button:hover{
-    -fx-border-color: white;
+    -fx-background-color: #343441;
 }
 
 .parent #menu .button .label{
@@ -47,9 +47,80 @@
     -fx-font-size: 16px;
 }
 
-.parent #menu #recent{
-    -fx-background-color: #b20844;
+.parent #menu #menu-header{
+    -fx-background-color: #ef0a60;
+    -fx-start-margin: 0px;
+    -fx-end-margin: 0px;
+}
+
+.parent #menu #menu-header .label{
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
 }
 
 
+.parent #version{
+    -fx-font-size: 10px;
+    -fx-font-weight: normal;
+    -fx-padding: 4px;
+    -fx-text-fill: white;
+}
 
+#settings{
+    -fx-font-family: Raleway;
+    -fx-background-color: #363742;
+}
+
+#settings #header{
+    -fx-background-color: #444550;
+}
+
+#settings #header #profile-image{
+-fx-padding: 8px
+}
+
+#settings #header .label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#settings #header .button{
+    -fx-background-color: #ef0a60;
+    -fx-background-radius: 25px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-padding: 8px;
+}
+
+#settings #header .button:hover{
+    -fx-background-color: #b20844;
+}
+
+#settings #menu-grid .button{
+    -fx-background-color: transparent
+}
+
+#settings #menu-grid .button:hover{
+    -fx-background-color: #42444f;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+#settings #menu-grid .label{
+    -fx-text-fill: white;
+}
+
+#settings #theme-menu .label{
+    -fx-text-fill: white;
+}
+
+#settings #theme-menu .color-picker{
+    -fx-background-color: transparent;
+}
+
+#settings #theme-menu .color-picker:hover{
+    -fx-background-color: #42444f;
+    -fx-cursor: hand;
+}
