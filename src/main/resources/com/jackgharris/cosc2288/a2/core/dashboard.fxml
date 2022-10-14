@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,11 +20,21 @@
             </ImageView>
          </graphic>
       </Button>
-      <VBox id="menu" layoutX="-1.0" layoutY="-14.0" prefHeight="734.0" prefWidth="200.0" styleClass="menu" stylesheets="@app.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-14.0">
+      <VBox id="menu" layoutX="-1.0" layoutY="-14.0" prefHeight="734.0" prefWidth="200.0" style="-fx-padding: 0;" styleClass="menu" stylesheets="@app.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-14.0">
          <children>
-            <Button id="recent" mnemonicParsing="false" prefHeight="52.0" prefWidth="184.0" stylesheets="@app.css" text="Recent">
+            <AnchorPane id="menu-header" prefHeight="116.0" prefWidth="200.0" style="-fx-border-image-insets: 0px;" stylesheets="@login.css" VBox.vgrow="NEVER">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="61.0" layoutX="67.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@favicon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="37.0" layoutY="77.0" prefHeight="47.0" prefWidth="126.0" text="    My Health" />
+               </children>
+            </AnchorPane>
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" stylesheets="@app.css" text="Recent">
                <VBox.margin>
-                  <Insets top="16.0" />
+                  <Insets />
                </VBox.margin>
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -36,33 +44,53 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" text="Activity">
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" stylesheets="@app.css" text="Activity">
                <graphic>
-                  <Label text="&gt;" />
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@activity_icon.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="240.0" text="Weight">
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" stylesheets="@app.css" text="Weight">
                <graphic>
-                  <Label text="&gt;" />
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@weight_icon_2.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" text="Body Measurements">
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" stylesheets="@app.css" text="Body Measurements">
                <graphic>
-                  <Label text="&gt;" />
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@weight_icon.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="266.0" text="Heart">
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" stylesheets="@app.css" text="Heart">
                <graphic>
-                  <Label text="&gt;" />
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@heart_icon.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" text="Hearing">
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" stylesheets="@app.css" text="Hearing">
                <graphic>
-                  <Label text="&gt;" />
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@hearing_icon.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
              <Region VBox.vgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" text="Sync">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" text="Import / Export">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,15 +99,16 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button mnemonicParsing="false" onAction="#showSettingsMenu" prefHeight="25.0" prefWidth="211.0" text="Preferences">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@settings_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
-      <MenuBar layoutX="200.0" prefHeight="25.0" prefWidth="1080.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-            <Menu mnemonicParsing="false" text="About" />
-          <Menu mnemonicParsing="false" text="Import" />
-          <Menu mnemonicParsing="false" text="Export" />
-          <Menu mnemonicParsing="false" text="Logout" />
-        </menus>
-      </MenuBar>
    </children>
 </AnchorPane>
