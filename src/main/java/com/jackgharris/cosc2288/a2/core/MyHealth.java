@@ -20,10 +20,9 @@ public class MyHealth extends javafx.application.Application {
     private static Theme theme;
 
 
-
     public MyHealth(){
         System.out.println("MyHealth object created!");
-        MyHealth.theme = new Theme("#b463ae",null,null,null,null);
+        MyHealth.theme = new Theme("#363742","#444550",null,null,null);
 
         Database.table("test");
     }
