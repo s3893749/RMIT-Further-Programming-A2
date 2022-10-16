@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +30,9 @@ public class ThemeSettingsController {
     @FXML
     public void initialize(){
         settings.setStyle("-fx-background-color: "+MyHealth.getTheme().getBackgroundColor());
+        header.setStyle("-fx-background-color: "+MyHealth.getTheme().getMenuColor());
+        backgroundColorPicker.setValue(Color.valueOf(MyHealth.getTheme().getBackgroundColor()));
+        menuColorPicker.setValue(Color.valueOf(MyHealth.getTheme().getMenuColor()));
     }
 
     public void backButton(ActionEvent event) throws IOException {
