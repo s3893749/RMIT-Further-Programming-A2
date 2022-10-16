@@ -31,6 +31,7 @@ public class LoginController {
         System.out.println("Back Button Pressed!");
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(FXMLUtility.loadScene(FXMLUtility.registrationFXML,stage, MyHealth.launcherCSS));
+        stage.getProperties().put("id","registration");
         stage.show();
     }
 
@@ -39,7 +40,7 @@ public class LoginController {
         System.out.println("Email = "+this.emailInputField.getText());
         System.out.println("Password = "+this.passwordInputField.getText());
 
-        if(!this.emailInputField.getText().equals("st_tuff@me.com")){
+        if(!this.emailInputField.getText().equals("example@example.com")){
 
             this.loginErrorLabel.getStyleClass().remove("notification-hidden");
             this.emailInputField.getStyleClass().add("text-field-error");
@@ -56,6 +57,7 @@ public class LoginController {
             dashboardStage.setTitle(MyHealth.title);
             dashboardStage.getIcons().add(Resource.favicon());
             dashboardStage.show();
+            dashboardStage.getProperties().put("id","dashboard");
             launcherStage.hide();
         }
     }
