@@ -72,7 +72,7 @@
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="181.0">
                      <center>
-                        <Label text="Menu Color" BorderPane.alignment="CENTER" />
+                        <Label text="Menu Colo:" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="145.0">
@@ -86,7 +86,7 @@
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="181.0">
                      <center>
-                        <Label text="Text Color" BorderPane.alignment="CENTER" />
+                        <Label text="Text Color:" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="145.0">
@@ -100,12 +100,12 @@
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="181.0">
                      <center>
-                        <Label text="Accent Primary" BorderPane.alignment="CENTER" />
+                        <Label text="Button Background Color:" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="145.0">
                      <center>
-                        <ColorPicker BorderPane.alignment="CENTER" />
+                        <ColorPicker fx:id="buttonBackgroundColorPicker" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -114,12 +114,12 @@
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="181.0">
                      <center>
-                        <Label text="Accent Secondary" BorderPane.alignment="CENTER" />
+                        <Label fx:id="buttonTextColorInput" text="Button Text Color:" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="145.0">
                      <center>
-                        <ColorPicker BorderPane.alignment="CENTER" />
+                        <ColorPicker fx:id="buttonTextColorPicker" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
