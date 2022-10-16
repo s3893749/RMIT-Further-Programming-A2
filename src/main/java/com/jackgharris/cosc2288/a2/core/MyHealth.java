@@ -4,9 +4,13 @@ import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MyHealth extends javafx.application.Application {
 
@@ -41,11 +45,37 @@ public class MyHealth extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-
+        //TO LOG IN ENTER THE EMAIL 'example@example.com'
         launch();
     }
 
     public static Theme getTheme(){
         return MyHealth.theme;
+    }
+
+    public static boolean isStageShown(String id){
+        List<Window> windows = Window.getWindows();
+        AtomicBoolean outcome = new AtomicBoolean(false);
+
+        windows.forEach((n) -> {
+            if(n.getProperties().containsKey("id") && n.getProperties().get("id").equals(id)){
+                outcome.set(true);
+            }
+        });
+
+        return outcome.get();
+    }
+
+    public static Stage getStageById(String id){
+        List<Window> windows = Window.getWindows();
+        AtomicReference<Stage> stage = new AtomicReference<>();
+
+        windows.forEach((n) -> {
+            if(n.getProperties().containsKey("id") && n.getProperties().get("id").equals(id)){
+                stage.set((Stage) n);
+            }
+        });
+
+        return  stage.get();
     }
 }
