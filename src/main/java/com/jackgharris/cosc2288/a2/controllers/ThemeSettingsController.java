@@ -22,6 +22,12 @@ public class ThemeSettingsController {
     private ColorPicker menuColorPicker;
 
     @FXML
+    private ColorPicker buttonBackgroundColorPicker;
+
+    @FXML
+    private ColorPicker buttonTextColorPicker;
+
+    @FXML
     private AnchorPane settings;
 
     @FXML
@@ -29,8 +35,6 @@ public class ThemeSettingsController {
 
     @FXML
     public void initialize(){
-        settings.setStyle("-fx-background-color: "+MyHealth.getTheme().getBackgroundColor());
-        header.setStyle("-fx-background-color: "+MyHealth.getTheme().getMenuColor());
         backgroundColorPicker.setValue(Color.valueOf(MyHealth.getTheme().getBackgroundColor()));
         menuColorPicker.setValue(Color.valueOf(MyHealth.getTheme().getMenuColor()));
     }
@@ -45,10 +49,12 @@ public class ThemeSettingsController {
     public void updateBackgroundColor(ActionEvent event){
         MyHealth.getTheme().setBackgroundColor(ColorUtility.getHexStringFromColorPicker(this.backgroundColorPicker));
         settings.setStyle("-fx-background-color: "+MyHealth.getTheme().getBackgroundColor());
+        MyHealth.getTheme().updateAppColors();
     }
 
     public void updateMenuColor(ActionEvent event){
         MyHealth.getTheme().setMenuColor(ColorUtility.getHexStringFromColorPicker(this.menuColorPicker));
         header.setStyle("-fx-background-color: "+MyHealth.getTheme().getMenuColor());
+        MyHealth.getTheme().updateAppColors();
     }
 }
