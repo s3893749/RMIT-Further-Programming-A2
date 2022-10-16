@@ -3,6 +3,7 @@ module com.jackgharris.cosc2288.a2 {
     requires javafx.fxml;
     requires org.xerial.sqlitejdbc;
     requires java.sql;
+    requires org.apache.commons.codec;
 
     exports com.jackgharris.cosc2288.a2.core;
     exports com.jackgharris.cosc2288.a2.controllers;
