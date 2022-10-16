@@ -1,7 +1,6 @@
 package com.jackgharris.cosc2288.a2.utility;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
