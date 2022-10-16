@@ -5,15 +5,11 @@ import java.sql.*;
 
 public class Database {
 
-    public Database where(String key, String value){
-        return this;
-    }
 
-    public Database orderBy(String key, String type){
-        return  this;
-    }
+    private Database(){
 
-    private Database(String table){
+        //TESTING CODE
+
         String jdbcURL = "jdbc:sqlite:C:\\Users\\st_tu\\Documents\\RMIT\\Further Programming\\A2\\A2\\chinook.db";
         Connection connection = null;
         try{
@@ -37,8 +33,7 @@ public class Database {
 
     }
 
-    public static Database table(String table){
-
-        return new Database(table);
+    public static Query table(String table){
+        return new Query(table);
     }
 }
