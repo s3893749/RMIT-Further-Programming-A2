@@ -103,7 +103,7 @@
 }
 
 #settings #menu-grid .button:hover{
-    -fx-background-color: #42444f;
+    -fx-background-color: rgba(0,0,0,0.25);
     -fx-background-radius: 5px;
     -fx-cursor: hand;
 }
@@ -121,6 +121,6 @@
 }
 
 #settings #theme-menu .color-picker:hover{
-    -fx-background-color: #42444f;
+    -fx-background-color: rgba(0,0,0,0.25);
     -fx-cursor: hand;
 }
