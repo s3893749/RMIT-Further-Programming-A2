@@ -24,7 +24,7 @@
 }
 
 .parent #menu{
-    -fx-background-color: #414150;
+    -fx-padding: 0px!important;
 }
 
 .parent #menu .button{
@@ -39,7 +39,7 @@
 }
 
 .parent #menu .button:hover{
-    -fx-background-color: #343441;
+    -fx-background-color: rgba(0,0,0,0.25);
 }
 
 .parent #menu .button .label{
