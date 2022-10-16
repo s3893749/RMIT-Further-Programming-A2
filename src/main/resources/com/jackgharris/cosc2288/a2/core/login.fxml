@@ -19,7 +19,7 @@
       </ImageView>
       <Pane id="login" layoutX="480.0" prefHeight="540.0" prefWidth="474.0" stylesheets="@login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="480.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="294.0" layoutY="487.0" minWidth="32.0" mnemonicParsing="false" onAction="#helpButton" prefHeight="39.0" prefWidth="83.0" styleClass="button-alt" stylesheets="@login.css" text="Help">
+            <Button layoutX="294.0" layoutY="487.0" minWidth="32.0" mnemonicParsing="false" onAction="#helpButtonPress" prefHeight="39.0" prefWidth="83.0" styleClass="button-alt" stylesheets="@login.css" text="Help">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,14 +29,14 @@
                </graphic>
             </Button>
             <TextField fx:id="emailInputField" layoutX="61.0" layoutY="227.0" prefHeight="39.0" prefWidth="339.0" promptText="john.smith@example.com" />
-            <Button defaultButton="true" layoutX="59.0" layoutY="380.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="39.0" prefWidth="171.0" text="Login" />
-            <Button layoutX="247.0" layoutY="380.0" mnemonicParsing="false" onAction="#registerButton" prefHeight="39.0" prefWidth="154.0" text="Register" />
+            <Button defaultButton="true" layoutX="59.0" layoutY="380.0" mnemonicParsing="false" onAction="#loginButtonPress" prefHeight="39.0" prefWidth="171.0" text="Login" />
+            <Button layoutX="247.0" layoutY="380.0" mnemonicParsing="false" onAction="#registerButtonPress" prefHeight="39.0" prefWidth="154.0" text="Register" />
             <PasswordField fx:id="passwordInputField" layoutX="60.0" layoutY="315.0" prefHeight="39.0" prefWidth="339.0" promptText="*******" />
             <Label layoutX="61.0" layoutY="286.0" prefHeight="18.0" prefWidth="74.0" styleClass="login-label" text="Password" />
             <Label layoutX="60.0" layoutY="204.0" prefHeight="18.0" prefWidth="56.0" styleClass="login-label" text="Email" />
             <Label id="title" layoutX="146.0" layoutY="129.0" stylesheets="@login.css" text="My Health" />
             <Label id="welcome-message" layoutX="188.0" layoutY="101.0" prefHeight="39.0" prefWidth="99.0" text="WELCOME TO" textAlignment="CENTER" />
-            <Button layoutX="377.0" layoutY="487.0" minWidth="32.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="39.0" prefWidth="83.0" styleClass="button-alt" stylesheets="@login.css" text="Close">
+            <Button layoutX="377.0" layoutY="487.0" minWidth="32.0" mnemonicParsing="false" onAction="#closeButtonPress" prefHeight="39.0" prefWidth="83.0" styleClass="button-alt" stylesheets="@login.css" text="Close">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
