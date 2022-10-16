@@ -26,19 +26,15 @@ public class LoginController {
     @FXML
     private Label loginErrorLabel;
 
-    public LoginController(){
-        System.out.println("Registration Controller Created!");
-    }
 
-
-    public void registerButton(ActionEvent event) throws IOException {
+    public void registerButtonPress(ActionEvent event) throws IOException {
         System.out.println("Back Button Pressed!");
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(FXMLUtility.loadScene(FXMLUtility.registrationFXML,stage, MyHealth.launcherCSS));
         stage.show();
     }
 
-    public void loginButton(ActionEvent event) throws IOException {
+    public void loginButtonPress(ActionEvent event) throws IOException {
         System.out.println("Login Button Pressed!");
         System.out.println("Email = "+this.emailInputField.getText());
         System.out.println("Password = "+this.passwordInputField.getText());
@@ -64,12 +60,12 @@ public class LoginController {
         }
     }
 
-    public void closeButton(ActionEvent event){
+    public void closeButtonPress(ActionEvent event){
         System.out.println("Closing application");
         System.exit(0);
     }
 
-    public void helpButton(ActionEvent event){
+    public void helpButtonPress(ActionEvent event){
         System.out.println("Help button pressed!");
     }
 
