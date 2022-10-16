@@ -33,7 +33,7 @@
             <Label layoutX="606.0" layoutY="141.0" prefHeight="20.0" prefWidth="67.0" styleClass="login-label" text="Last name" />
             <PasswordField fx:id="passwordConfirmationInputField" layoutX="608.0" layoutY="320.0" prefHeight="39.0" prefWidth="250.0" promptText="*******" />
             <Label layoutX="608.0" layoutY="291.0" prefHeight="18.0" prefWidth="121.0" styleClass="login-label" text="Confirm password" />
-            <ImageView fitHeight="168.0" fitWidth="212.0" layoutX="49.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="photoPreview" fitHeight="168.0" fitWidth="212.0" layoutX="49.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@969933.png" />
                </image>
