@@ -1,5 +1,7 @@
 package com.jackgharris.cosc2288.a2.core;
 
+import javafx.scene.paint.Color;
+
 public class Theme {
 
     private String backgroundColor;
@@ -32,4 +34,8 @@ public class Theme {
         return this.menuColor;
     }
 
+    public void updateAppColors(){
+        MyHealth.getStageById("dashboard").getScene().lookup("#parent").setStyle("-fx-background-color: "+this.backgroundColor);
+        MyHealth.getStageById("dashboard").getScene().lookup("#menu").setStyle("-fx-background-color: "+this.menuColor);
+    }
 }
