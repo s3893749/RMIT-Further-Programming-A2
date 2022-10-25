@@ -3,6 +3,20 @@
     -fx-background-color: #363742;
 }
 
+.parent #page-title{
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.parent .chart{
+    -fx-background-color: transparent;
+}
+
+.parent .chart-plot-background {
+    -fx-background-color: transparent
+}
+
 .parent .button{
     -fx-background-color: #ef0a60;
     -fx-background-radius: 25px;
