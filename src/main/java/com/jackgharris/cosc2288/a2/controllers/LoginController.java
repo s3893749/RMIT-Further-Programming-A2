@@ -40,7 +40,7 @@ public class LoginController {
         System.out.println("Email = "+this.emailInputField.getText());
         System.out.println("Password = "+this.passwordInputField.getText());
 
-        if(!this.emailInputField.getText().equals("example@example.com")){
+        if(!this.emailInputField.getText().equals("1")){
 
             this.loginErrorLabel.getStyleClass().remove("notification-hidden");
             this.emailInputField.getStyleClass().add("text-field-error");
