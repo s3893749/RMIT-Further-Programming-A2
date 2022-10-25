@@ -1,0 +1,18 @@
+.button-bar{
+    -fx-background-color: rgba(0,0,0,0.125);
+    -fx-background-radius: 15px;
+    -fx-padding: 0 2px 0 -18px;
+}
+
+.button-bar .button{
+    -fx-background-color: transparent;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+
+}
+
+.button-bar .button:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c9c9c9;
+}
