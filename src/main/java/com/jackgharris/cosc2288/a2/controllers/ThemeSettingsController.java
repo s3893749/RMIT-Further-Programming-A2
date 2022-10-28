@@ -33,10 +33,13 @@ public class ThemeSettingsController {
     @FXML
     private HBox header;
 
+
     @FXML
     public void initialize(){
         backgroundColorPicker.setValue(Color.valueOf(MyHealth.getTheme().getBackgroundColor()));
         menuColorPicker.setValue(Color.valueOf(MyHealth.getTheme().getMenuColor()));
+        settings.setStyle("-fx-background-color: "+MyHealth.getTheme().getBackgroundColor());
+        header.setStyle("-fx-background-color: "+MyHealth.getTheme().getMenuColor());
     }
 
     public void backButton(ActionEvent event) throws IOException {
