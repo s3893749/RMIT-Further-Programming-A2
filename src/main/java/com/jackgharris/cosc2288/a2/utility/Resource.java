@@ -15,4 +15,8 @@ public class Resource {
         return new Image(Objects.requireNonNull(MyHealth.class.getResourceAsStream("settings_icon_alt.png")));
     }
 
+    public static Image warningFavicon(){
+        return new Image(Objects.requireNonNull(MyHealth.class.getResourceAsStream("warning_icon.png")));
+    }
+
 }
