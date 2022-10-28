@@ -3,31 +3,13 @@ package com.jackgharris.cosc2288.a2.models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Weight{
-
-    private int userId;
-    private int value;
-    private String date;
-
-    public Weight(int userId, int value, String date){
-        this.userId = userId;
-        this.value = value;
-        this.date = date;
-    }
-
-    public int getUserId(){
-        return this.userId;
-    }
-
-    public int getValue(){
-        return this.value;
-    }
-
-    public String getDate(){
-        return this.date;
-    }
+public class Weight extends Record{
 
     private static final ObservableList<Weight> weightObservableList = FXCollections.observableArrayList();
+
+    public Weight(int userId, Float value, String date) {
+        super(userId, value, date);
+    }
 
     public static void add(Weight weight){
         Weight.weightObservableList.add(weight);
