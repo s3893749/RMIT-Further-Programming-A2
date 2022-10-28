@@ -145,13 +145,13 @@
             <VBox prefHeight="43.0" prefWidth="314.0">
                <children>
                   <Label text="Date" />
-                  <DatePicker fx:id="addRecordDatePicker" prefHeight="25.0" prefWidth="281.0" promptText="Select date" />
+                  <DatePicker fx:id="addRecordDatePicker" onAction="#dateSelectedAction" prefHeight="25.0" prefWidth="281.0" promptText="Select date" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Weight" />
-                  <TextField fx:id="addRecordWeightInput" promptText="weight in kg: 95" />
+                  <TextField fx:id="addRecordWeightInput" onKeyPressed="#valueEnteredAction" promptText="weight in kg: 95" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
