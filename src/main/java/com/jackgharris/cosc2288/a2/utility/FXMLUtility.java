@@ -21,6 +21,8 @@ public class FXMLUtility {
     public static URL terminalFXML = MyHealth.class.getResource("terminal.fxml");
     public static URL themeSettingsFXML = MyHealth.class.getResource("themeSettings.fxml");
 
+    public static URL deleteRecordPopup = MyHealth.class.getResource("deleteRecordPopup.fxml");
+
 
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
