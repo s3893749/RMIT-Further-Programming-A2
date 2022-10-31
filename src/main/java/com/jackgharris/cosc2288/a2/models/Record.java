@@ -26,4 +26,12 @@ public class Record {
         return LocalDate.parse(this.date);
     }
 
+    public void setDate(String date){
+        this.date = date;
+    }
+
+    public void setValue(Float value){
+        this.value = value;
+    }
+
 }
