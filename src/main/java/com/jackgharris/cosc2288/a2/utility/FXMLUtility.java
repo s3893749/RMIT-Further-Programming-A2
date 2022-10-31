@@ -23,6 +23,7 @@ public class FXMLUtility {
 
     public static URL deleteRecordPopup = MyHealth.class.getResource("deleteRecordPopup.fxml");
 
+    public static URL editRecordPopup = MyHealth.class.getResource("editRecordPopup.fxml");
 
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
