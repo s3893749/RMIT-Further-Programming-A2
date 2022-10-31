@@ -7,7 +7,9 @@ import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -77,8 +79,8 @@ public class DashboardController {
 
     @FXML
     public void initialize(){
-        parent.setStyle("-fx-background-color: "+MyHealth.getTheme().getBackgroundColor());
-        menu.setStyle("-fx-background-color: "+MyHealth.getTheme().getMenuColor());
+        this.parent.setStyle("-fx-background-color: "+MyHealth.getTheme().getBackgroundColor());
+        this.menu.setStyle("-fx-background-color: "+MyHealth.getTheme().getMenuColor());
 
         this.updateRecordTable();
         this.addRecordDatePicker.getEditor().setDisable(true);
@@ -146,10 +148,8 @@ public class DashboardController {
         this.updateRecordTable();
     }
 
-    public void deleteRecord(ActionEvent event) throws IOException {
+    public void deleteRecord() throws IOException {
        Weight weight = this.weightTable.getSelectionModel().getSelectedItem();
-
-        MyHealth.data.put("record", weight);
 
         if(!MyHealth.isStageShown("deleteRecordPopup")){
             Stage stage = new Stage();
@@ -157,7 +157,14 @@ public class DashboardController {
             stage.setResizable(false);
             stage.getIcons().add(Resource.warningFavicon());
             stage.setTitle("Delete Record Confirmation");
-            stage.setScene(FXMLUtility.loadScene(FXMLUtility.deleteRecordPopup,stage,MyHealth.appCSS));
+            stage.getProperties().put("record", weight);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(FXMLUtility.deleteRecordPopup);
+            stage.setScene(new Scene(fxmlLoader.load()));
+
+            DeleteRecordPopupController controller = fxmlLoader.getController();
+            controller.setRecord(weight);
+
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(MyHealth.getStageById("dashboard"));
             stage.showAndWait();
