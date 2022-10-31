@@ -5,12 +5,17 @@
     -fx-focus-color: #494a56;
 }
 
-.date-picker{
+.text-field{
+    -fx-border-radius: 1px;
+    -fx-border-color: transparent;
+}
+
+.text-field, .date-picker{
     -fx-background-color: #494a56;
     -fx-text-fill: #d1d1d1;
 }
 
-date-picker:focused{
+.text-field:focused, date-picker:focused{
     -fx-background-color: #494a56;
     -fx-border-color: #ef0a60;
     -fx-border-radius: 4px;
