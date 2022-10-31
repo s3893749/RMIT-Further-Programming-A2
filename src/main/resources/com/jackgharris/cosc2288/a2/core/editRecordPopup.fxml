@@ -8,13 +8,15 @@
 
 <AnchorPane fx:id="parent" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.EditRecordPopupController">
    <children>
-      <Button layoutX="106.0" layoutY="296.0" mnemonicParsing="false" prefWidth="115.0" text="Save" />
-      <Button layoutX="406.0" layoutY="296.0" mnemonicParsing="false" prefWidth="115.0" text="Cancel" />
-      <Label id="popup-heading" alignment="CENTER" layoutY="46.0" prefHeight="69.0" prefWidth="600.0" text="What would you like to edit this record to?" textFill="WHITE" />
-      <Label fx:id="recordDate" layoutX="138.0" layoutY="180.0" prefHeight="40.0" prefWidth="161.0" text="Date:" textAlignment="CENTER" textFill="WHITE" />
-      <Label fx:id="recordValue" layoutX="138.0" layoutY="208.0" prefHeight="47.0" prefWidth="161.0" text="Value:" textAlignment="CENTER" textFill="WHITE" />
-      <Label fx:id="recordType" alignment="CENTER" layoutX="180.0" layoutY="115.0" prefHeight="47.0" prefWidth="239.0" text="Record Type:" textAlignment="CENTER" textFill="WHITE" />
-      <DatePicker layoutX="318.0" layoutY="187.0" stylesheets="@datePicker.css" />
-      <TextField layoutX="318.0" layoutY="219.0" prefHeight="25.0" prefWidth="175.0" />
+      <Button layoutX="106.0" layoutY="296.0" mnemonicParsing="false" onAction="#saveButtonPress" prefWidth="115.0" text="Save" />
+      <Button layoutX="406.0" layoutY="296.0" mnemonicParsing="false" onAction="#cancelButtonPress" prefWidth="115.0" text="Cancel" />
+      <Label id="popup-heading" alignment="CENTER" layoutY="46.0" prefHeight="69.0" prefWidth="600.0" text="What would you like your new values to be?" textFill="WHITE" />
+      <Label fx:id="recordDate" layoutX="175.0" layoutY="163.0" prefHeight="40.0" prefWidth="37.0" text="Date:" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="recordValue" layoutX="175.0" layoutY="202.0" prefHeight="47.0" prefWidth="45.0" text="Value:" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="recordType" layoutX="175.0" layoutY="115.0" prefHeight="47.0" prefWidth="109.0" text="Record Type:" textFill="WHITE" />
+      <DatePicker fx:id="recordEditDate" layoutX="223.0" layoutY="170.0" onAction="#dateChanged" stylesheets="@datePicker.css" />
+      <TextField fx:id="recordEditValue" layoutX="222.0" layoutY="213.0" onKeyPressed="#valueChanged" prefHeight="25.0" prefWidth="175.0" stylesheets="@editRecordPopup.css" />
+      <Button fx:id="resetDateButton" layoutX="412.0" layoutY="170.0" mnemonicParsing="false" onAction="#resetEditDateButtonPress" text="Reset" />
+      <Button fx:id="resetValueButton" layoutX="412.0" layoutY="213.0" mnemonicParsing="false" onAction="#resetEditValueButtonPress" text="Reset" />
    </children>
 </AnchorPane>
