@@ -23,7 +23,7 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class DashboardController {
+public class DashboardController{
 
     @FXML
     private AnchorPane parent;
@@ -52,11 +52,6 @@ public class DashboardController {
     @FXML
     private Button addRecordButton;
 
-    @FXML
-    private Button deleteRecordButton;
-
-    @FXML
-    private Button editRecordButton;
 
     private Callback<DatePicker, DateCell> disableUsedDates() {
         final Callback<DatePicker, DateCell> dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
@@ -92,6 +87,13 @@ public class DashboardController {
         this.addRecordDatePicker.setDayCellFactory(dayCellFactory);
         this.addRecordButton.setDisable(true);
         this.addRecordWeightInput.setDisable(true);
+
+        this.weightTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        this.weightColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+        this.weightTable.setItems(Weight.getAll(123));
+
+        this.weightTable.refresh();
     }
 
     public void dateSelectedAction(){
@@ -102,7 +104,7 @@ public class DashboardController {
         this.addRecordButton.setDisable(false);
     }
 
-    public void showSettingsMenu(ActionEvent event) throws IOException {
+    public void showSettingsMenu() throws IOException {
 
         if(!MyHealth.isStageShown("settings")){
             Stage stage = new Stage();
@@ -119,23 +121,20 @@ public class DashboardController {
     }
 
     public void updateTestChart(){
-        System.out.println("Updating Chart");
-        //System.out.println(this.startDate.getValue());
         this.testChart.getData().clear();
         XYChart.Series<String, Float> series = new XYChart.Series<>();
 
         for (Weight weight : Weight.getAll(123)){
             series.getData().add(new XYChart.Data<>(weight.getDate().toString(), weight.getValue()));
         }
+
         this.testChart.setLegendVisible(false);
         this.testChart.getData().add(series);
     }
 
     public void updateRecordTable(){
-        this.weightTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        this.weightColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
-        this.weightTable.setItems(Weight.getAll(123));
+        this.weightTable.getItems().clear();
+        this.weightTable.getItems().addAll(Weight.getAll(123));
     }
 
     public void addNewRecord(ActionEvent event){
@@ -178,7 +177,36 @@ public class DashboardController {
        this.updateTestChart();
     }
 
-    public void editRecord(ActionEvent event){
+    public void editRecord() throws IOException {
+
+        Weight weight = this.weightTable.getSelectionModel().getSelectedItem();
+
+        if(!MyHealth.isStageShown("editRecordPopup")){
+            Stage stage = new Stage();
+            stage.getProperties().put("id", "editRecordPopup");
+            stage.setResizable(false);
+            stage.getIcons().add(Resource.warningFavicon());
+            stage.setTitle("Edit Record");
+            stage.getProperties().put("record", weight);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(FXMLUtility.editRecordPopup);
+            stage.setScene(new Scene(fxmlLoader.load()));
+
+            EditRecordPopupController controller = fxmlLoader.getController();
+            controller.setRecord(weight);
+
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(MyHealth.getStageById("dashboard"));
+            stage.showAndWait();
+
+        }else{
+            Stage stage = MyHealth.getStageById("editRecordPopup");
+            stage.requestFocus();
+        }
+
+        this.updateRecordTable();
+        this.updateTestChart();
 
     }
 }
