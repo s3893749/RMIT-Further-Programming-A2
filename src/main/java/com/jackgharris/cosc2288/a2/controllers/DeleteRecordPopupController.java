@@ -6,12 +6,8 @@ import com.jackgharris.cosc2288.a2.models.Weight;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
-import java.util.List;
-
-public class deleteRecordPopupController {
+public class DeleteRecordPopupController {
 
     @FXML
     private Label recordType;
@@ -20,7 +16,7 @@ public class deleteRecordPopupController {
     @FXML
     private Label recordValue;
     
-    Record record;
+    private Record record;
 
     @FXML
     private AnchorPane parent;
@@ -28,10 +24,6 @@ public class deleteRecordPopupController {
     @FXML
     public void initialize(){
         this.parent.setStyle("-fx-background-color: "+ MyHealth.getTheme().getBackgroundColor());
-        this.record = (Record) MyHealth.data.get("record");
-        this.recordType.setText("Type: "+this.record.getClass().getSimpleName());
-        this.recordDate.setText("Date: "+this.record.getDate());
-        this.recordValue.setText("Value: "+this.record.getValue());
     }
 
     public void cancelButtonPress(){
@@ -41,5 +33,12 @@ public class deleteRecordPopupController {
     public void deleteButtonPress(){
         Weight.remove((Weight) this.record);
         MyHealth.getStageById("deleteRecordPopup").close();
+    }
+
+    public void setRecord(Record record){
+        this.record = record;
+        this.recordType.setText("Type: "+this.record.getClass().getSimpleName());
+        this.recordDate.setText("Date: "+this.record.getDate());
+        this.recordValue.setText("Value: "+this.record.getValue());
     }
 }
