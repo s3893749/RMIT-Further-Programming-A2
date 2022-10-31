@@ -1,6 +1,5 @@
 package com.jackgharris.cosc2288.a2.core;
 
-import com.jackgharris.cosc2288.a2.models.Weight;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
 import javafx.stage.Stage;
@@ -25,7 +24,10 @@ public class MyHealth extends javafx.application.Application {
 
     private static Theme theme;
 
+    private static MyHealth instance;
+
     public MyHealth(){
+        MyHealth.instance = this;
         System.out.println("MyHealth object created!");
         MyHealth.theme = new Theme("#363742","#444550",null,null,null);
     }
@@ -44,7 +46,6 @@ public class MyHealth extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-        //TO LOG IN ENTER THE EMAIL 'example@example.com'
         launch();
     }
 
@@ -76,5 +77,9 @@ public class MyHealth extends javafx.application.Application {
         });
 
         return  stage.get();
+    }
+
+    public static MyHealth getInstance(){
+        return MyHealth.instance;
     }
 }
