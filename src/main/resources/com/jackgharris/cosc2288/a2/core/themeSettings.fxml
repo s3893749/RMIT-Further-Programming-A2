@@ -19,7 +19,7 @@
                <center>
                   <ImageView fitHeight="40.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@theme_icon.png" />
+                        <Image url="@icons/theme_icon.png" />
                      </image>
                      <BorderPane.margin>
                         <Insets right="8.0" />
@@ -43,7 +43,7 @@
                      <graphic>
                         <ImageView fitHeight="27.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@back__icon.png" />
+                              <Image url="@icons/back__icon.png" />
                            </image>
                         </ImageView>
                      </graphic>

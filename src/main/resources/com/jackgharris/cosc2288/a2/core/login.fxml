@@ -23,7 +23,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@help_icon.png" />
+                        <Image url="@icons/help_icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -40,7 +40,7 @@
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@close_icon.png" />
+                        <Image url="@icons/close_icon.png" />
                      </image>
                   </ImageView>
                </graphic>
