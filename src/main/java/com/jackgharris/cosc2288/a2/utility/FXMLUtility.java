@@ -25,6 +25,10 @@ public class FXMLUtility {
 
     public static URL editRecordPopup = MyHealth.class.getResource("editRecordPopup.fxml");
 
+    public static URL menu = MyHealth.class.getResource("components/menu.fxml");
+
+    public static URL recordOverview = MyHealth.class.getResource("components/record.fxml");
+
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(sceneURL);
