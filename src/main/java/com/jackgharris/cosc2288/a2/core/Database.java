@@ -2,38 +2,49 @@ package com.jackgharris.cosc2288.a2.core;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
 
 public class Database {
 
 
-    private Database(){
+    private static final String jdbcURL = "jdbc:sqlite:C:\\Users\\st_tu\\Documents\\RMIT\\Further Programming\\A2\\A2\\src\\main\\resources\\MyHealth.db";
 
-        //TESTING CODE
 
-        String jdbcURL = "jdbc:sqlite:C:\\Users\\st_tu\\Documents\\RMIT\\Further Programming\\A2\\A2\\chinook.db";
+    public static Vector<HashMap<String,String>> query(String query){
+
         Connection connection = null;
+        ResultSet resultSet = null;
+        Vector<HashMap<String,String>> data = new Vector<>();
+
         try{
-            connection = DriverManager.getConnection(jdbcURL);
-
-            String sql = "SELECT * FROM customers";
+            connection = DriverManager.getConnection(Database.jdbcURL);
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
 
-            System.out.println(result.toString());
+            resultSet = statement.executeQuery(query);
 
-            while(result.next()){
-                System.out.println(result.getString("firstName"));
+
+            ArrayList<String> columns = new ArrayList<>();
+
+
+            while(resultSet.next()){
+                HashMap<String, String> data2 = new HashMap<>();
+                int i = 1;
+                while(i <= resultSet.getMetaData().getColumnCount()){
+                    data2.put(resultSet.getMetaData().getColumnName(i),resultSet.getString(i));
+                    i++;
+                }
+                data.add(data2);
             }
 
+            connection.close();
+
         } catch (SQLException e) {
-            System.out.println("Failed to connect to SQLite database '"+e.getMessage()+"'");
+            throw new RuntimeException(e);
         }
 
 
-
-    }
-
-    public static Query table(String table){
-        return new Query(table);
+        return data;
     }
 }
