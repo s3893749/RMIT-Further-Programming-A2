@@ -1,5 +1,6 @@
 package com.jackgharris.cosc2288.a2.models;
 
+import com.jackgharris.cosc2288.a2.core.Database;
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import javafx.collections.ObservableList;
 
@@ -62,10 +63,11 @@ public class Record {
         return Record.cache;
     }
 
-    public static void add(Record record){
+    public static boolean add(Record record){
 
         String sql = "INSERT INTO records (type, user_id, value, date) VALUES ('"+record.getType()+"','"+ MyHealth.getInstance().getUser().getId()+"', '"+record.getValue()+"','"+record.getDate()+"')";
-        System.out.println(sql);
+
+        return Database.queryWithBooleanResult(sql);
     }
 
 }
