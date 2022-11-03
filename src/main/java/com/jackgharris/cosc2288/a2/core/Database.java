@@ -47,4 +47,26 @@ public class Database {
 
         return data;
     }
+
+    public static boolean queryWithBooleanResult(String query){
+        Connection connection = null;
+        boolean outcome;
+
+        try{
+            connection = DriverManager.getConnection(Database.jdbcURL);
+            Statement statement = connection.createStatement();
+
+            int i = statement.executeUpdate(query);
+
+            outcome = i > 0;
+
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return outcome;
+    }
 }
