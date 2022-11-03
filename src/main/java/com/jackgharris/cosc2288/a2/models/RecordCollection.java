@@ -11,10 +11,12 @@ public class RecordCollection {
 
     private String query;
     private boolean whereCalled;
+    private boolean updateCacheCalled;
 
     public RecordCollection(){
         this.query = "SELECT * FROM records";
         this.whereCalled = false;
+        this.updateCacheCalled = false;
     }
 
     public RecordCollection where(String key, String value){
@@ -28,24 +30,32 @@ public class RecordCollection {
         return this;
     }
 
+    public RecordCollection updateCache(){
+        Record.setCache(this.get());
+        this.updateCacheCalled = true;
+        return this;
+    }
 
     public ObservableList<Record> get(){
-        System.out.println(this.query);
+        if(this.updateCacheCalled){
+            return Record.getCache();
+        }else {
+            System.out.println(this.query);
 
-        ObservableList<Record> output = FXCollections.observableArrayList();
+            ObservableList<Record> output = FXCollections.observableArrayList();
 
-        Vector<HashMap<String, String>> resultSet = Database.query(this.query);
+            Vector<HashMap<String, String>> resultSet = Database.query(this.query);
 
-        resultSet.forEach((n) ->{
-            output.add(new Record(
-                    Integer.parseInt(n.get("id")),
-                    n.get("type"),
-                    Integer.parseInt(n.get("user_id")),
-                    n.get("value"),
-                    n.get("date")));
-        });
-
-        return output;
+            resultSet.forEach((n) -> {
+                output.add(new Record(
+                        Integer.parseInt(n.get("id")),
+                        n.get("type"),
+                        Integer.parseInt(n.get("user_id")),
+                        n.get("value"),
+                        n.get("date")));
+            });
+            return output;
+        }
     }
 
     public ObservableList<Record> getAndCache(){
