@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="menuContainer" maxHeight="Infinity" prefWidth="195.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.MenuController">
+   <children>
+      <VBox id="menu" fx:id="menu" layoutX="-1.0" layoutY="-14.0" prefHeight="720.0" prefWidth="200.0" styleClass="menu" stylesheets="@../app.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-14.0" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane id="menu-header" prefHeight="116.0" prefWidth="200.0" style="-fx-border-image-insets: 0px;" stylesheets="@../login.css" VBox.vgrow="NEVER">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="61.0" layoutX="67.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../favicon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="37.0" layoutY="77.0" prefHeight="47.0" prefWidth="126.0" text="    My Health" />
+               </children>
+            </AnchorPane>
+            <Button mnemonicParsing="false" onAction="#switchToRecent" prefHeight="55.0" prefWidth="200.0" stylesheets="@../app.css" text="Recent">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/clock_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToHealthRecord" prefHeight="55.0" prefWidth="200.0" stylesheets="@../app.css" text="Health Record">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/records_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToTemperature" prefHeight="55.0" prefWidth="200.0" stylesheets="@../app.css" text="Temperature">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/temperature_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToWeight" prefHeight="55.0" prefWidth="200.0" stylesheets="@../app.css" text="Weight">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/weight_icon_2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToBloodPressure" prefHeight="55.0" prefWidth="200.0" stylesheets="@../app.css" text="Bloood Pressure">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/heart_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+             <Region VBox.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" text="Import / Export">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/sync_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#preferencesButtonPress" prefHeight="25.0" prefWidth="211.0" text="Preferences">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../settings_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#logoutButtonPress" prefHeight="25.0" prefWidth="211.0" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
