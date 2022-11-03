@@ -1,0 +1,24 @@
+.contentContainerOuter #page-title{
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.chart{
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent
+}
+
+.button{
+    -fx-background-color: #ef0a60;
+    -fx-background-radius: 25px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.button:hover{
+    -fx-background-color: #b20844;
+}

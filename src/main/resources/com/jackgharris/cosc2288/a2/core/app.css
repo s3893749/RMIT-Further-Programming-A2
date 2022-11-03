@@ -39,6 +39,7 @@
 
 .parent #menu{
     -fx-padding: 0px!important;
+    -fx-background-color: transparent;
 }
 
 .parent #menu .button{
