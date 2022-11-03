@@ -1,5 +1,7 @@
 package com.jackgharris.cosc2288.a2.core;
 
+import com.jackgharris.cosc2288.a2.models.Record;
+import com.jackgharris.cosc2288.a2.models.User;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
 import javafx.stage.Stage;
@@ -20,16 +22,20 @@ public class MyHealth extends javafx.application.Application {
 
     public static final String title = "My Health v0.1";
 
+    private String selectedRecordType;
+
     public static HashMap<String, Object> data = new HashMap<>();
 
-    private static Theme theme;
+    private User user;
+
+    private Theme theme;
 
     private static MyHealth instance;
 
     public MyHealth(){
         MyHealth.instance = this;
-        System.out.println("MyHealth object created!");
-        MyHealth.theme = new Theme("#363742","#444550",null,null,null);
+        this.selectedRecordType = null;
+        this.theme = new Theme("#363742","#444550",null,null,null);
     }
 
     @Override
@@ -41,6 +47,7 @@ public class MyHealth extends javafx.application.Application {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.getIcons().add(Resource.favicon());
+        stage.getProperties().put("id","launcher");
 
         stage.show();
     }
@@ -49,8 +56,24 @@ public class MyHealth extends javafx.application.Application {
         launch();
     }
 
-    public static Theme getTheme(){
-        return MyHealth.theme;
+    public Theme getTheme(){
+        return this.theme;
+    }
+
+    public User getUser(){
+        return this.user;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public void setSelectedRecordType(String type){
+        this.selectedRecordType = type;
+    }
+
+    public String getSelectedRecordType(){
+        return this.selectedRecordType;
     }
 
     public static boolean isStageShown(String id){
