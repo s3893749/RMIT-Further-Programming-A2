@@ -12,11 +12,13 @@ public class RecordCollection {
     private String query;
     private boolean whereCalled;
     private boolean updateCacheCalled;
+    private String orderBy;
 
     public RecordCollection(){
         this.query = "SELECT * FROM records";
         this.whereCalled = false;
         this.updateCacheCalled = false;
+        this.orderBy = "";
     }
 
     public RecordCollection where(String key, String value){
@@ -36,7 +38,15 @@ public class RecordCollection {
         return this;
     }
 
+    public RecordCollection sort(String column){
+        this.orderBy = " ORDER BY "+column;
+        return this;
+    }
+
     public ObservableList<Record> get(){
+
+        this.query += this.orderBy;
+
         if(this.updateCacheCalled){
             return Record.getCache();
         }else {
