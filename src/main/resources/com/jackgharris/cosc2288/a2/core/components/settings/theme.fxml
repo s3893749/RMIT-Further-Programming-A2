@@ -1,58 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="settings" fx:id="settings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.ThemeSettingsController">
+<AnchorPane id="settings" fx:id="settings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" stylesheets="@../../app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.settings.ThemeController">
    <children>
-      <HBox id="header" fx:id="header" prefHeight="57.0" prefWidth="600.0" stylesheets="@app.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <BorderPane prefHeight="115.0" prefWidth="115.0">
-               <center>
-                  <ImageView fitHeight="40.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                     <image>
-                        <Image url="@icons/theme_icon.png" />
-                     </image>
-                     <BorderPane.margin>
-                        <Insets right="8.0" />
-                     </BorderPane.margin>
-                  </ImageView>
-               </center>
-               <right>
-                  <Label prefHeight="35.0" prefWidth="59.0" text="Theme" BorderPane.alignment="CENTER" />
-               </right>
-               <HBox.margin>
-                  <Insets left="8.0" />
-               </HBox.margin>
-            </BorderPane>
-            <BorderPane prefHeight="57.0" prefWidth="447.0" />
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <Button mnemonicParsing="false" onAction="#backButton" prefHeight="37.0" prefWidth="83.0" text="Back" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                     <graphic>
-                        <ImageView fitHeight="27.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/back__icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </center>
-            </BorderPane>
-         </children>
-      </HBox>
-      <VBox id="theme-menu" layoutX="14.0" layoutY="57.0" prefHeight="324.0" prefWidth="344.0">
+      <VBox id="theme-menu" layoutX="14.0" layoutY="14.0" prefHeight="324.0" prefWidth="344.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="448.0">
                <children>

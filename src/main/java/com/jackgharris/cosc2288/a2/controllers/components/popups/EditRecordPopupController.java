@@ -1,4 +1,4 @@
-package com.jackgharris.cosc2288.a2.controllers;
+package com.jackgharris.cosc2288.a2.controllers.components.popups;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.interfaces.HasActiveRecord;

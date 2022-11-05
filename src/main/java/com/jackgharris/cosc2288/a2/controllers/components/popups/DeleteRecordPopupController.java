@@ -1,4 +1,4 @@
-package com.jackgharris.cosc2288.a2.controllers;
+package com.jackgharris.cosc2288.a2.controllers.components.popups;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.interfaces.HasActiveRecord;
@@ -24,7 +24,7 @@ public class DeleteRecordPopupController implements HasActiveRecord {
 
     @FXML
     public void initialize(){
-        this.parent.setStyle("-fx-background-color: "+ MyHealth.getTheme().getBackgroundColor());
+        this.parent.setStyle("-fx-background-color: "+ MyHealth.getInstance().getTheme().getBackgroundColor());
     }
 
     public void cancelButtonPress(){
