@@ -2,7 +2,6 @@ package com.jackgharris.cosc2288.a2.core;
 
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -23,10 +22,6 @@ public class Database {
             Statement statement = connection.createStatement();
 
             resultSet = statement.executeQuery(query);
-
-
-            ArrayList<String> columns = new ArrayList<>();
-
 
             while(resultSet.next()){
                 HashMap<String, String> data2 = new HashMap<>();
