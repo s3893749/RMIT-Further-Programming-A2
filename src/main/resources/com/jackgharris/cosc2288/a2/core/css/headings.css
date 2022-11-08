@@ -3,3 +3,9 @@
     -fx-font-size: 26px;
     -fx-font-weight: bold;
 }
+
+.h2{
+    -fx-text-fill: #b9b9b9;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
