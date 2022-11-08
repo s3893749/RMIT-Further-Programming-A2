@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -71,9 +70,7 @@ public class User {
 
 
     public static boolean login(String email, String password){
-        String query = "SELECT * FROM users WHERE email='"+email+"' AND password='"+ Arrays.toString(User.hash(password)) +"'";
-
-        System.out.println(Arrays.toString(User.hash(password)));
+        String query = "SELECT * FROM users WHERE email='"+email+"' AND password='"+ User.hash(password) +"'";
 
         Vector<HashMap<String,String>> result =  Database.query(query);
 
@@ -86,10 +83,6 @@ public class User {
 
         Vector<HashMap<String ,String>> data = Database.query(query);
 
-        System.out.println(data.get(0).get("photo"));
-
-        System.out.println();
-
         return new User(
                 Integer.parseInt(data.get(0).get("id")),
                 data.get(0).get("username"),
@@ -100,7 +93,7 @@ public class User {
                 data.get(0).get("photo"));
     }
 
-    public static byte[] hash(String password){
+    public static String hash(String password){
 
 
         byte[] hashedPassword;
@@ -113,14 +106,19 @@ public class User {
             throw new RuntimeException(e);
         }
 
-        return hashedPassword;
+        StringBuilder stringBuilder = new StringBuilder(hashedPassword.length *2);
+        for(byte b : hashedPassword){
+            stringBuilder.append(String.format("%X",b));
+        }
+
+        return stringBuilder.toString();
 
     }
 
     public static boolean add(User user){
 
         String sql = "INSERT INTO users (username, firstname, lastname, email, password, photo) VALUES " +
-                "('"+user.getUsername()+"','"+ user.getFirstname()+"', '"+user.getSurname()+"','"+user.getEmail()+"','"+ Arrays.toString(User.hash(user.password)) +"','"+
+                "('"+user.getUsername()+"','"+ user.getFirstname()+"', '"+user.getSurname()+"','"+user.getEmail()+"','"+ User.hash(user.password) +"','"+
                 user.getPhoto()+"')";
 
         return Database.queryWithBooleanResult(sql);
