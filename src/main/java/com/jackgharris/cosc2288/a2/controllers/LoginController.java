@@ -1,15 +1,17 @@
 package com.jackgharris.cosc2288.a2.controllers;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
+import com.jackgharris.cosc2288.a2.models.User;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -35,30 +37,34 @@ public class LoginController {
         stage.show();
     }
 
-    public void loginButtonPress(ActionEvent event) throws IOException {
+    public void loginButtonPress() throws IOException {
         System.out.println("Login Button Pressed!");
         System.out.println("Email = "+this.emailInputField.getText());
         System.out.println("Password = "+this.passwordInputField.getText());
 
-        if(!this.emailInputField.getText().equals("1")){
+        if(!User.login(this.emailInputField.getText(), this.passwordInputField.getText())){
 
             this.loginErrorLabel.getStyleClass().remove("notification-hidden");
             this.emailInputField.getStyleClass().add("text-field-error");
             this.passwordInputField.getStyleClass().add("text-field-error");
 
         }else{
-            Stage dashboardStage = new Stage(StageStyle.DECORATED);
-            Stage launcherStage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
+            MyHealth.getInstance().setUser(User.getByEmail(this.emailInputField.getText()));
 
-            dashboardStage.setScene(FXMLUtility.loadScene(FXMLUtility.dashboardFXML,launcherStage, MyHealth.appCSS));
+            Stage dashboardStage = new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(FXMLUtility.dashboardFXML);
+            dashboardStage.setScene(new Scene(fxmlLoader.load()));
+            dashboardStage.getProperties().put("id","dashboard");
+            dashboardStage.getProperties().put("controller",fxmlLoader.getController());
             dashboardStage.setResizable(true);
             dashboardStage.setMaximized(true);
             dashboardStage.setTitle(MyHealth.title);
             dashboardStage.getIcons().add(Resource.favicon());
             dashboardStage.show();
-            dashboardStage.getProperties().put("id","dashboard");
-            launcherStage.hide();
+
+            MyHealth.getStageById("launcher").close();
         }
     }
 
