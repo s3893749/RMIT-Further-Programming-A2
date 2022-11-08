@@ -1,0 +1,7 @@
+.notification{
+    -fx-background-radius: 15px;
+    -fx-background-color: rgba(0,0,0,0.125);
+}
+.notification .label{
+    -fx-text-fill: white;
+}
