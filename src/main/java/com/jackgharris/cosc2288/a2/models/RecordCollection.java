@@ -105,9 +105,6 @@ public class RecordCollection {
             Record.setCache(output);
         }
 
-        if(!this.shouldUseCache){
-            System.out.println(this.query);
-        }
 
         return output;
     }
