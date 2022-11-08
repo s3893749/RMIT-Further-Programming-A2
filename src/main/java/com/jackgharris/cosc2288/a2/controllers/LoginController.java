@@ -1,6 +1,7 @@
 package com.jackgharris.cosc2288.a2.controllers;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
+import com.jackgharris.cosc2288.a2.models.Activity;
 import com.jackgharris.cosc2288.a2.models.User;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
@@ -51,6 +52,7 @@ public class LoginController {
         }else{
 
             MyHealth.getInstance().setUser(User.getByEmail(this.emailInputField.getText()));
+            Activity.add(new Activity("Logged in"));
 
             Stage dashboardStage = new Stage();
 
