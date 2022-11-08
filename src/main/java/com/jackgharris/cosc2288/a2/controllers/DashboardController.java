@@ -39,64 +39,13 @@ public class DashboardController{
         //set the background colors
         this.menuContainerOuter.setStyle("-fx-background-color: "+MyHealth.getInstance().getTheme().getMenuColor());
         this.parent.setStyle("-fx-background-color: "+MyHealth.getInstance().getTheme().getBackgroundColor());
-    }
 
 
-    public void deleteRecord() throws IOException {
-       Weight weight = this.weightTable.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(FXMLUtility.recentOverview);
+        AnchorPane nodes = loader.load();
 
-        if(!MyHealth.isStageShown("deleteRecordPopup")){
-            Stage stage = new Stage();
-            stage.getProperties().put("id", "deleteRecordPopup");
-            stage.setResizable(false);
-            stage.getIcons().add(Resource.warningFavicon());
-            stage.setTitle("Delete Record Confirmation");
-            stage.getProperties().put("record", weight);
-
-            FXMLLoader fxmlLoader = new FXMLLoader(FXMLUtility.deleteRecordPopup);
-            stage.setScene(new Scene(fxmlLoader.load()));
-
-            DeleteRecordPopupController controller = fxmlLoader.getController();
-            controller.setRecord(weight);
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MyHealth.getStageById("dashboard"));
-            stage.showAndWait();
-
-        }else{
-            Stage stage = MyHealth.getStageById("deleteRecordPopup");
-            stage.requestFocus();
-        }
-    }
-
-    public void editRecord() throws IOException {
-
-        Weight weight = this.weightTable.getSelectionModel().getSelectedItem();
-
-        if(!MyHealth.isStageShown("editRecordPopup")){
-            Stage stage = new Stage();
-            stage.getProperties().put("id", "editRecordPopup");
-            stage.setResizable(false);
-            stage.getIcons().add(Resource.warningFavicon());
-            stage.setTitle("Edit Record");
-            stage.getProperties().put("record", weight);
-
-            FXMLLoader fxmlLoader = new FXMLLoader(FXMLUtility.editRecordPopup);
-            stage.setScene(new Scene(fxmlLoader.load()));
-
-            EditRecordPopupController controller = fxmlLoader.getController();
-            controller.setRecord(weight);
-
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MyHealth.getStageById("dashboard"));
-            stage.showAndWait();
-
-        }else{
-            Stage stage = MyHealth.getStageById("editRecordPopup");
-            stage.requestFocus();
-        }
-
+        AnchorPane contentOuterContainer = (AnchorPane) this.parent.getChildren().get(1);
+        contentOuterContainer.getChildren().addAll(nodes.getChildren());
     }
 
 
