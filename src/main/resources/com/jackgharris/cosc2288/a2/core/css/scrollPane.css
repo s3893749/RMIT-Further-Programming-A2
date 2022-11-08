@@ -1,0 +1,31 @@
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0px;
+}
+
+.scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scroll-pane .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .decrement-button, .increment-button{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .decrement-arrow, .increment-arrow{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb{
+    -fx-background-color: #ef0a60;
+}
