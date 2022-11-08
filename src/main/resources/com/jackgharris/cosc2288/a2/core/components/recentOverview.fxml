@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -44,6 +45,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label styleClass="h2" stylesheets="@../css/headings.css" text="Your recent activity" />
+                  <ScrollPane fx:id="recentActivityScrollPane" prefHeight="499.0" prefWidth="613.0" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox fx:id="recentActivityContainer" />
+                     </content>
+                  </ScrollPane>
                </children>
             </VBox>
          </children>
