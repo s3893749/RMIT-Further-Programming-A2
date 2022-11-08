@@ -14,4 +14,6 @@ module com.jackgharris.cosc2288.a2 {
     opens com.jackgharris.cosc2288.a2.core to javafx.fxml;
     opens com.jackgharris.cosc2288.a2.controllers to javafx.fxml;
     opens com.jackgharris.cosc2288.a2.controllers.components to javafx.fxml;
+    exports com.jackgharris.cosc2288.a2.controllers.components.popups;
+    opens com.jackgharris.cosc2288.a2.controllers.components.popups to javafx.fxml;
 }
