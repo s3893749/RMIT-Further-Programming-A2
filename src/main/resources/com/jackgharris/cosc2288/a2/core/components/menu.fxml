@@ -72,15 +72,6 @@
                </graphic>
             </Button>
              <Region VBox.vgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" text="Import / Export">
-               <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/sync_icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Button mnemonicParsing="false" onAction="#preferencesButtonPress" prefHeight="25.0" prefWidth="211.0" text="Preferences">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
