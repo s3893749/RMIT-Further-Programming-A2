@@ -32,9 +32,12 @@ public class MyHealth extends javafx.application.Application {
 
     private static MyHealth instance;
 
+    private String encryptionPepper;
+
     public MyHealth(){
         MyHealth.instance = this;
         this.selectedRecordType = null;
+        this.encryptionPepper = "Pepper&SteakPie";
         this.theme = new Theme("#363742","#444550",null,null,null);
     }
 
@@ -74,6 +77,10 @@ public class MyHealth extends javafx.application.Application {
 
     public String getSelectedRecordType(){
         return this.selectedRecordType;
+    }
+
+    public String getEncryptionPepper(){
+        return this.encryptionPepper;
     }
 
     public static boolean isStageShown(String id){
