@@ -65,6 +65,8 @@ public class Record {
 
     public static boolean add(Record record){
 
+        Activity.add(new Activity("New record added "+record.getValue()+" for type "+record.getType()));
+
         String sql = "INSERT INTO records (type, user_id, value, date) VALUES ('"+record.getType()+"','"+ MyHealth.getInstance().getUser().getId()+"', '"+record.getValue()+"','"+record.getDate()+"')";
 
         return Database.queryWithBooleanResult(sql);
