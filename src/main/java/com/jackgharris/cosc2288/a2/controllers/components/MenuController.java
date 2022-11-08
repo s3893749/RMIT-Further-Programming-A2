@@ -15,24 +15,31 @@ public class MenuController {
 
     public void preferencesButtonPress() throws IOException {
 
-        if(!MyHealth.isStageShown("preferences")){
-            Stage stage =  new Stage();
-            stage.getProperties().put("id","preferences");
-            stage.setScene(FXMLUtility.loadScene(FXMLUtility.settingsFXML,stage,MyHealth.appCSS));
-            stage.setResizable(false);
-            stage.show();
-        }else{
-            MyHealth.getStageById("preferences").requestFocus();
-        }
+        //if(!MyHealth.isStageShown("settings")){
+       //     Stage stage =  new Stage();
+       //     stage.getProperties().put("id","settings");
+       //     stage.setScene(FXMLUtility.loadScene(FXMLUtility.settingsFXML,stage,MyHealth.appCSS));
+       //     stage.setResizable(false);
+       //     stage.show();
+       // }else{
+        //    MyHealth.getStageById("settings").requestFocus();
+        //}
 
     }
 
-    public void switchToRecent(){
+    public void switchToRecent() throws IOException {
         Stage stage = MyHealth.getStageById("dashboard");
         AnchorPane root = (AnchorPane) stage.getScene().getRoot();
 
         AnchorPane contentContainerOuter = (AnchorPane) root.getChildren().get(1);
         contentContainerOuter.getChildren().clear();
+
+
+        FXMLLoader loader = new FXMLLoader(FXMLUtility.recentOverview);
+        AnchorPane nodes = loader.load();
+
+        contentContainerOuter.getChildren().clear();
+        contentContainerOuter.getChildren().addAll(nodes.getChildren());
     }
 
 
@@ -54,7 +61,7 @@ public class MenuController {
 
         FXMLLoader loader = new FXMLLoader(FXMLUtility.recordOverview);
         AnchorPane nodes = loader.load();
-        ((RecordController)loader.getController()).setRecordType("Temperature");
+        ((RecordWithLineChartController)loader.getController()).setRecordType("Temperature");
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
@@ -71,7 +78,7 @@ public class MenuController {
 
         FXMLLoader loader = new FXMLLoader(FXMLUtility.recordOverview);
         AnchorPane nodes = loader.load();
-        ((RecordController)loader.getController()).setRecordType("Weight");
+        ((RecordWithLineChartController)loader.getController()).setRecordType("Weight");
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
@@ -88,7 +95,7 @@ public class MenuController {
 
         FXMLLoader loader = new FXMLLoader(FXMLUtility.recordOverview);
         AnchorPane nodes = loader.load();
-        ((RecordController)loader.getController()).setRecordType("BloodPressure");
+        ((RecordWithLineChartController)loader.getController()).setRecordType("BloodPressure");
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
