@@ -103,23 +103,8 @@ public class RecentOverviewController {
         this.recentActivityContainer.setSpacing(16);
         this.recentActivityScrollPane.getStylesheets().add(String.valueOf(MyHealth.class.getResource("css/scrollPane.css")));
 
-        ArrayList<Activity> activities = new ArrayList<Activity>();
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"Hello world!"));
-        activities.add(new Activity(this, MyHealth.getInstance().getUser(),"User logged in"));
+        ArrayList<Activity> activities = Activity.get(10);
+
 
         activities.forEach((n)->{
             AnchorPane notification = new AnchorPane();
@@ -135,7 +120,7 @@ public class RecentOverviewController {
             imageView.setLayoutY(12);
             notification.getChildren().add(imageView);
 
-            Label text = new Label(n.getDescription());
+            Label text = new Label(n.getDescription()+" "+n.getTime());
             text.setLayoutY(19);
             text.setLayoutX(54);
             notification.getChildren().add(text);
