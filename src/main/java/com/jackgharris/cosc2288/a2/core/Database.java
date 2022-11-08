@@ -17,6 +17,8 @@ public class Database {
         ResultSet resultSet = null;
         Vector<HashMap<String,String>> data = new Vector<>();
 
+        System.out.println(query);
+
         try{
             connection = DriverManager.getConnection(Database.jdbcURL);
             Statement statement = connection.createStatement();
@@ -40,12 +42,15 @@ public class Database {
         }
 
 
+
         return data;
     }
 
     public static boolean queryWithBooleanResult(String query){
         Connection connection = null;
         boolean outcome;
+
+        System.out.println(query);
 
         try{
             connection = DriverManager.getConnection(Database.jdbcURL);
