@@ -103,8 +103,10 @@ public class RecordCollection {
 
         if(this.shouldUpdateCache){
             Record.setCache(output);
-            System.out.println(this.query);
+        }
 
+        if(!this.shouldUseCache){
+            System.out.println(this.query);
         }
 
         return output;
