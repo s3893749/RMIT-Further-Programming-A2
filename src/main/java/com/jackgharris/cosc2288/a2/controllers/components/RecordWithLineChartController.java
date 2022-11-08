@@ -2,7 +2,7 @@ package com.jackgharris.cosc2288.a2.controllers.components;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Record;
-import com.jackgharris.cosc2288.a2.models.Weight;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
@@ -43,6 +43,8 @@ public class RecordWithLineChartController {
 
     private String recordType;
 
+    private int limit;
+
     public void initialize(){
 
         //set our selection buttons and input to be disabled by default
@@ -56,7 +58,6 @@ public class RecordWithLineChartController {
         //call our callback function to set the datepicker to disable any used dates.
         Callback<DatePicker, DateCell> dayCellFactory  = this.disableUsedDates();
         this.addRecordDatePicker.setDayCellFactory(dayCellFactory);
-
     }
 
     public void setRecordType(String recordType){
@@ -68,8 +69,8 @@ public class RecordWithLineChartController {
         this.recordTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         this.valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
-        this.updateTable();
-        this.updateChart();
+        this.updateModels();
+
     }
 
     public void datePickerUpdated(){
@@ -83,8 +84,7 @@ public class RecordWithLineChartController {
     public void addRecord(){
 
         Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText(), this.addRecordDatePicker.getValue().toString()));
-        this.updateTable();
-        this.updateChart();
+        this.updateModels();
 
         this.addRecordButton.setDisable(true);
         this.addRecordInput.setText(null);
@@ -92,25 +92,59 @@ public class RecordWithLineChartController {
         this.addRecordDatePicker.setValue(null);
 
         this.addRecordInput.setDisable(true);
-
     }
 
-    private void updateTable(){
-        this.recordTable.getItems().clear();
-        this.recordTable.getItems().addAll(Record.where("user_id",String.valueOf(MyHealth.getInstance().getUser().getId())).where("type",this.recordType).updateCache().sort("date").get());
-    }
+    private void updateModels(){
+        System.out.println("["+this.getClass().getSimpleName()+"] updating models");
+        //Get our records from the database but limit them via the current set limit.
+        ObservableList<Record> records = Record.where("type",this.recordType).withCurrentUser().limit(this.limit).sort("date").updateCache().get();
 
-    private void updateChart(){
+        //-------------------------------------------------------------\\
+        //                    UPDATE CHART CONTENTS                    \\
+        //-------------------------------------------------------------\\
+        //
+        //This section of the method takes our records and updates the
+        // chart model contents.
         this.recordChart.getData().clear();
         XYChart.Series<String, Float> series = new XYChart.Series<>();
 
-        for (Record record : Record.where("type", this.recordType).sort("date").get()){
+        for (Record record : records){
             series.getData().add(new XYChart.Data<>(record.getDate().toString(),Float.valueOf(record.getValue())));
         }
 
         this.recordChart.setLegendVisible(false);
         this.recordChart.getData().add(series);
+
+        //-------------------------------------------------------------\\
+        //                    UPDATE TABLE CONTENTS                    \\
+        //-------------------------------------------------------------\\
+        //
+        //This code updates the contents shown in our table
+        this.recordTable.getItems().clear();
+        this.recordTable.getItems().addAll(records);
+
+        //Check if we have a limit set, if not then simply use the above cache, else update the cache.
+        if(this.limit != 0){
+            System.out.println("["+this.getClass().getSimpleName()+"] limit set, reloading cache with no limit");
+            Record.where("type",this.recordType).withCurrentUser().sort("date").updateCache().get();
+        }
     }
+
+    public void showAllRecords(){
+        this.limit = 0;
+        this.updateModels();
+    }
+
+    public void showLastWeek(){
+        this.limit = 7;
+        this.updateModels();
+    }
+
+    public void showLastMonth(){
+        this.limit = 30;
+        this.updateModels();
+    }
+
 
     private Callback<DatePicker, DateCell> disableUsedDates() {
 
@@ -119,8 +153,7 @@ public class RecordWithLineChartController {
             @Override
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
-
-                for (Record record: Record.where("type",MyHealth.getInstance().getSelectedRecordType()).getAndCache()){
+                for (Record record: Record.where("type",MyHealth.getInstance().getSelectedRecordType()).fromCache().get()){
                     if(item.equals(record.getDate())){
                         setDisable(true);
                         setStyle("-fx-background-color: #c72929;");
@@ -129,6 +162,7 @@ public class RecordWithLineChartController {
                 }
             }
         };
+
         return dayCellFactory;
     }
 
