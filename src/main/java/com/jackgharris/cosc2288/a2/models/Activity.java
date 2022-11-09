@@ -4,6 +4,7 @@ import com.jackgharris.cosc2288.a2.core.Database;
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,18 +13,16 @@ import java.util.Vector;
 public class Activity {
 
     private final String description;
-    private final String time;
+    private final Long time;
 
     public Activity(String description){
         this.description = description;
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-        Date date = new Date();
-        this.time = formatter.format(date);
+        this.time = Instant.now().getEpochSecond();
     }
 
     public Activity(String description, String time){
         this.description = description;
-        this.time = time;
+        this.time = Long.parseLong(time);
     }
 
 
@@ -32,8 +31,14 @@ public class Activity {
     }
 
 
-    public String getTime(){
+    public Long getTime(){
         return this.time;
+    }
+
+    public String getTimeReadable(){
+
+        Date date = Date.from(Instant.ofEpochSecond(this.time));
+        return new SimpleDateFormat("h:mm a").format(date)+" on "+new SimpleDateFormat("dd/MM/yyyy").format(date);
     }
 
     public static boolean add(Activity activity){
@@ -42,14 +47,14 @@ public class Activity {
         return Database.queryWithBooleanResult(sql);
     }
 
-    public static ArrayList<Activity> get(int limit){
+    public static ArrayList<Activity> get(int limit, int offset){
         ArrayList<Activity> output = new ArrayList<>();
 
-        String sql = "SELECT * FROM activities WHERE user_id='"+MyHealth.getInstance().getUser().getId()+"' LIMIT "+limit;
+        String sql = "SELECT * FROM activities WHERE user_id='"+MyHealth.getInstance().getUser().getId()+"' ORDER BY time DESC "+" LIMIT "+limit+" OFFSET "+offset;
 
         Vector<HashMap<String, String>> result = Database.query(sql);
         result.forEach((n)->{
-            output.add(new Activity(n.get("description"), n.get("time")));
+            output.add(new Activity(n.get("description"), String.valueOf(n.get("time"))));
         });
         return output;
     }
