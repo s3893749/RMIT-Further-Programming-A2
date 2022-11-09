@@ -27,15 +27,25 @@ public class RecentOverviewController {
     private PieChart recordCountPieChart;
 
     @FXML
-    private TableView<RecordType> totalRecordEntriesTable;
-
-    @FXML
     private VBox recentActivityContainer;
 
     @FXML
     private ScrollPane recentActivityScrollPane;
 
-    public void initialize() throws IOException {
+    @FXML
+    private Label healthRecordLabel;
+
+    @FXML
+    private Label weightLabel;
+
+    @FXML
+    private Label temperatureLabel;
+
+    @FXML
+    private Label bloodPressureLabel;
+    private int currentActivityCount;
+
+    public void initialize(){
 
         //-------------------------------------------------------------\\
         //                   GET RECORD TYPE COUNTS                    \\
@@ -66,28 +76,16 @@ public class RecentOverviewController {
         this.recordCountPieChart.getData().addAll(pieData);
 
         //-------------------------------------------------------------\\
-        //                         TABLE DATA                          \\
+        //                       RECORD COUNTS                         \\
         //-------------------------------------------------------------\\
         //
-        //Next we need to set define our column factory's and then create
-        //our list that will contain all the values
+        //Next we set all our record counts
         //
-        this.totalRecordEntriesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        this.totalRecordEntriesTable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
-        this.totalRecordEntriesTable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("count"));
 
-        ObservableList<RecordType> recordOverviewItems = FXCollections.observableArrayList(
-                new RecordType("Health Record", healthRecordCount),
-                new RecordType("Temperature",temperatureCount),
-                new RecordType("Weight",weightCount),
-                new RecordType("Blood Pressure", bloodPressureCount)
-        );
-
-        this.totalRecordEntriesTable.getItems().addAll(recordOverviewItems);
-        this.totalRecordEntriesTable.setSelectionModel(null);
-        this.totalRecordEntriesTable.getColumns().forEach((n)->{
-            n.setSortable(false);
-        });
+        this.healthRecordLabel.setText(this.healthRecordLabel.getText()+healthRecordCount);
+        this.temperatureLabel.setText(this.temperatureLabel.getText()+temperatureCount);
+        this.weightLabel.setText(this.weightLabel.getText()+weightCount);
+        this.bloodPressureLabel.setText(this.bloodPressureLabel.getText()+bloodPressureCount);
 
         //-------------------------------------------------------------\\
         //                   RECENT USER ACTIONS                       \\
@@ -97,14 +95,25 @@ public class RecentOverviewController {
         //
 
         this.recentActivityScrollPane.setFitToWidth(true);
+        this.recentActivityScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        this.currentActivityCount = 0;
 
 
         this.recentActivityContainer.setStyle("-fx-padding: 32");
         this.recentActivityContainer.setSpacing(16);
         this.recentActivityScrollPane.getStylesheets().add(String.valueOf(MyHealth.class.getResource("css/scrollPane.css")));
 
-        ArrayList<Activity> activities = Activity.get(10);
+        this.loadRecentActivity();
+        this.currentActivityCount +=10;
 
+
+
+    }
+
+    public void loadRecentActivity(){
+
+        ArrayList<Activity> activities = Activity.get(10,this.currentActivityCount);
 
         activities.forEach((n)->{
             AnchorPane notification = new AnchorPane();
@@ -120,14 +129,20 @@ public class RecentOverviewController {
             imageView.setLayoutY(12);
             notification.getChildren().add(imageView);
 
-            Label text = new Label(n.getDescription()+" "+n.getTime());
+            String textContent = n.getDescription()+" at "+n.getTimeReadable();
+            if(textContent.length() >60){
+                textContent = textContent.substring(0, 60);
+                textContent+="..";
+            }
+            Label text = new Label(textContent);
+
             text.setLayoutY(19);
             text.setLayoutX(54);
             notification.getChildren().add(text);
             this.recentActivityContainer.getChildren().add(notification);
         });
 
-
+        this.currentActivityCount += 10;
 
     }
 }
