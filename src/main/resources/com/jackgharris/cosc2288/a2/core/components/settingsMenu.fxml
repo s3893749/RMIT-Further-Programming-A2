@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.SettingsMenuController">
+   <children>
+      <VBox fx:id="settingsMenu" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="400.0" stylesheets="@../css/settingsMenu.css">
+         <children>
+            <Label styleClass="h1" stylesheets="@../css/headings.css" text="Settings">
+               <VBox.margin>
+                  <Insets left="32.0" />
+               </VBox.margin></Label>
+            <BorderPane id="profilePreview" maxWidth="1.7976931348623157E308" prefHeight="266.0" prefWidth="313.0">
+               <center>
+                  <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="32.0" />
+                     </BorderPane.margin></ImageView>
+               </center>
+               <bottom>
+                  <VBox prefHeight="51.0" prefWidth="368.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="profileName" alignment="CENTER" maxWidth="1.7976931348623157E308" text="John Smith" />
+                        <Label fx:id="profileEmail" alignment="CENTER" maxWidth="1.7976931348623157E308" text="john.smith@example.com" />
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="16.0" top="16.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </bottom>
+               <VBox.margin>
+                  <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+               </VBox.margin>
+            </BorderPane>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToAccountSettings" prefHeight="47.0" prefWidth="255.0">
+               <graphic>
+                  <BorderPane prefHeight="35.0" prefWidth="225.0">
+                     <left>
+                        <ImageView fitHeight="150.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../icons/user_icon.png" />
+                           </image>
+                           <BorderPane.margin>
+                              <Insets bottom="4.0" left="32.0" right="4.0" top="4.0" />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </left>
+                     <center>
+                        <VBox maxWidth="10000.0" prefHeight="39.0" prefWidth="10000.0" styleClass="button-content" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label prefHeight="17.0" text="Account Settings" />
+                              <Label text="Personal information &amp; password" />
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </graphic>
+               <styleClass>
+                  <String fx:value="button-content" />
+                  <String fx:value="button-settings-menu" />
+               </styleClass>
+            </Button>
+            <Button maxHeight="10000.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToThemeSettings" prefHeight="47.0" prefWidth="10000.0" styleClass="button-settings-menu">
+               <graphic>
+                  <BorderPane prefHeight="35.0" prefWidth="225.0">
+                     <left>
+                        <ImageView fitHeight="150.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../icons/theme_icon.png" />
+                           </image>
+                           <BorderPane.margin>
+                              <Insets bottom="4.0" left="32.0" right="4.0" top="4.0" />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </left>
+                     <center>
+                        <VBox prefHeight="39.0" prefWidth="207.0" styleClass="button-content" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label prefHeight="17.0" text="Appearance" />
+                              <Label text="Customize the MyHealth look &amp; feel" />
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </graphic>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToImportExport" prefHeight="47.0" prefWidth="255.0" styleClass="button-settings-menu">
+               <graphic>
+                  <BorderPane prefHeight="35.0" prefWidth="225.0">
+                     <left>
+                        <ImageView fitHeight="150.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../icons/sync_icon_alt.png" />
+                           </image>
+                           <BorderPane.margin>
+                              <Insets bottom="4.0" left="32.0" right="4.0" top="4.0" />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </left>
+                     <center>
+                        <VBox prefHeight="39.0" prefWidth="207.0" styleClass="button-content" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label prefHeight="17.0" text="Import &amp; Export" />
+                              <Label text="Save and load '.csv' files" />
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="16.0" top="16.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
