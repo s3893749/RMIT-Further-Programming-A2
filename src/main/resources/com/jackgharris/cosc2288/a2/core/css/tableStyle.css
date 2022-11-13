@@ -31,7 +31,7 @@
 }
 
 .table-view .table-row-cell:selected{
-    -fx-background-color: blue!important;
+    -fx-background-color: #b20844!important;
 }
 
 .table-view .scroll-bar{
