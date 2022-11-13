@@ -22,6 +22,12 @@ public class FXMLUtility {
 
     public static URL recentOverview = MyHealth.class.getResource("components/recentOverview.fxml");
 
+    public static URL settingsPage = MyHealth.class.getResource("components/settings.fxml");
+
+    public static URL settingsMenu = MyHealth.class.getResource("components/settingsMenu.fxml");
+
+    public static URL settingsAccountPage = MyHealth.class.getResource("components/settingsAccountPage.fxml");
+
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(sceneURL);
