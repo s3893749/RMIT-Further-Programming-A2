@@ -83,6 +83,10 @@ public class User {
 
         Vector<HashMap<String ,String>> data = Database.query(query);
 
+        if(data.isEmpty()){
+            return null;
+        }
+
         return new User(
                 Integer.parseInt(data.get(0).get("id")),
                 data.get(0).get("username"),
@@ -125,8 +129,9 @@ public class User {
 
     }
 
+    public static boolean emailIsAvailable(String email){
+        boolean outcome = false;
 
-
-
-
+        return outcome;
+    }
 }
