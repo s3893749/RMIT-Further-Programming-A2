@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.*;
 
@@ -26,9 +27,6 @@ public class RegistrationController {
 
     @FXML
     TextField emailInputField;
-
-    @FXML
-    TextField usernameInputField;
 
     @FXML
     TextField passwordInputField;
@@ -52,11 +50,57 @@ public class RegistrationController {
     }
 
     public void registerButtonPress(ActionEvent event){
+        int failedFields =0;
+
+        if(this.firstNameInputField.getText().isEmpty()){
+            this.registrationFailedError.setText("Firstname cannot be empty");
+            this.registrationFailedError.getStyleClass().remove("notification-hidden");
+            this.firstNameInputField.getStyleClass().add("text-field-error");
+            failedFields++;
+        }else{
+            this.firstNameInputField.getStyleClass().remove("text-field-error");
+        }
+
+        if(this.lastNameInputField.getText().isEmpty()){
+            this.registrationFailedError.setText("Lastname cannot be empty");
+            this.registrationFailedError.getStyleClass().remove("notification-hidden");
+            this.lastNameInputField.getStyleClass().add("text-field-error");
+            failedFields++;
+        }else{
+            this.lastNameInputField.getStyleClass().remove("text-field-error");
+        }
+
+        if(!EmailValidator.getInstance().isValid(this.emailInputField.getText())){
+            this.registrationFailedError.setText("Invalid email address provided");
+            this.registrationFailedError.getStyleClass().remove("notification-hidden");
+            this.emailInputField.getStyleClass().add("text-field-error");
+            failedFields++;
+        }else{
+            this.emailInputField.getStyleClass().remove("text-field-error");
+        }
+
+        if(this.passwordInputField.getText().length() < 8 || !this.passwordConfirmationInputField.getText().equals(this.passwordInputField.getText())){
+            this.registrationFailedError.setText("Password must be 8 characters long and match confirmation!");
+            this.registrationFailedError.getStyleClass().remove("notification-hidden");
+            this.passwordInputField.getStyleClass().add("text-field-error");
+            this.passwordConfirmationInputField.getStyleClass().add("text-field-error");
+            failedFields++;
+        }
+
+
         System.out.println("Register Button Pressed!");
+        System.out.println(failedFields);
 
-        User user = new User(0,usernameInputField.getText(), firstNameInputField.getText(),lastNameInputField.getText(),emailInputField.getText(), passwordInputField.getText(), EasyImage.serialize(new EasyImage(this.photoPreview.getImage())));
+        if(failedFields == 0){
+            User user = new User(0,this.emailInputField.getText().split("@")[0], firstNameInputField.getText(),lastNameInputField.getText(),emailInputField.getText(), passwordInputField.getText(), EasyImage.serialize(new EasyImage(this.photoPreview.getImage())));
 
-        User.add(user);
+            User.add(user);
+        }else{
+            if(failedFields > 1){
+                this.registrationFailedError.setText("Registration failed! multiple fields have invalid inputs");
+            }
+        }
+
 
     }
 
@@ -66,9 +110,10 @@ public class RegistrationController {
         fileChooser.setTitle("Please select your profile picture!");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Portable Network Graphics","*.png"));
         File photo = fileChooser.showOpenDialog(MyHealth.getStageById("registration"));
+        if(photo !=null){
+            EasyImage selectedImage =  new EasyImage(new Image(photo.getAbsolutePath(),200,200, false, true));
+            this.photoPreview.setImage(selectedImage.getImage());
 
-        EasyImage selectedImage =  new EasyImage(new Image(photo.getAbsolutePath(),200,200, false, true));
-
-        this.photoPreview.setImage(selectedImage.getImage());
+        }
     }
 }
