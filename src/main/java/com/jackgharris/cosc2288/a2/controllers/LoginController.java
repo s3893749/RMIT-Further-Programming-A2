@@ -93,4 +93,10 @@ public class LoginController {
         System.out.println("Help button pressed!");
     }
 
+    public void setNotification(String notification){
+        this.loginErrorLabel.setText(notification);
+        this.loginErrorLabel.getStyleClass().remove("notification-hidden");
+        this.loginErrorLabel.setStyle("-fx-background-color: green");
+    }
+
 }
