@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.IOException;
 
@@ -39,13 +40,26 @@ public class LoginController {
     }
 
     public void loginButtonPress() throws IOException {
-        System.out.println("Login Button Pressed!");
-        System.out.println("Email = "+this.emailInputField.getText());
-        System.out.println("Password = "+this.passwordInputField.getText());
+
+        if(!EmailValidator.getInstance().isValid(this.emailInputField.getText())){
+            this.loginErrorLabel.getStyleClass().remove("notification-hidden");
+            this.loginErrorLabel.setText("Invalid email address provided, email address should conform to 'example@exmaple.com'");
+            this.emailInputField.getStyleClass().add("text-field-error");
+            return;
+        }
+
+        if(this.passwordInputField.getText().isBlank()){
+            this.loginErrorLabel.getStyleClass().remove("notification-hidden");
+            this.loginErrorLabel.setText("Please enter a password!");
+            this.passwordInputField.getStyleClass().add("text-field-error");
+            return;
+        }
+
 
         if(!User.login(this.emailInputField.getText(), this.passwordInputField.getText())){
 
             this.loginErrorLabel.getStyleClass().remove("notification-hidden");
+            this.loginErrorLabel.setText("Account not found, please try again!");
             this.emailInputField.getStyleClass().add("text-field-error");
             this.passwordInputField.getStyleClass().add("text-field-error");
 

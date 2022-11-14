@@ -29,9 +29,9 @@
                </graphic>
             </Button>
             <TextField fx:id="emailInputField" layoutX="61.0" layoutY="227.0" prefHeight="39.0" prefWidth="339.0" promptText="john.smith@example.com" text="jack.harris@peninsulainteractive.com" />
+            <PasswordField fx:id="passwordInputField" layoutX="60.0" layoutY="315.0" prefHeight="39.0" prefWidth="339.0" promptText="*******" text="123" />
             <Button defaultButton="true" layoutX="59.0" layoutY="380.0" mnemonicParsing="false" onAction="#loginButtonPress" prefHeight="39.0" prefWidth="171.0" text="Login" />
             <Button layoutX="247.0" layoutY="380.0" mnemonicParsing="false" onAction="#registerButtonPress" prefHeight="39.0" prefWidth="154.0" text="Register" />
-            <PasswordField fx:id="passwordInputField" layoutX="60.0" layoutY="315.0" prefHeight="39.0" prefWidth="339.0" promptText="*******" text="123" />
             <Label layoutX="61.0" layoutY="286.0" prefHeight="18.0" prefWidth="74.0" styleClass="login-label" text="Password" />
             <Label layoutX="60.0" layoutY="204.0" prefHeight="18.0" prefWidth="56.0" styleClass="login-label" text="Email" />
             <Label id="title" layoutX="146.0" layoutY="129.0" stylesheets="@../login.css" text="My Health" />
