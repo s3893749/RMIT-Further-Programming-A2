@@ -6,11 +6,14 @@ import com.jackgharris.cosc2288.a2.models.User;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -40,16 +43,34 @@ public class RegistrationController {
     @FXML
     ImageView photoPreview;
 
+    private boolean notification;
+
 
 
     public void backButtonPress(ActionEvent event) throws IOException {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(FXMLUtility.loadScene(FXMLUtility.loginFXML,stage, MyHealth.launcherCSS));
         stage.getProperties().put("id","launcher");
+        FXMLLoader loader = new FXMLLoader(FXMLUtility.loginFXML);
+        stage.setScene(new Scene(loader.load()));
+        Scene scene = stage.getScene();
+        scene.setFill(Color.TRANSPARENT);
+        scene.getStylesheets().add(MyHealth.launcherCSS);
+
+        scene.setOnMousePressed(pressEvent ->{
+            scene.setOnMouseDragged(dragEvent ->{
+                stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+            });
+        });
+        LoginController loginController = loader.getController();
+        if(this.notification){
+            loginController.setNotification("Account '"+this.firstNameInputField.getText()+" "+this.lastNameInputField.getText()+"' was successfully created");
+        }
         stage.show();
+
     }
 
-    public void registerButtonPress(ActionEvent event){
+    public void registerButtonPress(ActionEvent event) throws IOException {
         int failedFields =0;
 
         if(this.firstNameInputField.getText().isEmpty()){
@@ -88,13 +109,24 @@ public class RegistrationController {
         }
 
 
-        System.out.println("Register Button Pressed!");
-        System.out.println(failedFields);
+        if(User.getByEmail(this.emailInputField.getText()) != null){
+            this.registrationFailedError.setText("Email address already in use! Please select a different address");
+            this.registrationFailedError.getStyleClass().remove("notification-hidden");
+            this.emailInputField.getStyleClass().add("text-field-error");
+            failedFields++;
+        }else{
+            this.emailInputField.getStyleClass().add("notification-hidden");
+        }
+
+
 
         if(failedFields == 0){
             User user = new User(0,this.emailInputField.getText().split("@")[0], firstNameInputField.getText(),lastNameInputField.getText(),emailInputField.getText(), passwordInputField.getText(), EasyImage.serialize(new EasyImage(this.photoPreview.getImage())));
 
             User.add(user);
+            this.notification = true;
+
+            this.backButtonPress(event);
         }else{
             if(failedFields > 1){
                 this.registrationFailedError.setText("Registration failed! multiple fields have invalid inputs");
