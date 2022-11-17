@@ -15,6 +15,8 @@ public class RecordCollection {
     private boolean shouldUpdateCache;
     private String orderBy;
     private final HashMap<String, String> where;
+    private final HashMap<String, String> whereGreaterThan;
+    private final HashMap<String, String> whereLessThan;
     private int limit;
     private boolean shouldUseCache;
 
@@ -23,6 +25,8 @@ public class RecordCollection {
         this.shouldUpdateCache = false;
         this.orderBy = "";
         this.where = new HashMap<>();
+        this.whereGreaterThan = new HashMap<>();
+        this.whereLessThan = new HashMap<>();
         this.limit = 0;
     }
 
@@ -30,6 +34,16 @@ public class RecordCollection {
 
         this.where.put(key,value);
 
+        return this;
+    }
+
+    public RecordCollection whereGreaterThan(String key, String value){
+        this.whereGreaterThan.put(key, value);
+        return this;
+    }
+
+    public RecordCollection whereLessThan(String key, String value){
+        this.whereLessThan.put(key, value);
         return this;
     }
 
@@ -76,6 +90,26 @@ public class RecordCollection {
             }else{
                 this.query += " AND "+key+"='"+value+"'";
 
+            }
+            count.getAndIncrement();
+        });
+
+        this.whereGreaterThan.forEach((key,value)->{
+
+            if(count.get() == 0){
+                this.query += " WHERE "+key+" >= '"+value+"'";
+            }else{
+                this.query += " AND "+key+" >= '"+value+"'";
+            }
+            count.getAndIncrement();
+        });
+
+        this.whereLessThan.forEach((key,value)->{
+
+            if(count.get() == 0){
+                this.query += " WHERE "+key+" <= '"+value+"'";
+            }else{
+                this.query += " AND "+key+" <= '"+value+"'";
             }
             count.getAndIncrement();
         });
