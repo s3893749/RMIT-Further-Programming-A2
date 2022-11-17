@@ -22,7 +22,7 @@
           <TableColumn fx:id="valueColumn" prefWidth="75.0" text="Value" />
         </columns>
       </TableView>
-      <ButtonBar layoutX="43.0" layoutY="84.0" prefHeight="40.0" prefWidth="324.0" stylesheets="@../dashboardDurationSelectionButtonGroup.css" AnchorPane.leftAnchor="30.0">
+      <ButtonBar layoutX="43.0" layoutY="84.0" prefHeight="40.0" prefWidth="324.0" stylesheets="@../css/dashboardDurationSelectionButtonGroup.css" AnchorPane.leftAnchor="30.0">
         <buttons>
           <Button mnemonicParsing="false" onAction="#showAllRecords" text="All Records" />
             <Button mnemonicParsing="false" onAction="#showLastWeek" prefHeight="29.0" text="Last 7 Records" />
@@ -34,7 +34,7 @@
                <VBox prefHeight="43.0" prefWidth="314.0">
                    <children>
                        <Label text="Date" />
-                       <DatePicker fx:id="addRecordDatePicker" onAction="#datePickerUpdated" prefHeight="25.0" prefWidth="281.0" promptText="Select date" stylesheets="@../css/datePicker.css" />
+                       <DatePicker fx:id="addRecordDatePicker" onAction="#datePickerUpdated" prefHeight="25.0" prefWidth="281.0" promptText="Select date" />
                    </children>
                </VBox>
                <VBox prefHeight="200.0" prefWidth="100.0">
@@ -46,12 +46,12 @@
                <VBox prefHeight="200.0" prefWidth="100.0">
                    <children>
                        <Label />
-                       <Button fx:id="addRecordButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="14.0" prefWidth="85.0" text="Add Record" />
+                       <Button fx:id="addRecordButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="14.0" prefWidth="85.0" styleClass="button-primary" text="Add Record" />
                    </children>
                </VBox>
            </buttons>
        </ButtonBar>
-      <Button fx:id="viewRecordButton" layoutX="1131.0" layoutY="582.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="View / Update / Delete" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="55.0" />
+      <Button fx:id="viewRecordButton" layoutX="1131.0" layoutY="582.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" styleClass="button-primary" text="View / Update / Delete" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="55.0" />
       <LineChart fx:id="recordChart" layoutX="43.0" layoutY="150.0" prefHeight="471.0" prefWidth="963.0" AnchorPane.bottomAnchor="98.66666666666669" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="273.66666666666663" AnchorPane.topAnchor="149.99999999999994">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
