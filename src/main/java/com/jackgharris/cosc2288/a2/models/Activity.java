@@ -47,10 +47,16 @@ public class Activity {
         return Database.queryWithBooleanResult(sql);
     }
 
-    public static ArrayList<Activity> get(int limit, int offset){
-        ArrayList<Activity> output = new ArrayList<>();
+    public static ArrayList<Activity> get(int limit, int offset, boolean excludeLogins){
 
-        String sql = "SELECT * FROM activities WHERE user_id='"+MyHealth.getInstance().getUser().getId()+"' ORDER BY time DESC "+" LIMIT "+limit+" OFFSET "+offset;
+        ArrayList<Activity> output = new ArrayList<>();
+        String sql;
+
+        if(excludeLogins){
+            sql = "SELECT * FROM activities WHERE user_id='"+MyHealth.getInstance().getUser().getId()+"' AND description<>'Logged in' ORDER BY time DESC "+" LIMIT "+limit+" OFFSET "+offset;
+        }else{
+            sql = "SELECT * FROM activities WHERE user_id='"+MyHealth.getInstance().getUser().getId()+"' ORDER BY time DESC "+" LIMIT "+limit+" OFFSET "+offset;
+        }
 
         Vector<HashMap<String, String>> result = Database.query(sql);
         result.forEach((n)->{
