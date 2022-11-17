@@ -121,8 +121,7 @@ public class RegistrationController {
 
 
         if(failedFields == 0){
-            User user = new User(0,this.emailInputField.getText().split("@")[0], firstNameInputField.getText(),lastNameInputField.getText(),emailInputField.getText(), passwordInputField.getText(), EasyImage.serialize(new EasyImage(this.photoPreview.getImage())));
-
+            User user = new User(0,this.emailInputField.getText().split("@")[0], firstNameInputField.getText(),lastNameInputField.getText(),emailInputField.getText(), passwordInputField.getText(), EasyImage.serialize(new EasyImage(this.photoPreview.getImage())), "false",null);
             User.add(user);
             this.notification = true;
 
