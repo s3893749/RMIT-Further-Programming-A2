@@ -23,7 +23,7 @@
 
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-background-color: #ef0a60;
+    -fx-background-color: -fx-button-primary-background;
 }
 
 .table-view .column-header .label{
@@ -31,7 +31,7 @@
 }
 
 .table-view .table-row-cell:selected{
-    -fx-background-color: #b20844!important;
+    -fx-background-color: -fx-button-primary-background-hover;
 }
 
 .table-view .scroll-bar{
@@ -53,7 +53,7 @@
 }
 
 .table-view .scroll-bar:vertical .thumb{
-    -fx-background-color: #ef0a60;
+    -fx-background-color: -fx-button-primary-background;
 }
 
 .table-view .scroll-bar:horizontal .decrement-button, .increment-button{
@@ -65,6 +65,11 @@
 }
 
 .table-view .scroll-bar:horizontal .thumb{
-    -fx-background-color: #ef0a60;
+    -fx-background-color: -fx-button-primary-background;
+}
+
+.table-view .scroll-bar:vertical .thumb:hover{
+    -fx-background-color: -fx-button-primary-background-hover;
+    -fx-cursor: hand;
 }
 
