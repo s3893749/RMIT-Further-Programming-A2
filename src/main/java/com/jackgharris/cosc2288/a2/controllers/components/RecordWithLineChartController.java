@@ -156,7 +156,7 @@ public class RecordWithLineChartController {
                 for (Record record: Record.where("type",MyHealth.getInstance().getSelectedRecordType()).fromCache().get()){
                     if(item.equals(record.getDate())){
                         setDisable(true);
-                        setStyle("-fx-background-color: #c72929;");
+                        setStyle("-fx-background-color: -fx-error;");
 
                     }
                 }
