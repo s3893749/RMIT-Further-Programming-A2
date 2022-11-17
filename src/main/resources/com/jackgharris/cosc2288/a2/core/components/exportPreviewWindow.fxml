@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.ExportPreviewWindowController">
+   <children>
+      <TableView fx:id="previewTable" layoutX="16.0" layoutY="59.0" prefHeight="257.0" prefWidth="568.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="59.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="id" />
+            <TableColumn fx:id="userIdColumn" prefWidth="75.0" text="user_id" />
+          <TableColumn fx:id="typeColumn" prefWidth="75.0" text="type" />
+            <TableColumn fx:id="valueColumn" prefWidth="75.0" text="value" />
+            <TableColumn fx:id="dateColumn" prefWidth="75.0" text="date" />
+        </columns>
+      </TableView>
+      <Label layoutX="16.0" layoutY="14.0" style="-fx-text-fill: white;" styleClass="h3" text="CSV Export Preview" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
+      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="86.0" styleClass="button-primary" text="Save" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+      <Button layoutX="119.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="86.0" styleClass="button-danger" text="Cancel" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="120.0" />
+      <Label layoutX="19.0" layoutY="329.0" style="-fx-text-fill: white;" text="When the 'user_id' shows as -1 it will be imported as the curent users records" AnchorPane.bottomAnchor="53.666666666666686" AnchorPane.leftAnchor="19.0" />
+   </children>
+</AnchorPane>
