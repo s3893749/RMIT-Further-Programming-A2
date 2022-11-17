@@ -1,0 +1,92 @@
+@import url("root.css");
+@import url("buttons.css");
+@import url("headings.css");
+@import url("mainMenu.css");
+@import url("datePicker.css");
+@import url("comboBox.css");
+@import url("tableStyle.css");
+
+
+
+.parent{
+    -fx-font-family: Raleway;
+    -fx-background-color: -fx-background-primary;
+}
+
+.chart{
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent
+}
+
+.text-field {
+    -fx-background-color: #ececec;
+    -fx-background-radius: 20px;
+    -fx-padding: 4px;
+    -fx-border-color: #ececec !important;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+}
+.text-field-error{
+    -fx-border-color: -fx-error !important;
+}
+
+.text-field-success{
+    -fx-border-color: -fx-success !important;
+}
+
+.text-field:focused{
+    -fx-background-color: #d5d5d5;
+
+}
+
+
+.text-field:hover{
+    -fx-background-color: #d5d5d5;
+}
+
+.form-label{
+    -fx-text-fill: #a4a4a4;
+}
+
+.color-picker {
+-fx-background-color: -fx-background-secondary;
+}
+
+.color-picker .color-picker-label .text {
+    visibility: false;
+}
+
+
+.toggle-button-active{
+    -fx-background-color: -fx-success;
+}
+
+.toggle-button-active:hover{
+    -fx-background-color: -fx-success;
+}
+
+.toggle-button-inactive{
+    -fx-background-color: -fx-error;
+}
+
+.toggle-button-inactive:hover{
+    -fx-background-color: -fx-error;
+}
+
+.alert-danger{
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-error!important;
+    -fx-font-size: 14px;
+}
+
+.alert-success{
+    -fx-font-weight: normal;
+    -fx-text-fill: -fx-success!important;
+    -fx-font-size: 14px;
+}
+
+
