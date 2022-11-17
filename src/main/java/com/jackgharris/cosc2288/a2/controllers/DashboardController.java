@@ -24,16 +24,16 @@ public class DashboardController{
         AnchorPane menuNodes = menuLoader.load();
         this.menuContainerOuter.getChildren().add(menuNodes.getChildren().get(0));
 
-        //set the background colors
-        this.menuContainerOuter.setStyle("-fx-background-color: "+MyHealth.getInstance().getTheme().getMenuColor());
-        this.parent.setStyle("-fx-background-color: "+MyHealth.getInstance().getTheme().getBackgroundColor());
-
-
         FXMLLoader loader = new FXMLLoader(FXMLUtility.recentOverview);
         AnchorPane nodes = loader.load();
 
         AnchorPane contentOuterContainer = (AnchorPane) this.parent.getChildren().get(1);
         contentOuterContainer.getChildren().addAll(nodes.getChildren());
+
+
+        //detect and apply theme changes
+        this.parent.setStyle(MyHealth.getInstance().getUser().getTheme().getStyle());
+        MyHealth.getInstance().setParent(this.parent);
     }
 
 
