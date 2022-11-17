@@ -1,0 +1,17 @@
+.parent {
+
+    -fx-error: #F75165;
+    -fx-success: #7CCF37;
+
+    -fx-button-primary-background: #4F7BFE;
+    -fx-button-primary-text: white;
+    -fx-button-primary-background-hover: #4265d5;
+
+    -fx-button-danger-background: -fx-error;
+    -fx-button-danger-text: white;
+    -fx-button-danger-background-hover: #cc3e50;
+
+    -fx-background-primary: #25284B;
+    -fx-background-secondary: #2D325A;
+
+}
