@@ -28,6 +28,14 @@ public class FXMLUtility {
 
     public static URL settingsAccountPage = MyHealth.class.getResource("components/settingsAccountPage.fxml");
 
+    public static URL settingsThemePage = MyHealth.class.getResource("components/settingsThemePage.fxml");
+
+    public static URL settingsImportExportPage = MyHealth.class.getResource("components/settingsImportExportPage.fxml");
+
+    public static URL settingsExportPreview = MyHealth.class.getResource("components/exportPreviewWindow.fxml");
+
+    public static URL settingsImportPreview = MyHealth.class.getResource("components/importPreviewWindow.fxml");
+
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(sceneURL);
