@@ -1,0 +1,25 @@
+.button{
+    -fx-cursor: hand;
+    -fx-background-radius: 25px;
+    -fx-text-fill: -fx-button-primary-text;
+}
+
+.button-primary{
+    -fx-background-color: -fx-button-primary-background;
+    -fx-text-fill: -fx-button-primary-text;
+}
+
+.button-primary:hover{
+    -fx-background-color: -fx-button-primary-background-hover;
+}
+
+
+.button-danger{
+    -fx-background-color: -fx-button-danger-background;
+    -fx-text-fill: -fx-button-danger-text;
+}
+
+.button-danger:hover{
+    -fx-background-color: -fx-button-danger-background-hover;
+}
+
