@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.SettingsThemeController">
+   <children>
+      <Label layoutX="33.0" layoutY="21.0" prefHeight="30.0" prefWidth="131.0" styleClass="h2" stylesheets="@../css/headings.css" text="Theme" />
+      <VBox layoutX="33.0" layoutY="14.0" prefHeight="673.0" prefWidth="552.0" stylesheets="@../css/settingsPage.css">
+         <children>
+            <Label prefHeight="22.0" prefWidth="59.0" styleClass="h3" stylesheets="@../css/headings.css" text="Buttons">
+               <VBox.margin>
+                  <Insets top="32.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="620.0" text="Change the colors of the buttons &amp; primary accent color." />
+            <HBox prefHeight="268.0" prefWidth="552.0">
+               <children>
+                  <VBox prefHeight="350.0" prefWidth="198.0">
+                     <children>
+                        <Label styleClass="form-label" text="Primary Button">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label styleClass="form-label" text="Background Color">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="primaryButtonBackgroundPicker" onAction="#updatePrimaryBackground" prefHeight="25.0" prefWidth="114.0" />
+                        <Label styleClass="form-label" text="Hover Color">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="primaryButtonHoverPicker" onAction="#updatePrimaryHover" prefHeight="25.0" prefWidth="114.0" />
+                        <Label styleClass="form-label" text="Text Color">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="primaryButtonTextPicker" onAction="#updatePrimaryText" prefHeight="25.0" prefWidth="114.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="350.0" prefWidth="181.0">
+                     <children>
+                        <Label styleClass="form-label" text="Danger Button">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label styleClass="form-label" text="Background Color">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="dangerButtonBackgroundPicker" onAction="#updateDangerBackground" prefHeight="25.0" prefWidth="114.0" />
+                        <Label styleClass="form-label" text="Hover Color">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="dangerButtonHoverPicker" onAction="#updateDangerHover" prefHeight="25.0" prefWidth="114.0" />
+                        <Label styleClass="form-label" text="Text Color">
+                           <padding>
+                              <Insets bottom="4.0" top="16.0" />
+                           </padding>
+                        </Label>
+                        <ColorPicker fx:id="dangerButtonTextPicker" onAction="#updateDangerText" prefHeight="25.0" prefWidth="114.0" />
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <Label prefHeight="25.0" prefWidth="111.0" styleClass="h3" stylesheets="@../css/headings.css" text="Background" />
+            <Label text="Change the look of the main and secondary colors" />
+            <HBox prefHeight="74.0" prefWidth="552.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="195.0">
+                     <children>
+                        <Label styleClass="form-label" text="App Background Color">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="appBackgroundColorPicker" onAction="#updateAppBackgroundPrimary" prefHeight="25.0" prefWidth="113.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="176.0">
+                     <children>
+                        <Label styleClass="form-label" text="App Background Color Secondary">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ColorPicker fx:id="appBackgroundColorSecondaryPicker" onAction="#updateAppBackgroundSecondary" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="73.0" prefWidth="552.0">
+               <children>
+                  <Button fx:id="discardChangesButton" mnemonicParsing="false" onAction="#discardChanges" styleClass="button-danger" text="Rest to default">
+                     <HBox.margin>
+                        <Insets right="16.0" top="32.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="saveChanges" mnemonicParsing="false" onAction="#saveChanges" styleClass="button-primary" text="Save Changes">
+                     <HBox.margin>
+                        <Insets top="32.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Label fx:id="themeSaveStatus" styleClass="alert-danger" text="Settings not saved!" />
+         </children>
+         <padding>
+            <Insets top="32.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
