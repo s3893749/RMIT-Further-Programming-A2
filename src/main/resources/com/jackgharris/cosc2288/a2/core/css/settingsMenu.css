@@ -20,3 +20,8 @@
     -fx-text-fill: white;
     -fx-font-weight: normal!important;
 }
+
+#profilePreview:hover{
+    -fx-background-color: rgba(0,0,0,0.25);
+    -fx-cursor: hand;
+}
