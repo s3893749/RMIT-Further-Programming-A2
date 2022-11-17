@@ -1,14 +1,17 @@
 package com.jackgharris.cosc2288.a2.core;
 
 import com.jackgharris.cosc2288.a2.models.Record;
+import com.jackgharris.cosc2288.a2.models.Theme;
 import com.jackgharris.cosc2288.a2.models.User;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -18,9 +21,8 @@ import java.util.concurrent.atomic.AtomicReference;
 public class MyHealth extends javafx.application.Application {
 
     public static final String launcherCSS = Objects.requireNonNull(MyHealth.class.getResource("login.css")).toExternalForm();
-    public static final String appCSS = Objects.requireNonNull(MyHealth.class.getResource("app.css")).toExternalForm();
 
-    public static final String title = "My Health v0.1";
+    public static final String title = "My Health v0.3";
 
     private String selectedRecordType;
 
@@ -28,17 +30,21 @@ public class MyHealth extends javafx.application.Application {
 
     private User user;
 
-    private Theme theme;
-
     private static MyHealth instance;
 
     private String encryptionPepper;
+
+    private AnchorPane parent;
+
+    private String importType;
+
+    private final ArrayList<Record> blockRecordsOnImport;
 
     public MyHealth(){
         MyHealth.instance = this;
         this.selectedRecordType = null;
         this.encryptionPepper = "Pepper&SteakPie";
-        this.theme = new Theme("#363742","#444550",null,null,null);
+        this.blockRecordsOnImport = new ArrayList<>();
     }
 
     @Override
@@ -59,9 +65,6 @@ public class MyHealth extends javafx.application.Application {
         launch();
     }
 
-    public Theme getTheme(){
-        return this.theme;
-    }
 
     public User getUser(){
         return this.user;
@@ -82,6 +85,32 @@ public class MyHealth extends javafx.application.Application {
     public String getEncryptionPepper(){
         return this.encryptionPepper;
     }
+
+    public void setParent(AnchorPane parent){
+        this.parent = parent;
+    }
+
+    public AnchorPane getParent(){
+        return this.parent;
+    }
+
+    public void setImportType(String type){
+        this.importType = type;
+    }
+
+    public String getImportType(){
+        return this.importType;
+    }
+
+    public void blockRecordOnImport(Record record){
+        System.out.println("Record Added to blocked list: "+record);
+        this.blockRecordsOnImport.add(record);
+    }
+
+    public ArrayList<Record> getBlockedRecordsForImport(){
+        return this.blockRecordsOnImport;
+    }
+
 
     public static boolean isStageShown(String id){
         List<Window> windows = Window.getWindows();
