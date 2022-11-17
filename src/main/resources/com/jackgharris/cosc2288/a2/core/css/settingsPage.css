@@ -1,31 +1,5 @@
+@import url("root.css");
+
 .label{
     -fx-text-fill: white;
-}
-
-.text-field {
-    -fx-background-color: #ececec;
-    -fx-background-radius: 20px;
-    -fx-padding: 4px;
-    -fx-border-color: #ececec !important;
-    -fx-border-width: 2px;
-    -fx-border-radius: 15px;
-    -fx-border-style: solid;
-}
-.text-field-error{
-    -fx-border-color: #c72929!important;
-}
-
-.text-field:hover{
-    -fx-background-color: #d5d5d5;
-}
-
-.button{
-    -fx-background-color: #ef0a60;
-    -fx-background-radius: 25px;
-    -fx-text-fill: white;
-    -fx-cursor: hand;
-}
-
-.button:hover{
-    -fx-background-color: #b20844;
 }
