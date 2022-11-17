@@ -10,7 +10,7 @@ public class Record {
 
     private int id;
     private final String type;
-    private final int userId;
+    private int userId;
     private String value;
     private String date;
     private static ObservableList<Record> cache;
@@ -49,6 +49,10 @@ public class Record {
 
     public int getId(){
         return this.id;
+    }
+
+    public void setUserId(int id){
+        this.userId = id;
     }
 
     public static RecordCollection where(String key, String value){
