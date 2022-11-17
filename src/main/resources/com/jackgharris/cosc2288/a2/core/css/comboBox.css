@@ -1,0 +1,36 @@
+.combo-box{
+    -fx-background-color: #ececec;
+    -fx-background-radius: 20px;
+    -fx-border-color: #ececec !important;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+}
+
+.combo-box:hover{
+    -fx-background-color: #d5d5d5;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-padding: 8px;
+    -fx-background-radius: 20px;
+}
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 8px;
+    -fx-background-radius:8px;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-background-color: -fx-button-primary-background;
+    -fx-text-fill: -fx-button-primary-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: -fx-button-primary-background-hover;
+    -fx-text-fill: -fx-button-primary-text;
+}
