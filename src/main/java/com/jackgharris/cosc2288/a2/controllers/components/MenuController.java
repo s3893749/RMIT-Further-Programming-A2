@@ -21,6 +21,13 @@ public class MenuController {
     @FXML
     private VBox menu;
 
+    @FXML
+    private Button recentMenuButton;
+
+    public void initialize(){
+        this.recentMenuButton.setStyle("-fx-background-color: -fx-button-primary-background-hover");
+    }
+
 
     public void preferencesButtonPress(ActionEvent event) throws IOException {
 
@@ -145,9 +152,11 @@ public class MenuController {
 
     private void setActiveButton(Button button){
 
+        System.out.println(MyHealth.getInstance().getParent().getStyle());
+
         this.menu.getChildren().forEach((n)->{
             if(n == button){
-                button.setStyle("-fx-background-color:  #b20844");
+                button.setStyle("-fx-background-color:  -fx-button-primary-background-hover");
             }else{
                 n.setStyle("");
             }
