@@ -25,7 +25,12 @@ public class User {
     private EasyImage photo;
     private String photoSerialized;
 
-    public User(int id, String username, String firstname, String lastname, String email, String password, String photo){
+    private Theme theme;
+    private boolean hideRecentLogins;
+
+    private String lastPage;
+
+    public User(int id, String username, String firstname, String lastname, String email, String password, String photo, String hideRecentLogins, String lastPage){
         this.id = id;
         this.username = username;
         this.firstname = firstname;
@@ -34,6 +39,13 @@ public class User {
         this.password = password;
         this.photo = EasyImage.deSerialize(photo);
         this.photoSerialized = photo;
+        this.theme = Theme.get(this.id);
+        this.hideRecentLogins = Boolean.parseBoolean(hideRecentLogins);
+        this.lastPage = lastPage;
+
+        if(theme.themeRequiresInserting()){
+           Theme.add(this);
+        }
     }
 
     public String getUsername(){
@@ -64,8 +76,62 @@ public class User {
         return this.photoSerialized;
     }
 
+    public void setProfileImage(String image){
+        this.photo = EasyImage.deSerialize(image);
+        this.photoSerialized = image;
+    }
+
     public int getId(){
         return this.id;
+    }
+
+    public Theme getTheme(){
+        return this.theme;
+    }
+
+    public void createTheme(){
+        this.theme = new Theme();
+        this.theme.reset(false);
+    }
+
+    public void setFirstname(String firstname){
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname){
+        this.lastname = lastname;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public boolean shouldHideRecentLogins(){
+        return this.hideRecentLogins;
+    }
+
+    public void setShouldHideLogins(boolean show){
+        this.hideRecentLogins = show;
+        this.updateDetails();
+    }
+
+    public boolean updateDetails(){
+
+        String query = "UPDATE `users` SET " +
+                "`firstname` = '"+this.firstname+"', " +
+                "`lastname` = '"+this.lastname+"', " +
+                "`email` = '"+this.email+"', " +
+                "`password` = '"+this.password+"', " +
+                "`photo` = '"+this.getPhoto()+"', " +
+                "`hideRecentLogins` ='" +this.hideRecentLogins+"', "+
+                "`lastPage` = '"+this.lastPage+"' "+
+                " WHERE id = "+this.id+"";
+
+        return Database.queryWithBooleanResult(query);
     }
 
 
@@ -94,7 +160,9 @@ public class User {
                 data.get(0).get("lastname"),
                 data.get(0).get("email"),
                 data.get(0).get("password"),
-                data.get(0).get("photo"));
+                data.get(0).get("photo"),
+                data.get(0).get("hideRecentLogins"),
+                data.get(0).get("lastPage"));
     }
 
     public static String hash(String password){
@@ -119,19 +187,14 @@ public class User {
 
     }
 
-    public static boolean add(User user){
+    public static boolean add(User user) {
 
-        String sql = "INSERT INTO users (username, firstname, lastname, email, password, photo) VALUES " +
-                "('"+user.getUsername()+"','"+ user.getFirstname()+"', '"+user.getSurname()+"','"+user.getEmail()+"','"+ User.hash(user.password) +"','"+
-                user.getPhoto()+"')";
+        String sql = "INSERT INTO users (username, firstname, lastname, email, password, photo, hideRecentLogins, lastPage) VALUES " +
+                "('" + user.getUsername() + "','" + user.getFirstname() + "', '" + user.getSurname() + "','" + user.getEmail() + "','" + User.hash(user.password) + "','" +
+                user.getPhoto() + "', '"+user.shouldHideRecentLogins()+"','"+user.lastPage+"')";
+
 
         return Database.queryWithBooleanResult(sql);
 
-    }
-
-    public static boolean emailIsAvailable(String email){
-        boolean outcome = false;
-
-        return outcome;
     }
 }
