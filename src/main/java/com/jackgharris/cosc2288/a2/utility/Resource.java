@@ -11,4 +11,8 @@ public class Resource {
         return new Image(Objects.requireNonNull(MyHealth.class.getResourceAsStream("favicon.png")));
     };
 
+    public static Image importExportFavicon(){
+        return new Image(Objects.requireNonNull(MyHealth.class.getResourceAsStream("icons/sync_icon_alt.png")));
+    }
+
 }
