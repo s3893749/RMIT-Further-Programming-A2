@@ -1,0 +1,32 @@
+#menu{
+    -fx-background-color: rgba(0,0,0,0.25);
+    -fx-padding: 0;
+}
+
+#menu #menu-header{
+    -fx-background-color: -fx-background-secondary;
+    -fx-start-margin: 0px;
+    -fx-end-margin: 0px;
+}
+
+.parent #menu .button{
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-background-radius:  0px!important;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: transparent;
+    -fx-padding:10px;
+    -fx-text-fill: white;
+}
+
+.parent #menu #menu-header .label{
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.parent #menu .button:hover{
+    -fx-background-color: rgba(0,0,0,0.25);
+}
