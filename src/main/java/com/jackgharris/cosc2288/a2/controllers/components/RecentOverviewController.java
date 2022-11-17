@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -40,6 +41,10 @@ public class RecentOverviewController {
     @FXML
     private Label bloodPressureLabel;
     private int currentActivityCount;
+
+    @FXML
+    private Button hideRecentLoginsButton;
+
 
     public void initialize(){
 
@@ -100,16 +105,13 @@ public class RecentOverviewController {
         this.recentActivityContainer.setSpacing(16);
         this.recentActivityScrollPane.getStylesheets().add(String.valueOf(MyHealth.class.getResource("css/scrollPane.css")));
 
-        this.loadRecentActivity();
-        this.currentActivityCount +=10;
 
-
-
+        this.updateHideRecentLoginsButton();
     }
 
     public void loadRecentActivity(){
 
-        ArrayList<Activity> activities = Activity.get(10,this.currentActivityCount);
+        ArrayList<Activity> activities = Activity.get(10,this.currentActivityCount,MyHealth.getInstance().getUser().shouldHideRecentLogins());
 
         activities.forEach((n)->{
             AnchorPane notification = new AnchorPane();
@@ -126,10 +128,7 @@ public class RecentOverviewController {
             notification.getChildren().add(imageView);
 
             String textContent = n.getDescription()+" at "+n.getTimeReadable();
-            if(textContent.length() >60){
-                textContent = textContent.substring(0, 60);
-                textContent+="..";
-            }
+
             Label text = new Label(textContent);
 
             text.setLayoutY(19);
@@ -140,5 +139,27 @@ public class RecentOverviewController {
 
         this.currentActivityCount += 10;
 
+    }
+
+    public void hideRecentLogins(){
+        MyHealth.getInstance().getUser().setShouldHideLogins(!MyHealth.getInstance().getUser().shouldHideRecentLogins());
+        this.updateHideRecentLoginsButton();
+    }
+
+    private void updateHideRecentLoginsButton(){
+
+        if(MyHealth.getInstance().getUser().shouldHideRecentLogins()){
+            this.hideRecentLoginsButton.setText("Hiding Login Activity");
+            this.hideRecentLoginsButton.getStyleClass().remove("toggle-button-inactive");
+            this.hideRecentLoginsButton.getStyleClass().add("toggle-button-active");
+        }else{
+            this.hideRecentLoginsButton.setText("Showing login Activity");
+            this.hideRecentLoginsButton.getStyleClass().remove("toggle-button-active");
+            this.hideRecentLoginsButton.getStyleClass().add("toggle-button-inactive");
+        }
+
+        this.recentActivityContainer.getChildren().clear();
+        this.currentActivityCount = 0;
+        this.loadRecentActivity();
     }
 }
