@@ -2,14 +2,20 @@ package com.jackgharris.cosc2288.a2.controllers.components;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Record;
+import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
+import com.jackgharris.cosc2288.a2.utility.Resource;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class RecordWithLineChartController {
@@ -45,6 +51,8 @@ public class RecordWithLineChartController {
 
     private int limit;
 
+    public static RecordWithLineChartController instance;
+
     public void initialize(){
 
         //set our selection buttons and input to be disabled by default
@@ -58,6 +66,9 @@ public class RecordWithLineChartController {
         //call our callback function to set the datepicker to disable any used dates.
         Callback<DatePicker, DateCell> dayCellFactory  = this.disableUsedDates();
         this.addRecordDatePicker.setDayCellFactory(dayCellFactory);
+
+        RecordWithLineChartController.instance = this;
+
     }
 
     public void setRecordType(String recordType){
@@ -94,7 +105,7 @@ public class RecordWithLineChartController {
         this.addRecordInput.setDisable(true);
     }
 
-    private void updateModels(){
+    public void updateModels(){
         System.out.println("["+this.getClass().getSimpleName()+"] updating models");
         //Get our records from the database but limit them via the current set limit.
         ObservableList<Record> records = Record.where("type",this.recordType).withCurrentUser().limit(this.limit).sort("date").updateCache().get();
@@ -164,6 +175,30 @@ public class RecordWithLineChartController {
         };
 
         return dayCellFactory;
+    }
+
+    public void showRecord() throws IOException {
+
+        if(!MyHealth.isStageShown("showRecord")){
+            Stage stage = new Stage();
+            stage.getProperties().put("id","showRecord");
+            stage.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(FXMLUtility.showRecord);
+            Scene scene = new Scene(loader.load());
+            stage.setTitle("MyHealth Record | Show/Edit/Delete");
+            stage.getIcons().add(Resource.importExportFavicon());
+            ShowRecordController controller = loader.getController();
+            controller.setRecord(this.recordTable.getSelectionModel().getSelectedItem());
+            stage.setScene(scene);
+            stage.show();
+        }else{
+            MyHealth.getStageById("showRecord").requestFocus();
+        }
+
+    }
+
+    public void updateRecordSelection(){
+        this.viewRecordButton.setDisable(this.recordTable.getSelectionModel().getSelectedItem() == null);
     }
 
 
