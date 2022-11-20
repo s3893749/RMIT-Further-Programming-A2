@@ -40,7 +40,7 @@
                <VBox prefHeight="200.0" prefWidth="100.0">
                    <children>
                        <Label text="Weight" />
-                       <TextField fx:id="addRecordInput" onKeyPressed="#valueInputUpdated" promptText="weight in kg: 95" />
+                       <TextField fx:id="addRecordInput" onKeyTyped="#valueInputUpdated" promptText="weight in kg: 95" />
                    </children>
                </VBox>
                <VBox prefHeight="200.0" prefWidth="100.0">
