@@ -106,7 +106,6 @@ public class RecordWithLineChartController {
     }
 
     public void updateModels(){
-        System.out.println("["+this.getClass().getSimpleName()+"] updating models");
         //Get our records from the database but limit them via the current set limit.
         ObservableList<Record> records = Record.where("type",this.recordType).withCurrentUser().limit(this.limit).sort("date").updateCache().get();
 
@@ -136,7 +135,6 @@ public class RecordWithLineChartController {
 
         //Check if we have a limit set, if not then simply use the above cache, else update the cache.
         if(this.limit != 0){
-            System.out.println("["+this.getClass().getSimpleName()+"] limit set, reloading cache with no limit");
             Record.where("type",this.recordType).withCurrentUser().sort("date").updateCache().get();
         }
     }
