@@ -37,12 +37,19 @@ public class SettingsMenuController {
     @FXML
     private Button accountSettingsButton;
 
+    public static SettingsMenuController instance;
+
 
     public void initialize() throws IOException {
+        this.updateUserDetails();
+        this.accountSettingsButton.setStyle("-fx-background-color: -fx-button-primary-background-hover");
+        SettingsMenuController.instance = this;
+    }
+
+    public void updateUserDetails(){
         this.profileImage.setImage(MyHealth.getInstance().getUser().getProfileImage());
         this.profileName.setText(MyHealth.getInstance().getUser().getFirstname()+" "+MyHealth.getInstance().getUser().getSurname());
         this.profileEmail.setText(MyHealth.getInstance().getUser().getEmail());
-        this.accountSettingsButton.setStyle("-fx-background-color: -fx-button-primary-background-hover");
     }
 
     public void switchToAccountSettings(ActionEvent event) throws IOException {
