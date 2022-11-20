@@ -36,6 +36,8 @@ public class FXMLUtility {
 
     public static URL settingsImportPreview = MyHealth.class.getResource("components/importPreviewWindow.fxml");
 
+    public static URL showRecord =  MyHealth.class.getResource("components/showRecordWindow.fxml");
+
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(sceneURL);
