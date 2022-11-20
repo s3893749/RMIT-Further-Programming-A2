@@ -1,7 +1,6 @@
 package com.jackgharris.cosc2288.a2.core;
 
 import com.jackgharris.cosc2288.a2.models.Record;
-import com.jackgharris.cosc2288.a2.models.Theme;
 import com.jackgharris.cosc2288.a2.models.User;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
