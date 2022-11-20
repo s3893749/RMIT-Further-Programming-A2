@@ -16,7 +16,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.RecordWithLineChartController">
    <children>
       <Label fx:id="recordName" layoutX="43.0" layoutY="25.0" styleClass="h1" stylesheets="@../css/headings.css" text="PLACEHOLDER" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
-      <TableView fx:id="recordTable" layoutX="1039.0" layoutY="121.0" prefHeight="471.0" prefWidth="200.0" stylesheets="@../css/tableStyle.css" AnchorPane.bottomAnchor="99.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="150.0">
+      <TableView fx:id="recordTable" layoutX="1039.0" layoutY="121.0" onMouseClicked="#updateRecordSelection" prefHeight="471.0" prefWidth="200.0" stylesheets="@../css/tableStyle.css" AnchorPane.bottomAnchor="99.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="150.0">
         <columns>
           <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
           <TableColumn fx:id="valueColumn" prefWidth="75.0" text="Value" />
@@ -51,7 +51,7 @@
                </VBox>
            </buttons>
        </ButtonBar>
-      <Button fx:id="viewRecordButton" layoutX="1131.0" layoutY="582.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" styleClass="button-primary" text="View / Update / Delete" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="55.0" />
+      <Button fx:id="viewRecordButton" layoutX="1131.0" layoutY="582.0" mnemonicParsing="false" onAction="#showRecord" prefHeight="25.0" prefWidth="200.0" styleClass="button-primary" text="View / Update / Delete" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="55.0" />
       <LineChart fx:id="recordChart" layoutX="43.0" layoutY="150.0" prefHeight="471.0" prefWidth="963.0" AnchorPane.bottomAnchor="98.66666666666669" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="273.66666666666663" AnchorPane.topAnchor="149.99999999999994">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
