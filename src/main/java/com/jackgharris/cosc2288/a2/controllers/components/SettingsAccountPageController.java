@@ -166,6 +166,7 @@ public class SettingsAccountPageController {
             if(user.updateDetails()){
                 this.personalDetailsSaved = true;
                 this.updateSavedStatus();
+                SettingsMenuController.instance.updateUserDetails();
             }else{
                 this.personalDetailsSaved = false;
                 this.personalDetailsSavedStatus.getStyleClass().add("alert-danger");
