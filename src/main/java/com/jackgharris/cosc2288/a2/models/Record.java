@@ -55,6 +55,18 @@ public class Record {
         this.userId = id;
     }
 
+    public boolean updateDetails(){
+
+        String query = "UPDATE `records` SET " +
+                "`value` = '"+this.value+"', " +
+                "`date` = '"+this.date+"' " +
+                " WHERE id="+this.id+"";
+
+        Activity.add(new Activity(this.getType()+" record updated to value of "+this.getValue()+" on date "+this.getDate()));
+
+        return Database.queryWithBooleanResult(query);
+    }
+
     public static RecordCollection where(String key, String value){
         return new RecordCollection().where(key, value);
     }
@@ -76,4 +88,12 @@ public class Record {
         return Database.queryWithBooleanResult(sql);
     }
 
+    public static boolean delete(Record record){
+
+        Activity.add(new Activity(record.getType()+" record entry deleted"));
+
+        String sql =  "DELETE FROM records WHERE id='"+record.getId()+"'";
+
+        return Database.queryWithBooleanResult(sql);
+    }
 }
