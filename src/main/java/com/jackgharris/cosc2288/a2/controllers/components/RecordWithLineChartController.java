@@ -4,6 +4,7 @@ import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Record;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
+import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,7 +90,16 @@ public class RecordWithLineChartController {
     }
 
     public void valueInputUpdated(){
-        this.addRecordButton.setDisable(false);
+
+        if(!Validation.isFloat(this.addRecordInput.getText())){
+            this.addRecordInput.getStyleClass().add("text-field-error");
+            this.addRecordInput.getStyleClass().removeAll("text-field-success");
+            this.addRecordButton.setDisable(true);
+        }else{
+            this.addRecordInput.getStyleClass().removeAll("text-field-error");
+            this.addRecordInput.getStyleClass().add("text-field-success");
+            this.addRecordButton.setDisable(false);
+        }
     }
 
     public void addRecord(){
