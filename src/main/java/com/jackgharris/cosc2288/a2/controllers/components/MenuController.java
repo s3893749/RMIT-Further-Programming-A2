@@ -152,8 +152,6 @@ public class MenuController {
 
     private void setActiveButton(Button button){
 
-        System.out.println(MyHealth.getInstance().getParent().getStyle());
-
         this.menu.getChildren().forEach((n)->{
             if(n == button){
                 button.setStyle("-fx-background-color:  -fx-button-primary-background-hover");
