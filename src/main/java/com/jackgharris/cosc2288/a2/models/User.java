@@ -131,6 +131,9 @@ public class User {
                 "`lastPage` = '"+this.lastPage+"' "+
                 " WHERE id = "+this.id+"";
 
+        Activity.add(new Activity("User details updated for account "+this.email));
+
+
         return Database.queryWithBooleanResult(query);
     }
 
