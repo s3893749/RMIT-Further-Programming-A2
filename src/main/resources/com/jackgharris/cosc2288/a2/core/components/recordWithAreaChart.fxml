@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.RecordWithAreaChartController">
+   <children>
+      <Label fx:id="recordName" layoutX="43.0" layoutY="25.0" styleClass="h1" stylesheets="@../css/headings.css" text="PLACEHOLDER" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <TableView fx:id="recordTable" layoutX="1039.0" layoutY="121.0" onMouseClicked="#updateRecordSelection" prefHeight="471.0" prefWidth="234.0" stylesheets="@../css/tableStyle.css" AnchorPane.bottomAnchor="99.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="150.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="valueColumn" prefWidth="75.0" text="Value" />
+            <TableColumn fx:id="valueColumnTwo" prefWidth="75.0" text="Value" />
+        </columns>
+      </TableView>
+      <ButtonBar layoutX="43.0" layoutY="84.0" prefHeight="40.0" prefWidth="324.0" stylesheets="@../css/dashboardDurationSelectionButtonGroup.css" AnchorPane.leftAnchor="30.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#showAllRecords" text="All Records" />
+            <Button mnemonicParsing="false" onAction="#showLastWeek" prefHeight="29.0" text="Last 7 Records" />
+            <Button mnemonicParsing="false" onAction="#showLastMonth" prefHeight="33.0" prefWidth="121.0" text="Last 30 records" />
+        </buttons>
+      </ButtonBar>
+       <ButtonBar layoutX="30.0" layoutY="608.0" prefHeight="51.0" prefWidth="657.0" stylesheets="@../css/newRecordButtonGroup.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="30.0">
+           <buttons>
+               <VBox prefHeight="43.0" prefWidth="314.0">
+                   <children>
+                       <Label text="Date" />
+                       <DatePicker fx:id="addRecordDatePicker" onAction="#datePickerUpdated" prefHeight="25.0" prefWidth="281.0" promptText="Select date" />
+                   </children>
+               </VBox>
+               <VBox prefHeight="200.0" prefWidth="100.0">
+                   <children>
+                       <Label text="Systolic" />
+                       <TextField fx:id="addRecordInput" onKeyTyped="#valueInputUpdated" promptText="Example: 120" />
+                   </children>
+               </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Diatolic" />
+                  <TextField fx:id="addRecordInputTwo" onKeyTyped="#valueInputUpdated" promptText="Example: 90" />
+               </children>
+            </VBox>
+               <VBox prefHeight="200.0" prefWidth="100.0">
+                   <children>
+                       <Label />
+                       <Button fx:id="addRecordButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="14.0" prefWidth="85.0" styleClass="button-primary" text="Add Record" />
+                   </children>
+               </VBox>
+           </buttons>
+       </ButtonBar>
+      <Button fx:id="viewRecordButton" layoutX="1131.0" layoutY="582.0" mnemonicParsing="false" onAction="#showRecord" prefHeight="25.0" prefWidth="200.0" styleClass="button-primary" text="View / Update / Delete" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="55.0" />
+      <AreaChart fx:id="areaChart" layoutX="43.0" layoutY="150.0" prefHeight="471.0" prefWidth="898.0" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="150.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </AreaChart>
+   </children>
+</AnchorPane>
