@@ -1,5 +1,6 @@
 package com.jackgharris.cosc2288.a2.controllers.components;
 
+import com.jackgharris.cosc2288.a2.controllers.settings.SettingsImportExportController;
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Record;
 import javafx.collections.ObservableList;

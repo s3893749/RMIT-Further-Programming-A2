@@ -1,4 +1,4 @@
-package com.jackgharris.cosc2288.a2.controllers.components;
+package com.jackgharris.cosc2288.a2.controllers.settings;
 
 import com.jackgharris.cosc2288.a2.core.EasyImage;
 import com.jackgharris.cosc2288.a2.core.MyHealth;

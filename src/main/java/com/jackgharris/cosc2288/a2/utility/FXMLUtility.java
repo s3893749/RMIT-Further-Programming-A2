@@ -22,15 +22,15 @@ public class FXMLUtility {
 
     public static URL recentOverview = MyHealth.class.getResource("components/recentOverview.fxml");
 
-    public static URL settingsPage = MyHealth.class.getResource("components/settings.fxml");
+    public static URL settingsPage = MyHealth.class.getResource("settings/settings.fxml");
 
-    public static URL settingsMenu = MyHealth.class.getResource("components/settingsMenu.fxml");
+    public static URL settingsMenu = MyHealth.class.getResource("settings/settingsMenu.fxml");
 
-    public static URL settingsAccountPage = MyHealth.class.getResource("components/settingsAccountPage.fxml");
+    public static URL settingsAccountPage = MyHealth.class.getResource("settings/settingsAccountPage.fxml");
 
-    public static URL settingsThemePage = MyHealth.class.getResource("components/settingsThemePage.fxml");
+    public static URL settingsThemePage = MyHealth.class.getResource("settings/settingsThemePage.fxml");
 
-    public static URL settingsImportExportPage = MyHealth.class.getResource("components/settingsImportExportPage.fxml");
+    public static URL settingsImportExportPage = MyHealth.class.getResource("settings/settingsImportExportPage.fxml");
 
     public static URL settingsExportPreview = MyHealth.class.getResource("components/exportPreviewWindow.fxml");
 

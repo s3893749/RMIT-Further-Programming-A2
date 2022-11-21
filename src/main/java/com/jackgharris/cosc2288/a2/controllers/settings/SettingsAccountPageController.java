@@ -1,9 +1,8 @@
-package com.jackgharris.cosc2288.a2.controllers.components;
+package com.jackgharris.cosc2288.a2.controllers.settings;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Activity;
 import com.jackgharris.cosc2288.a2.models.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.SettingsAccountPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.settings.SettingsAccountPageController">
    <children>
       <Label layoutX="33.0" layoutY="21.0" prefHeight="30.0" prefWidth="131.0" styleClass="h2" stylesheets="@../css/headings.css" text="My Account" />
       <VBox layoutX="32.0" layoutY="61.0" prefHeight="392.0" prefWidth="488.0" stylesheets="@../css/settingsPage.css">

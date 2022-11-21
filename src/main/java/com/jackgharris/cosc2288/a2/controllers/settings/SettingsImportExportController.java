@@ -1,5 +1,7 @@
-package com.jackgharris.cosc2288.a2.controllers.components;
+package com.jackgharris.cosc2288.a2.controllers.settings;
 
+import com.jackgharris.cosc2288.a2.controllers.components.ExportPreviewWindowController;
+import com.jackgharris.cosc2288.a2.controllers.components.ImportPreviewWindowController;
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Activity;
 import com.jackgharris.cosc2288.a2.models.Record;
