@@ -89,4 +89,10 @@
     -fx-font-size: 14px;
 }
 
+.default-color0.chart-series-area-fill, .default-color1.chart-series-area-fill,.default-color2.chart-series-area-fill,.default-color3.chart-series-area-fill{
+    -fx-fill: -fx-button-primary-background-hover;
+    -fx-blend-mode: difference;
+}
+
+
 
