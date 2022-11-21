@@ -127,9 +127,9 @@ public class MenuController {
         contentContainerOuter.getChildren().clear();
 
 
-        FXMLLoader loader = new FXMLLoader(FXMLUtility.recordOverview);
+        FXMLLoader loader = new FXMLLoader(FXMLUtility.recordWithAreaChart);
         AnchorPane nodes = loader.load();
-        ((RecordWithLineChartController)loader.getController()).setRecordType("BloodPressure");
+        ((RecordWithAreaChartController)loader.getController()).setRecordType("BloodPressure");
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
