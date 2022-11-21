@@ -11,7 +11,7 @@ public class Record {
     private int id;
     private final String type;
     private int userId;
-    private String value;
+    protected String value;
     private String date;
     private static ObservableList<Record> cache;
 
