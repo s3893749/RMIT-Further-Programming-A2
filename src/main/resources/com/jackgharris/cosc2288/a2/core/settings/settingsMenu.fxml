@@ -68,7 +68,7 @@
                   <String fx:value="button-settings-menu" />
                </styleClass>
             </Button>
-            <Button maxHeight="10000.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToThemeSettings" prefHeight="47.0" prefWidth="10000.0" styleClass="button-settings-menu">
+            <Button fx:id="themeButton" maxHeight="10000.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToThemeSettings" prefHeight="47.0" prefWidth="10000.0" styleClass="button-settings-menu">
                <graphic>
                   <BorderPane prefHeight="35.0" prefWidth="225.0">
                      <left>
@@ -92,7 +92,7 @@
                   </BorderPane>
                </graphic>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToImportExport" prefHeight="47.0" prefWidth="255.0" styleClass="button-settings-menu">
+            <Button fx:id="importButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToImportExport" prefHeight="47.0" prefWidth="255.0" styleClass="button-settings-menu">
                <graphic>
                   <BorderPane prefHeight="35.0" prefWidth="225.0">
                      <left>
