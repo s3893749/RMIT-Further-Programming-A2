@@ -30,6 +30,30 @@
     -fx-border-radius: 15px;
     -fx-border-style: solid;
 }
+
+.text-area{
+    -fx-background-color: #ececec;
+    -fx-background-radius: 20px;
+    -fx-border-color: #ececec !important;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-border-style: solid;
+}
+
+.text-area .content{
+   -fx-background-radius: 20px;
+    -fx-border-radius: 15px;
+}
+
+.text-area .scroll-pane {
+    -fx-background-radius: 20px;
+    -fx-border-radius: 15px;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-radius: 20px;
+    -fx-border-radius: 15px;
+}
+
 .text-field-error{
     -fx-border-color: -fx-error !important;
 }
