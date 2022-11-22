@@ -30,11 +30,12 @@ public class RecordWithLineChartController extends RecordPageController{
     @FXML
     private LineChart<String, Float> recordChart;
 
+    @FXML
+    private Label valueInputLabel;
+
 
     @Override
     public void construct() {
-        System.out.println("Constructed instance "+this);
-
         this.setInstance(this);
 
         //set our selection buttons and input to be disabled by default
@@ -52,6 +53,8 @@ public class RecordWithLineChartController extends RecordPageController{
         this.recordTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         this.valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+
+        this.valueInputLabel.setText(this.recordType);
         this.updateModels();
     }
 
