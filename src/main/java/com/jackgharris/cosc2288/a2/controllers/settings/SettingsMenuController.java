@@ -37,6 +37,12 @@ public class SettingsMenuController {
     @FXML
     private Button accountSettingsButton;
 
+    @FXML
+    private Button themeButton;
+
+    @FXML
+    private Button importButton;
+
     public static SettingsMenuController instance;
 
 
@@ -53,6 +59,7 @@ public class SettingsMenuController {
     }
 
     public void switchToAccountSettings(ActionEvent event) throws IOException {
+        MyHealth.getInstance().getUser().setLastPage("settings.account");
 
         System.out.println("Switching to account");
         this.setActiveButton((Button) event.getSource());
@@ -66,7 +73,8 @@ public class SettingsMenuController {
     }
 
     public void switchToThemeSettings(ActionEvent event) throws IOException {
-        System.out.println("Switching to theme");
+        MyHealth.getInstance().getUser().setLastPage("settings.theme");
+
         this.setActiveButton((Button) event.getSource());
         FXMLLoader loader = new FXMLLoader(FXMLUtility.settingsThemePage);
         AnchorPane nodes = loader.load();
@@ -77,7 +85,8 @@ public class SettingsMenuController {
     }
 
     public void switchToImportExport(ActionEvent event) throws IOException {
-        System.out.println("Switching to import/export");
+        MyHealth.getInstance().getUser().setLastPage("settings.import");
+
         this.setActiveButton((Button) event.getSource());
         FXMLLoader loader = new FXMLLoader(FXMLUtility.settingsImportExportPage);
         AnchorPane nodes = loader.load();
@@ -128,6 +137,30 @@ public class SettingsMenuController {
             this.profileImage.setImage(MyHealth.getInstance().getUser().getProfileImage());
 
         }
+    }
+
+    public void setSelectionFromLastPage() throws IOException {
+
+        String lastPage = MyHealth.getInstance().getUser().getLastPage();
+
+        if(lastPage.contains("settings.")){
+            lastPage = lastPage.split("\\.")[1];
+        }
+
+        switch (lastPage){
+            case "theme" ->{
+                this.switchToThemeSettings(new ActionEvent(this.themeButton,null));
+            }
+            case "import" ->{
+                this.switchToImportExport(new ActionEvent(this.importButton,null));
+            }
+
+            default -> {
+                this.switchToAccountSettings(new ActionEvent(this.accountSettingsButton,null));
+            }
+
+        }
+
     }
 
 
