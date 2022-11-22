@@ -72,6 +72,7 @@ public class LoginController {
 
             FXMLLoader fxmlLoader = new FXMLLoader(FXMLUtility.dashboardFXML);
             dashboardStage.setScene(new Scene(fxmlLoader.load()));
+            DashboardController controller = fxmlLoader.getController();
             dashboardStage.getProperties().put("id","dashboard");
             dashboardStage.getProperties().put("controller",fxmlLoader.getController());
             dashboardStage.setResizable(true);
@@ -79,7 +80,7 @@ public class LoginController {
             dashboardStage.setTitle(MyHealth.title);
             dashboardStage.getIcons().add(Resource.favicon());
             dashboardStage.show();
-
+            controller.loadLastPage();
             MyHealth.getStageById("launcher").close();
         }
     }
