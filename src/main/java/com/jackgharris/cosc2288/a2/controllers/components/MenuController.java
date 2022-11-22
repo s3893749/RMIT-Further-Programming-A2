@@ -24,12 +24,53 @@ public class MenuController {
     @FXML
     private Button recentMenuButton;
 
-    public void initialize(){
+    @FXML
+    private Button healthRecordButton;
+
+    @FXML
+    private Button temperatureRecordButton;
+
+    @FXML
+    private Button weightRecordButton;
+
+    @FXML
+    private Button bloodPressureRecordButton;
+
+    @FXML
+    private Button settingsButton;
+
+    public void initialize() throws IOException {
         this.recentMenuButton.setStyle("-fx-background-color: -fx-button-primary-background-hover");
+    }
+
+    public void setSelectionFromLastPage() throws IOException {
+
+        switch (MyHealth.getInstance().getUser().getLastPage()){
+            case "recent" ->{
+                this.switchToRecent(new ActionEvent(this.recentMenuButton,null));
+            }
+            case "healthRecord" ->{
+                this.switchToHealthRecord(new ActionEvent(this.healthRecordButton,null));
+            }
+            case "temperature" ->{
+                this.switchToTemperature(new ActionEvent(this.temperatureRecordButton,null));
+            }
+            case "weight" ->{
+                this.switchToWeight(new ActionEvent(this.weightRecordButton,null));
+            }
+            case "bloodPressure"->{
+                this.switchToBloodPressure(new ActionEvent(this.bloodPressureRecordButton,null));
+            }
+            case "settings" ->{
+                this.preferencesButtonPress(new ActionEvent(this.settingsButton,null));
+            }
+        }
+
     }
 
 
     public void preferencesButtonPress(ActionEvent event) throws IOException {
+        MyHealth.getInstance().getUser().setLastPage("settings");
 
         this.setActiveButton((Button) event.getSource());
 
@@ -50,6 +91,8 @@ public class MenuController {
 
     public void switchToRecent(ActionEvent event) throws IOException {
 
+        MyHealth.getInstance().getUser().setLastPage("recent");
+
         this.setActiveButton((Button) event.getSource());
 
         Stage stage = MyHealth.getStageById("dashboard");
@@ -69,8 +112,9 @@ public class MenuController {
 
     public void switchToHealthRecord(ActionEvent event){
 
-        this.setActiveButton((Button) event.getSource());
+        MyHealth.getInstance().getUser().setLastPage("healthRecord");
 
+        this.setActiveButton((Button) event.getSource());
 
         Stage stage = MyHealth.getStageById("dashboard");
         AnchorPane root = (AnchorPane) stage.getScene().getRoot();
@@ -80,6 +124,8 @@ public class MenuController {
     }
 
     public void switchToTemperature(ActionEvent event) throws IOException {
+
+        MyHealth.getInstance().getUser().setLastPage("temperature");
 
         this.setActiveButton((Button) event.getSource());
 
@@ -100,6 +146,9 @@ public class MenuController {
     }
 
     public void switchToWeight(ActionEvent event) throws IOException {
+
+        MyHealth.getInstance().getUser().setLastPage("weight");
+
         this.setActiveButton((Button) event.getSource());
 
         Stage stage = MyHealth.getStageById("dashboard");
@@ -120,7 +169,11 @@ public class MenuController {
     }
 
     public void switchToBloodPressure(ActionEvent event) throws IOException {
+
+        MyHealth.getInstance().getUser().setLastPage("bloodPressure");
+
         this.setActiveButton((Button) event.getSource());
+
 
         Stage stage = MyHealth.getStageById("dashboard");
         AnchorPane root = (AnchorPane) stage.getScene().getRoot();
