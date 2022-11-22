@@ -65,7 +65,7 @@ public class ShowRecordController {
         this.record.setValue(Float.valueOf(this.recordValueTextField.getText()));
         this.record.updateDetails();
         MyHealth.getStageById("showRecord").close();
-        RecordWithLineChartController.instance.updateModels();
+        RecordWithLineChartController.getInstance().updateModels();
     }
 
     public void reset(){
@@ -89,7 +89,7 @@ public class ShowRecordController {
             if (type == okButton) {
                 Record.delete(this.record);
                 MyHealth.getStageById("showRecord").close();
-                RecordWithLineChartController.instance.updateModels();
+                RecordWithLineChartController.getInstance().updateModels();
             }
         });
     }
