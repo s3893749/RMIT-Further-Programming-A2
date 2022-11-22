@@ -2,6 +2,7 @@ package com.jackgharris.cosc2288.a2.controllers.components;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Activity;
+import com.jackgharris.cosc2288.a2.models.HealthRecord;
 import com.jackgharris.cosc2288.a2.models.Record;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,7 +59,7 @@ public class RecentOverviewController {
         int temperatureCount = Record.where("type", "Temperature").withCurrentUser().get().size();
         int weightCount = Record.where("type", "Weight").withCurrentUser().get().size();
         int bloodPressureCount = Record.where("type", "BloodPressure").withCurrentUser().get().size();
-        int healthRecordCount = 0;
+        int healthRecordCount = HealthRecord.getAllForCurrentUser(true).size();
 
         //-------------------------------------------------------------\\
         //                   CREATE PIE CHART DATA                     \\
