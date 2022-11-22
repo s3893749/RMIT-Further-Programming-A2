@@ -39,8 +39,8 @@ public class Record {
         this.date = date;
     }
 
-    public void setValue(Float value){
-        this.value = String.valueOf(value);
+    public void setValue(String value){
+        this.value = value;
     }
 
     public String getType(){
