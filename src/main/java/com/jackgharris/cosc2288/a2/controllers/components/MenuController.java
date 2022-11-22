@@ -93,6 +93,7 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(FXMLUtility.recordOverview);
         AnchorPane nodes = loader.load();
         ((RecordWithLineChartController)loader.getController()).setRecordType("Temperature");
+        ((RecordWithLineChartController)loader.getController()).construct();
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
@@ -111,6 +112,7 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(FXMLUtility.recordOverview);
         AnchorPane nodes = loader.load();
         ((RecordWithLineChartController)loader.getController()).setRecordType("Weight");
+        ((RecordWithLineChartController)loader.getController()).construct();
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
@@ -130,6 +132,8 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(FXMLUtility.recordWithAreaChart);
         AnchorPane nodes = loader.load();
         ((RecordWithAreaChartController)loader.getController()).setRecordType("BloodPressure");
+        ((RecordWithAreaChartController)loader.getController()).construct();
+
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
