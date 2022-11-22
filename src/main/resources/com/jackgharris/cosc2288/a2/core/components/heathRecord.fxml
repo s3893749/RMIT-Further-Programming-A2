@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="parent" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.HealthRecordController">
+   <children>
+      <Label fx:id="recordName" layoutX="43.0" layoutY="25.0" styleClass="h1" stylesheets="@../css/headings.css" text="Health Record" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <TableView fx:id="recordTable" layoutX="626.0" layoutY="113.0" onMouseClicked="#updateRecordSelection" prefHeight="508.0" prefWidth="599.0" stylesheets="@../css/tableStyle.css" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="626.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="113.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="temperatureColumn" prefWidth="93.99999237060547" text="Temperature" />
+            <TableColumn fx:id="weightColumn" prefWidth="71.333251953125" text="Weight" />
+            <TableColumn fx:id="bloodPressureColumn" prefWidth="108.00013732910156" text="Blood Pressure" />
+        </columns>
+      </TableView>
+      <Button fx:id="viewRecordButton" layoutX="826.0" layoutY="641.0" maxWidth="200.0" mnemonicParsing="false" onAction="#showRecord" prefHeight="25.0" prefWidth="200.0" styleClass="button-primary" text="View / Update / Delete" AnchorPane.bottomAnchor="53.66666666666663" AnchorPane.leftAnchor="826.0" AnchorPane.rightAnchor="254.0" />
+      <VBox layoutX="58.0" layoutY="113.0" prefHeight="508.0" prefWidth="489.0">
+         <children>
+            <HBox prefHeight="41.0" prefWidth="750.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label styleClass="h4" text="Temperature">
+                     <VBox.margin>
+                        <Insets bottom="8.0" top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="64.0" prefWidth="489.0">
+                     <children>
+                        <VBox prefHeight="47.0" prefWidth="201.0">
+                           <children>
+                              <Label styleClass="form-label" text="Value" />
+                              <TextField fx:id="temperatureValueInput" onKeyTyped="#updateSaveButton" prefHeight="29.0" prefWidth="200.0" promptText="Example: 37.5">
+                                 <VBox.margin>
+                                    <Insets top="4.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="100.0" prefWidth="262.0">
+                     <children>
+                        <Label styleClass="form-label" text="Notes:">
+                           <VBox.margin>
+                              <Insets bottom="4.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="temperatureNote" onKeyTyped="#updateSaveButton" promptText="Taken for sports day" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label styleClass="h4" text="Weight">
+                     <VBox.margin>
+                        <Insets bottom="8.0" top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="64.0" prefWidth="489.0">
+                     <children>
+                        <VBox prefHeight="56.0" prefWidth="200.0">
+                           <children>
+                              <Label styleClass="form-label" text="Value">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" top="4.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="weightValueInput" onKeyTyped="#updateSaveButton" prefWidth="200.0" promptText="97.2">
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="100.0" prefWidth="262.0">
+                     <children>
+                        <Label styleClass="form-label" text="Notes:">
+                           <VBox.margin>
+                              <Insets bottom="4.0" top="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="weightNote" onKeyTyped="#updateSaveButton" promptText="Two weeks into the new diet" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" top="16.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label styleClass="h4" text="Blood Pressure">
+                     <VBox.margin>
+                        <Insets bottom="8.0" top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="64.0" prefWidth="489.0">
+                     <children>
+                        <VBox prefHeight="56.0" prefWidth="200.0">
+                           <children>
+                              <Label styleClass="form-label" text="Value">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" top="4.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="bloodPressureValueInput" onKeyTyped="#updateSaveButton" promptText="120/80">
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="100.0" prefWidth="262.0">
+                     <children>
+                        <Label styleClass="form-label" text="Notes:">
+                           <VBox.margin>
+                              <Insets bottom="4.0" top="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="bloodPressureNote" onKeyTyped="#updateSaveButton" promptText="Good like normal!" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" top="16.0" />
+               </VBox.margin>
+            </VBox>
+            <Label styleClass="form-label" text="Date:">
+               <VBox.margin>
+                  <Insets bottom="4.0" top="16.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <DatePicker fx:id="datePicker" onAction="#dateChanged" prefHeight="29.0" prefWidth="200.0" promptText="Please select the date" />
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#addHealthRecord" prefHeight="29.0" prefWidth="100.0" styleClass="button-primary" text="Save">
+                     <HBox.margin>
+                        <Insets left="32.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#discard" prefHeight="29.0" prefWidth="100.0" styleClass="button-danger" text="Discard">
+                     <HBox.margin>
+                        <Insets left="32.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label fx:id="subheading" layoutX="58.0" layoutY="78.0" styleClass="h3" text="Add New Health Record" />
+   </children>
+</AnchorPane>
