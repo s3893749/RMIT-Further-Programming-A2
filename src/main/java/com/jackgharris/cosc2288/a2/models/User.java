@@ -89,9 +89,18 @@ public class User {
         return this.theme;
     }
 
-    public void createTheme(){
-        this.theme = new Theme();
-        this.theme.reset(false);
+    public void setLastPage(String lastPage){
+        this.lastPage = lastPage;
+
+        String query = "UPDATE `users` SET " +
+                "`lastPage` = '"+lastPage+"' " +
+                " WHERE id = "+this.id+"";
+
+        Database.queryWithBooleanResult(query);
+    }
+
+    public String getLastPage(){
+        return this.lastPage;
     }
 
     public void setFirstname(String firstname){
