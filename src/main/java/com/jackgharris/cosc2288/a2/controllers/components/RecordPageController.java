@@ -6,9 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
-public abstract class RecordPageController {
+public abstract class RecordPageController{
 
     @FXML
     protected Label recordName;
@@ -38,6 +39,10 @@ public abstract class RecordPageController {
     public abstract void construct();
 
     public abstract void updateModels();
+
+    public abstract void addRecord();
+
+    public abstract void showRecord() throws IOException;
 
     protected void setInstance(RecordPageController instance){
         RecordPageController.instance = instance;
