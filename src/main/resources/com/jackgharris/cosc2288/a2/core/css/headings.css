@@ -15,3 +15,9 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
+
+.h4{
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
