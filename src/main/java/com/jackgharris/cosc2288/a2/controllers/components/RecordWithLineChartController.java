@@ -17,24 +17,9 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
-public class RecordWithLineChartController {
+public class RecordWithLineChartController extends RecordPageController{
 
-    @FXML
-    private Label recordName;
-
-    @FXML
-    private TableView<Record> recordTable;
-
-    @FXML
-    private TableColumn<Record, String> dateColumn;
-
-    @FXML
-    private TableColumn<Record, String> valueColumn;
-
-    @FXML
-    private DatePicker addRecordDatePicker;
 
     @FXML
     private TextField addRecordInput;
@@ -43,18 +28,14 @@ public class RecordWithLineChartController {
     private Button addRecordButton;
 
     @FXML
-    private Button viewRecordButton;
-
-    @FXML
     private LineChart<String, Float> recordChart;
 
-    private String recordType;
 
-    private int limit;
+    @Override
+    public void construct() {
+        System.out.println("Constructed instance "+this);
 
-    public static RecordWithLineChartController instance;
-
-    public void initialize(){
+        this.setInstance(this);
 
         //set our selection buttons and input to be disabled by default
         this.addRecordButton.setDisable(true);
@@ -68,22 +49,12 @@ public class RecordWithLineChartController {
         Callback<DatePicker, DateCell> dayCellFactory  = this.disableUsedDates();
         this.addRecordDatePicker.setDayCellFactory(dayCellFactory);
 
-        RecordWithLineChartController.instance = this;
-
-    }
-
-    public void setRecordType(String recordType){
-        this.recordType = recordType;
-        this.recordName.setText(recordType);
-        MyHealth.getInstance().setSelectedRecordType(this.recordType);
-
-
         this.recordTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         this.valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         this.updateModels();
-
     }
+
 
     public void datePickerUpdated(){
         this.addRecordInput.setDisable(false);
@@ -115,6 +86,7 @@ public class RecordWithLineChartController {
         this.addRecordInput.setDisable(true);
     }
 
+    @Override
     public void updateModels(){
         //Get our records from the database but limit them via the current set limit.
         ObservableList<Record> records = Record.where("type",this.recordType).withCurrentUser().limit(this.limit).sort("date").updateCache().get();
@@ -149,41 +121,6 @@ public class RecordWithLineChartController {
         }
     }
 
-    public void showAllRecords(){
-        this.limit = 0;
-        this.updateModels();
-    }
-
-    public void showLastWeek(){
-        this.limit = 7;
-        this.updateModels();
-    }
-
-    public void showLastMonth(){
-        this.limit = 30;
-        this.updateModels();
-    }
-
-
-    private Callback<DatePicker, DateCell> disableUsedDates() {
-
-        final Callback<DatePicker, DateCell> dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
-
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                for (Record record: Record.where("type",MyHealth.getInstance().getSelectedRecordType()).fromCache().get()){
-                    if(item.equals(record.getDate())){
-                        setDisable(true);
-                        setStyle("-fx-background-color: -fx-error;");
-
-                    }
-                }
-            }
-        };
-
-        return dayCellFactory;
-    }
 
     public void showRecord() throws IOException {
 
@@ -205,9 +142,7 @@ public class RecordWithLineChartController {
 
     }
 
-    public void updateRecordSelection(){
-        this.viewRecordButton.setDisable(this.recordTable.getSelectionModel().getSelectedItem() == null);
-    }
+
 
 
 }

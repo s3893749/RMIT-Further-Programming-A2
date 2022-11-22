@@ -8,36 +8,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-import java.time.LocalDate;
 
-public class RecordWithAreaChartController {
+public class RecordWithAreaChartController extends RecordPageController{
 
-    @FXML
-    private Label recordName;
-
-    @FXML
-    private TableView<Record> recordTable;
-
-    @FXML
-    private TableColumn<BloodPressure,String> dateColumn;
-
-    @FXML
-    private TableColumn<BloodPressure,Integer> valueColumn;
-
-    @FXML
-    private TableColumn<BloodPressure, Integer> valueColumnTwo;
 
     @FXML
     private AreaChart<String, Integer> areaChart;
-
-    @FXML
-    private DatePicker addRecordDatePicker;
 
     @FXML
     private TextField addRecordInput;
@@ -48,36 +29,38 @@ public class RecordWithAreaChartController {
     @FXML
     private Button addRecordButton;
 
-    @FXML
-    private Button viewRecordButton;
 
-    private String recordType;
 
-    private int limit;
-
-    public static RecordWithAreaChartController instance;
-
-    public void initialize(){
+    @Override
+    public void construct() {
         this.addRecordButton.setDisable(true);
         this.viewRecordButton.setDisable(true);
         this.addRecordInput.setDisable(true);
         this.addRecordInputTwo.setDisable(true);
-        this.limit = 0;
 
         //call our callback function to set the datepicker to disable any used dates.
         Callback<DatePicker, DateCell> dayCellFactory  = this.disableUsedDates();
         this.addRecordDatePicker.setDayCellFactory(dayCellFactory);
 
         this.valueColumn.setText("Systolic");
-        this.valueColumnTwo.setText("Diastolic");
 
         this.recordTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        RecordWithAreaChartController.instance = this;
-
-
         //disable the date picker text input
         this.addRecordDatePicker.getEditor().setDisable(true);
+
+        this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        this.valueColumn.setCellValueFactory(new PropertyValueFactory<>("systolic"));
+
+        TableColumn<Record, Integer> valueColumnTwo = new TableColumn<>();
+        valueColumnTwo.setText("Diastolic");
+        valueColumnTwo.setCellValueFactory(new PropertyValueFactory<>("diastolic"));
+
+        this.recordTable.getColumns().add(valueColumnTwo);
+
+        this.setInstance(this);
+
+        this.updateModels();
     }
 
     public void updateModels(){
@@ -128,21 +111,6 @@ public class RecordWithAreaChartController {
         }
     }
 
-    public void showAllRecords(){
-        this.limit = 0;
-        this.updateModels();
-    }
-
-    public void showLastWeek(){
-        this.limit = 7;
-        this.updateModels();
-    }
-
-    public void showLastMonth(){
-        this.limit = 30;
-        this.updateModels();
-    }
-
     public void addRecord(){
 
         Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText()+"/"+this.addRecordInputTwo.getText(), this.addRecordDatePicker.getValue().toString()));
@@ -161,14 +129,6 @@ public class RecordWithAreaChartController {
         this.addRecordInput.setDisable(true);
         this.addRecordInputTwo.setDisable(true);
 
-    }
-
-    public void showRecord(){
-
-    }
-
-    public void updateRecordSelection(){
-        this.viewRecordButton.setDisable(this.recordTable.getSelectionModel().getSelectedItem() == null);
     }
 
     public void datePickerUpdated(){
@@ -211,37 +171,7 @@ public class RecordWithAreaChartController {
 
     }
 
-
-    public void setRecordType(String recordType){
-        this.recordType = recordType;
-        this.recordName.setText(recordType);
-        MyHealth.getInstance().setSelectedRecordType(recordType);
-
-        this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        this.valueColumn.setCellValueFactory(new PropertyValueFactory<>("systolic"));
-        this.valueColumnTwo.setCellValueFactory(new PropertyValueFactory<>("diastolic"));
-        this.updateModels();
-
-    }
-
-
-    private Callback<DatePicker, DateCell> disableUsedDates() {
-
-        final Callback<DatePicker, DateCell> dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
-
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                for (Record record: Record.where("type", MyHealth.getInstance().getSelectedRecordType()).fromCache().get()){
-                    if(item.equals(record.getDate())){
-                        setDisable(true);
-                        setStyle("-fx-background-color: -fx-error;");
-
-                    }
-                }
-            }
-        };
-
-        return dayCellFactory;
+    public void showRecord(){
+        System.out.println("PENDING");
     }
 }
