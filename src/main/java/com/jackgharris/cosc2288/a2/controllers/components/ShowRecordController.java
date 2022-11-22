@@ -62,7 +62,7 @@ public class ShowRecordController {
 
     public void save(){
         this.record.setDate(this.recordDatePicker.getValue().toString());
-        this.record.setValue(Float.valueOf(this.recordValueTextField.getText()));
+        this.record.setValue(this.recordValueTextField.getText());
         this.record.updateDetails();
         MyHealth.getStageById("showRecord").close();
         RecordWithLineChartController.getInstance().updateModels();
@@ -95,14 +95,31 @@ public class ShowRecordController {
     }
 
     public void valueChanged(){
-        if(!Validation.isFloat(this.recordValueTextField.getText())){
-            this.recordValueTextField.getStyleClass().add("text-field-error");
-            this.recordValueTextField.getStyleClass().removeAll("text-field-success");
-            this.saveButton.setDisable(true);
-        }else{
-            this.recordValueTextField.getStyleClass().removeAll("text-field-error");
-            this.recordValueTextField.getStyleClass().add("text-field-success");
-            this.saveButton.setDisable(false);
+
+        if(this.record.getType().equals("BloodPressure")){
+
+            if (!Validation.isBloodPressure(this.recordValueTextField.getText())) {
+                this.recordValueTextField.getStyleClass().add("text-field-error");
+                this.recordValueTextField.getStyleClass().removeAll("text-field-success");
+                this.saveButton.setDisable(true);
+            } else {
+                this.recordValueTextField.getStyleClass().removeAll("text-field-error");
+                this.recordValueTextField.getStyleClass().add("text-field-success");
+                this.saveButton.setDisable(false);
+            }
+
+
+        }else {
+
+            if (!Validation.isFloat(this.recordValueTextField.getText())) {
+                this.recordValueTextField.getStyleClass().add("text-field-error");
+                this.recordValueTextField.getStyleClass().removeAll("text-field-success");
+                this.saveButton.setDisable(true);
+            } else {
+                this.recordValueTextField.getStyleClass().removeAll("text-field-error");
+                this.recordValueTextField.getStyleClass().add("text-field-success");
+                this.saveButton.setDisable(false);
+            }
         }
     }
 
