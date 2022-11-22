@@ -3,15 +3,22 @@ package com.jackgharris.cosc2288.a2.controllers.components;
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.BloodPressure;
 import com.jackgharris.cosc2288.a2.models.Record;
+import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
+import com.jackgharris.cosc2288.a2.utility.Resource;
 import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import java.io.IOException;
 
 
 public class RecordWithAreaChartController extends RecordPageController{
@@ -174,7 +181,21 @@ public class RecordWithAreaChartController extends RecordPageController{
     }
 
     @Override
-    public void showRecord(){
-        System.out.println("PENDING");
+    public void showRecord() throws IOException {
+        if(!MyHealth.isStageShown("showRecord")){
+            Stage stage = new Stage();
+            stage.getProperties().put("id","showRecord");
+            stage.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(FXMLUtility.showRecord);
+            Scene scene = new Scene(loader.load());
+            stage.setTitle("MyHealth Record | Show/Edit/Delete");
+            stage.getIcons().add(Resource.importExportFavicon());
+            ShowRecordController controller = loader.getController();
+            controller.setRecord(this.recordTable.getSelectionModel().getSelectedItem());
+            stage.setScene(scene);
+            stage.show();
+        }else{
+            MyHealth.getStageById("showRecord").requestFocus();
+        }
     }
 }
