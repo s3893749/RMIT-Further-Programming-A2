@@ -41,4 +41,29 @@ public class Validation {
 
         return true;
     }
+
+    public static boolean isBloodPressure(String text){
+        if(text == null){
+            return false;
+        }
+
+        text = text.trim();
+
+        if(text.isBlank() || text.isEmpty()){
+            return false;
+        }
+
+        if(!text.contains("/")){
+            return false;
+        }
+
+        String[] data = text.split("/");
+
+        if(data.length != 2){
+            return false;
+        }
+
+
+        return Validation.isInteger(data[0]) & Validation.isInteger(data[1]);
+    }
 }
