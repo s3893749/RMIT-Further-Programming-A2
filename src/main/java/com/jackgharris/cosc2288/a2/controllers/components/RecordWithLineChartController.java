@@ -73,6 +73,7 @@ public class RecordWithLineChartController extends RecordPageController{
         }
     }
 
+    @Override
     public void addRecord(){
 
         Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText(), this.addRecordDatePicker.getValue().toString()));
@@ -122,6 +123,7 @@ public class RecordWithLineChartController extends RecordPageController{
     }
 
 
+    @Override
     public void showRecord() throws IOException {
 
         if(!MyHealth.isStageShown("showRecord")){

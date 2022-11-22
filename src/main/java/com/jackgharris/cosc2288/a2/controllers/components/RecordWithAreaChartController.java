@@ -63,16 +63,17 @@ public class RecordWithAreaChartController extends RecordPageController{
         this.updateModels();
     }
 
-    public void updateModels(){
+    @Override
+    public void updateModels() {
         //Get our records from the database but limit them via the current set limit.
-        ObservableList<Record> records = Record.where("type",this.recordType).withCurrentUser().limit(this.limit).sort("date").updateCache().get();
+        ObservableList<Record> records = Record.where("type", this.recordType).withCurrentUser().limit(this.limit).sort("date").updateCache().get();
 
         //create our blood pressure list
         ObservableList<BloodPressure> bloodPressures = FXCollections.observableArrayList();
 
         //cast all our records to blood pressure objects
-        records.forEach((n)->{
-            bloodPressures.add(new BloodPressure(n.getId(),n.getType(),n.getUserId(),n.getValue(),n.getDate().toString()));
+        records.forEach((n) -> {
+            bloodPressures.add(new BloodPressure(n.getId(), n.getType(), n.getUserId(), n.getValue(), n.getDate().toString()));
         });
 
         //-------------------------------------------------------------\\
@@ -84,9 +85,9 @@ public class RecordWithAreaChartController extends RecordPageController{
         XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
         XYChart.Series<String, Integer> series2 = new XYChart.Series<>();
 
-        bloodPressures.forEach((n)->{
-            series1.getData().add(new XYChart.Data<>(n.getDate().toString(),n.getSystolic()));
-            series2.getData().add(new XYChart.Data<>(n.getDate().toString(),n.getDiastolic()));
+        bloodPressures.forEach((n) -> {
+            series1.getData().add(new XYChart.Data<>(n.getDate().toString(), n.getSystolic()));
+            series2.getData().add(new XYChart.Data<>(n.getDate().toString(), n.getDiastolic()));
         });
 
         this.areaChart.getData().clear();
@@ -106,11 +107,12 @@ public class RecordWithAreaChartController extends RecordPageController{
         this.recordTable.getItems().addAll(bloodPressures);
 
         //Check if we have a limit set, if not then simply use the above cache, else update the cache.
-        if(this.limit != 0){
-            Record.where("type",this.recordType).withCurrentUser().sort("date").updateCache().get();
+        if (this.limit != 0) {
+            Record.where("type", this.recordType).withCurrentUser().sort("date").updateCache().get();
         }
     }
 
+    @Override
     public void addRecord(){
 
         Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText()+"/"+this.addRecordInputTwo.getText(), this.addRecordDatePicker.getValue().toString()));
@@ -171,6 +173,7 @@ public class RecordWithAreaChartController extends RecordPageController{
 
     }
 
+    @Override
     public void showRecord(){
         System.out.println("PENDING");
     }
