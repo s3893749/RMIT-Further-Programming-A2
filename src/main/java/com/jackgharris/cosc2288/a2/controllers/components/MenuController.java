@@ -47,6 +47,7 @@ public class MenuController {
     public void setSelectionFromLastPage() throws IOException {
 
         String lastPage = MyHealth.getInstance().getUser().getLastPage();
+
         if(lastPage.contains("settings.")){
             lastPage = "settings";
         }
@@ -117,7 +118,7 @@ public class MenuController {
     }
 
 
-    public void switchToHealthRecord(ActionEvent event){
+    public void switchToHealthRecord(ActionEvent event) throws IOException {
 
         MyHealth.getInstance().getUser().setLastPage("healthRecord");
 
@@ -128,6 +129,12 @@ public class MenuController {
 
         AnchorPane contentContainerOuter = (AnchorPane) root.getChildren().get(1);
         contentContainerOuter.getChildren().clear();
+
+        FXMLLoader loader = new FXMLLoader(FXMLUtility.heathRecordPage);
+        AnchorPane nodes = loader.load();
+
+        contentContainerOuter.getChildren().clear();
+        contentContainerOuter.getChildren().addAll(nodes.getChildren());
     }
 
     public void switchToTemperature(ActionEvent event) throws IOException {
