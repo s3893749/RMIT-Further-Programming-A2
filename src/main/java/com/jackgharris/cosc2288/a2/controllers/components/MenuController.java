@@ -1,5 +1,6 @@
 package com.jackgharris.cosc2288.a2.controllers.components;
 
+import com.jackgharris.cosc2288.a2.controllers.settings.SettingsController;
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
@@ -45,7 +46,12 @@ public class MenuController {
 
     public void setSelectionFromLastPage() throws IOException {
 
-        switch (MyHealth.getInstance().getUser().getLastPage()){
+        String lastPage = MyHealth.getInstance().getUser().getLastPage();
+        if(lastPage.contains("settings.")){
+            lastPage = "settings";
+        }
+
+        switch (lastPage){
             case "recent" ->{
                 this.switchToRecent(new ActionEvent(this.recentMenuButton,null));
             }
@@ -70,7 +76,6 @@ public class MenuController {
 
 
     public void preferencesButtonPress(ActionEvent event) throws IOException {
-        MyHealth.getInstance().getUser().setLastPage("settings");
 
         this.setActiveButton((Button) event.getSource());
 
@@ -83,6 +88,8 @@ public class MenuController {
 
         FXMLLoader loader = new FXMLLoader(FXMLUtility.settingsPage);
         AnchorPane nodes = loader.load();
+        SettingsController controller = loader.getController();
+        controller.loadLastPage();
 
         contentContainerOuter.getChildren().clear();
         contentContainerOuter.getChildren().addAll(nodes.getChildren());
