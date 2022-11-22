@@ -20,7 +20,6 @@
         <columns>
           <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
           <TableColumn fx:id="valueColumn" prefWidth="75.0" text="Value" />
-            <TableColumn fx:id="valueColumnTwo" prefWidth="75.0" text="Value" />
         </columns>
       </TableView>
       <ButtonBar layoutX="43.0" layoutY="84.0" prefHeight="40.0" prefWidth="324.0" stylesheets="@../css/dashboardDurationSelectionButtonGroup.css" AnchorPane.leftAnchor="30.0">
