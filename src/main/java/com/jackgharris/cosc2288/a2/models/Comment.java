@@ -35,14 +35,18 @@ public class Comment extends Record{
 
     public static boolean add(Comment comment){
 
-        String deleteQuery = "DELETE FROM comments WHERE user_id='"+ MyHealth.getInstance().getUser().getId() +"' AND record_id='"+comment.getRecordId()+"'";
-        Database.queryWithBooleanResult(deleteQuery);
+        Comment.delete(comment);
 
         Activity.add(new Activity("New comment saved"));
 
         String sql = "INSERT INTO comments (user_id, record_id, value) VALUES ('"+comment.getUserId()+"','"+ comment.getRecordId()+"', '"+comment.getNote()+"')";
 
         return Database.queryWithBooleanResult(sql);
+    }
+
+    public static boolean delete(Comment comment){
+        String deleteQuery = "DELETE FROM comments WHERE user_id='"+ MyHealth.getInstance().getUser().getId() +"' AND record_id='"+comment.getRecordId()+"'";
+        return Database.queryWithBooleanResult(deleteQuery);
     }
 
     public static ObservableList<Comment> get(int user_id, int record_id){
