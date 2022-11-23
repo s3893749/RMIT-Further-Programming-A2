@@ -15,6 +15,8 @@ public class Record {
     private String date;
     private static ObservableList<Record> cache;
 
+    public static int lastAddedId = -1;
+
     public Record(int id, String type, int userId, String value, String date){
         this.id = id;
         this.type = type;
@@ -85,7 +87,15 @@ public class Record {
 
         String sql = "INSERT INTO records (type, user_id, value, date) VALUES ('"+record.getType()+"','"+ MyHealth.getInstance().getUser().getId()+"', '"+record.getValue()+"','"+record.getDate()+"')";
 
-        return Database.queryWithBooleanResult(sql);
+        boolean outcome = Database.queryWithBooleanResult(sql);
+
+        if(outcome){
+            sql = "SELECT id FROM records WHERE user_id='"+record.getUserId()+"' AND value='"+record.getValue()+"' AND date='"+record.getDate()+"'";
+
+            Record.lastAddedId = Integer.parseInt(Database.query(sql).get(0).get("id"));
+        }
+
+        return outcome;
     }
 
     public static boolean delete(Record record){
