@@ -4,14 +4,18 @@ import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Comment;
 import com.jackgharris.cosc2288.a2.models.Record;
 import com.jackgharris.cosc2288.a2.models.User;
+import com.jackgharris.cosc2288.a2.utility.Resource;
 import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class ShowRecordController {
 
@@ -89,6 +93,16 @@ public class ShowRecordController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Record?");
         alert.setContentText("Are you sure you want to delete this record?");
+        ImageView imageView = new ImageView(Resource.faviconWarning());
+        imageView.setFitWidth(64);
+        imageView.setFitHeight(64);
+        alert.setGraphic(imageView);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(MyHealth.class.getResource("css/app.css")).toExternalForm());
+        dialogPane.getStyleClass().add("parent");
+        dialogPane.setStyle(MyHealth.getInstance().getUser().getTheme().getStyle());
+        Stage stage = (Stage) dialogPane.getScene().getWindow();
+        stage.getIcons().add(Resource.faviconWarning());
         ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
         ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(okButton, noButton);
