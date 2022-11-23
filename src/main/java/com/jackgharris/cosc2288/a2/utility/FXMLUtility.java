@@ -42,6 +42,8 @@ public class FXMLUtility {
 
     public static URL heathRecordPage = MyHealth.class.getResource("components/heathRecord.fxml");
 
+    public static URL showHealthRecord = MyHealth.class.getResource("components/showHealthRecordWindow.fxml");
+
     public static Scene loadScene(URL sceneURL, Stage stage, String css) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(sceneURL);
