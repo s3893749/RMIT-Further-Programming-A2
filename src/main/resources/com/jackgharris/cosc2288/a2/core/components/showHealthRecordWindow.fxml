@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1120.0" styleClass="parent" stylesheets="@../css/app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jackgharris.cosc2288.a2.controllers.components.ShowHealthRecordController">
+   <children>
+      <Label layoutX="31.0" layoutY="81.0" styleClass="h2" text="Health Record" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="81.0" />
+      <Button fx:id="saveButton" layoutX="31.0" layoutY="662.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="86.0" styleClass="button-primary" text="Save" AnchorPane.bottomAnchor="32.66666666666663" AnchorPane.leftAnchor="31.0" />
+      <Button fx:id="resetButton" layoutX="333.0" layoutY="539.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="116.0" styleClass="button-primary" text="Reset Changes" AnchorPane.bottomAnchor="155.66666666666663" AnchorPane.leftAnchor="333.0" />
+      <Label layoutX="45.0" layoutY="578.0" style="-fx-text-fill: white;" text="Please enter your passwor do delete the record" AnchorPane.bottomAnchor="124.66666666666663" AnchorPane.leftAnchor="45.0" />
+      <TextField fx:id="weightValue" layoutX="156.0" layoutY="302.0" onKeyTyped="#updateSaveButton" prefHeight="29.0" prefWidth="221.0" />
+      <Label layoutX="156.0" layoutY="279.0" styleClass="form-label" text="Value:" />
+      <Button fx:id="deleteButton" layoutX="213.0" layoutY="541.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="86.0" styleClass="button-danger" text="Delete" />
+      <PasswordField fx:id="passwordInput" layoutX="46.0" layoutY="539.0" onKeyTyped="#updateDeleteButton" styleClass="text-field" />
+      <Label layoutX="45.0" layoutY="509.0" styleClass="form-label" text="Password:" />
+      <Label layoutX="31.0" layoutY="27.0" style="-fx-text-fill: white;" styleClass="h1" text="Show/Edit/Delete Record" />
+      <Button fx:id="cancelButton" layoutX="129.0" layoutY="662.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="86.0" styleClass="button-danger" text="Cancel" />
+      <Label layoutX="338.0" layoutY="513.0" styleClass="form-label" text="Reset:" />
+      <TextField fx:id="weightNote" layoutX="156.0" layoutY="378.0" onKeyTyped="#updateSaveButton" prefHeight="29.0" prefWidth="221.0" />
+      <Label layoutX="156.0" layoutY="355.0" styleClass="form-label" text="Comment" />
+      <Label fx:id="recordTypeLabel1" layoutX="155.0" layoutY="239.0" styleClass="h3" text="Weight" />
+      <TextField fx:id="temperatureValue" layoutX="450.0" layoutY="295.0" onKeyTyped="#updateSaveButton" prefHeight="29.0" prefWidth="221.0" />
+      <Label layoutX="450.0" layoutY="272.0" styleClass="form-label" text="Value:" />
+      <TextField fx:id="temperatureNote" layoutX="450.0" layoutY="371.0" onKeyTyped="#updateSaveButton" prefHeight="29.0" prefWidth="221.0" />
+      <Label layoutX="450.0" layoutY="348.0" styleClass="form-label" text="Comment" />
+      <Label fx:id="recordTypeLabel11" layoutX="449.0" layoutY="232.0" styleClass="h3" text="Temperature" />
+      <TextField fx:id="bloodPressureValue" layoutX="742.0" layoutY="295.0" onKeyTyped="#updateSaveButton" prefHeight="29.0" prefWidth="221.0" />
+      <Label layoutX="742.0" layoutY="272.0" styleClass="form-label" text="Value:" />
+      <TextField fx:id="bloodPressureNote" layoutX="742.0" layoutY="371.0" onKeyTyped="#updateSaveButton" prefHeight="29.0" prefWidth="221.0" />
+      <Label layoutX="742.0" layoutY="348.0" styleClass="form-label" text="Comment" />
+      <Label fx:id="recordTypeLabel111" layoutX="741.0" layoutY="232.0" styleClass="h3" text="BloodPressure" />
+      <Label fx:id="dateLabel" layoutX="31.0" layoutY="121.0" styleClass="h3" text="Date:" />
+   </children>
+</AnchorPane>
