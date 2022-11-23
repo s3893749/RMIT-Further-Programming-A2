@@ -189,7 +189,7 @@ public class RecordWithAreaChartController extends RecordPageController{
             FXMLLoader loader = new FXMLLoader(FXMLUtility.showRecord);
             Scene scene = new Scene(loader.load());
             stage.setTitle("MyHealth Record | Show/Edit/Delete");
-            stage.getIcons().add(Resource.importExportFavicon());
+            stage.getIcons().add(Resource.favicon());
             ShowRecordController controller = loader.getController();
             controller.setRecord(this.recordTable.getSelectionModel().getSelectedItem());
             stage.setScene(scene);
