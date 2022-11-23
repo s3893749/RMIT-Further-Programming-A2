@@ -4,13 +4,19 @@ import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Comment;
 import com.jackgharris.cosc2288.a2.models.HealthRecord;
 import com.jackgharris.cosc2288.a2.models.Record;
+import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
+import com.jackgharris.cosc2288.a2.utility.Resource;
 import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class HealthRecordController {
@@ -252,7 +258,22 @@ public class HealthRecordController {
         this.datePicker.setValue(null);
     }
 
-    public void showRecord(){
+    public void showRecord() throws IOException {
+        if(!MyHealth.isStageShown("showHealthRecord")){
+            Stage stage = new Stage();
+            stage.getProperties().put("id","showHealthRecord");
+            stage.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(FXMLUtility.showHealthRecord);
+            Scene scene = new Scene(loader.load());
+            stage.setTitle("MyHealth Record | Show/Edit/Delete");
+            stage.getIcons().add(Resource.importExportFavicon());
+            ShowHealthRecordController controller = loader.getController();
+            controller.setRecords((HealthRecord) this.recordTable.getSelectionModel().getSelectedItem());
+            stage.setScene(scene);
+            stage.show();
+        }else{
+            MyHealth.getStageById("showRecord").requestFocus();
+        }
     }
 
     public void updateRecordSelection(){
