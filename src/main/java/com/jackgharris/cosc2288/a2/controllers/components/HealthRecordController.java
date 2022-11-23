@@ -67,6 +67,12 @@ public class HealthRecordController {
     private Label subheading;
 
 
+    public static HealthRecordController instance;
+
+    public void setMessage(String message, String css){
+        this.subheading.setText(message);
+        this.subheading.getStyleClass().add(css);
+    }
 
     public void initialize(){
         Callback<DatePicker, DateCell> dayCellFactory  = this.disableUsedDates();
@@ -90,6 +96,8 @@ public class HealthRecordController {
         this.bloodPressureNoteChanged();
 
         this.updateModels();
+
+        HealthRecordController.instance = this;
     }
 
     public void updateModels(){
