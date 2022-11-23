@@ -274,7 +274,7 @@ public class HealthRecordController {
             FXMLLoader loader = new FXMLLoader(FXMLUtility.showHealthRecord);
             Scene scene = new Scene(loader.load());
             stage.setTitle("MyHealth Record | Show/Edit/Delete");
-            stage.getIcons().add(Resource.importExportFavicon());
+            stage.getIcons().add(Resource.favicon());
             ShowHealthRecordController controller = loader.getController();
             controller.setRecords((HealthRecord) this.recordTable.getSelectionModel().getSelectedItem());
             stage.setScene(scene);
