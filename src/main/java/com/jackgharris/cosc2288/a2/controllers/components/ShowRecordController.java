@@ -1,9 +1,11 @@
 package com.jackgharris.cosc2288.a2.controllers.components;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
+import com.jackgharris.cosc2288.a2.models.Comment;
 import com.jackgharris.cosc2288.a2.models.Record;
 import com.jackgharris.cosc2288.a2.models.User;
 import com.jackgharris.cosc2288.a2.utility.Validation;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -41,6 +43,8 @@ public class ShowRecordController {
 
     private Record record;
 
+    private String startingNote;
+
     public void initialize(){
         //call our callback function to set the datepicker to disable any used dates.
         Callback<DatePicker, DateCell> dayCellFactory  = this.disableUsedDates();
@@ -64,6 +68,10 @@ public class ShowRecordController {
         this.record.setDate(this.recordDatePicker.getValue().toString());
         this.record.setValue(this.recordValueTextField.getText());
         this.record.updateDetails();
+
+        if(!this.startingNote.equals(this.recordNotesTextArea.getText()) && this.recordNotesTextArea.getText().length() < 50){
+            Comment.add(new Comment(0,"Comment",MyHealth.getInstance().getUser().getId(),this.record.getId()+"/"+this.recordNotesTextArea.getText(),this.recordDatePicker.getValue().toString()));
+        }
         MyHealth.getStageById("showRecord").close();
         RecordWithLineChartController.getInstance().updateModels();
     }
@@ -92,6 +100,21 @@ public class ShowRecordController {
                 RecordWithLineChartController.getInstance().updateModels();
             }
         });
+    }
+
+    public void noteChanged(){
+        if(!this.recordNotesTextArea.getText().isBlank() || this.recordNotesTextArea.getText().equals(this.startingNote)){
+
+            if(this.recordNotesTextArea.getText().length() > 50){
+                this.recordNotesTextArea.getStyleClass().add("text-field-error");
+                this.saveButton.setDisable(true);
+            }else{
+                this.recordNotesTextArea.getStyleClass().add("text-field-success");
+                this.recordNotesTextArea.getStyleClass().removeAll("text-field-error");
+                this.saveButton.setDisable(false);
+            }
+
+        }
     }
 
     public void valueChanged(){
@@ -142,7 +165,16 @@ public class ShowRecordController {
         this.recordTypeLabel.setText(record.getType()+" Record");
         this.recordDatePicker.setValue(record.getDate());
         this.recordValueTextField.setText(record.getValue());
-        this.recordNotesTextArea.setText("COMING SOON");
+
+        ObservableList<Comment> comment = Comment.get(MyHealth.getInstance().getUser().getId(),this.record.getId());
+
+        if(comment.size() != 0){
+            this.recordNotesTextArea.setText(comment.get(0).getNote());
+            this.startingNote = comment.get(0).getNote();
+        }else{
+            this.startingNote = "";
+        }
+
 
     }
 
