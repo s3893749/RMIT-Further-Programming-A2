@@ -14,6 +14,10 @@ public class HealthRecord extends Record{
     private int systolic;
     private int diastolic;
 
+    private Record weightRecord;
+    private Record temperatureRecord;
+    private Record bloodPressureRecord;
+
     private String bloodPressure;
 
     private static ObservableList<HealthRecord> cache;
@@ -27,6 +31,23 @@ public class HealthRecord extends Record{
         this.bloodPressure =values[2];
         this.systolic = Integer.parseInt(values[2].split("/")[0]);
         this.diastolic = Integer.parseInt(values[2].split("/")[1]);
+
+        this.weightRecord = Record.where("type","Weight").withCurrentUser().where("date",date).get().get(0);
+        this.temperatureRecord = Record.where("type","Temperature").withCurrentUser().where("date",date).get().get(0);
+        Record bloodPressureRaw = Record.where("type","BloodPressure").withCurrentUser().where("date",date).get().get(0);
+        this.bloodPressureRecord = new BloodPressure(bloodPressureRaw.getId(),bloodPressureRaw.getType(),bloodPressureRaw.getUserId(),bloodPressureRaw.getValue(),bloodPressureRaw.getDate().toString());
+    }
+
+    public Record getWeightRecord(){
+        return this.weightRecord;
+    }
+
+    public Record getTemperatureRecord(){
+        return this.temperatureRecord;
+    }
+
+    public Record getBloodPressureRecord(){
+        return this.bloodPressureRecord;
     }
 
     public Float getTemperature(){
