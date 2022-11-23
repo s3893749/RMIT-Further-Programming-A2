@@ -2,9 +2,14 @@ package com.jackgharris.cosc2288.a2.controllers.settings;
 
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.utility.ColorUtility;
+import com.jackgharris.cosc2288.a2.utility.Resource;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.util.Objects;
 
 
 public class SettingsThemeController {
@@ -117,6 +122,16 @@ public class SettingsThemeController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Resetting MyHealth Theme to default");
         alert.setContentText("Are you sure you want to reset the theme to default?");
+        ImageView imageView = new ImageView(Resource.faviconWarning());
+        imageView.setFitWidth(64);
+        imageView.setFitHeight(64);
+        alert.setGraphic(imageView);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(MyHealth.class.getResource("css/app.css")).toExternalForm());
+        dialogPane.getStyleClass().add("parent");
+        dialogPane.setStyle(MyHealth.getInstance().getUser().getTheme().getStyle());
+        Stage stage = (Stage) dialogPane.getScene().getWindow();
+        stage.getIcons().add(Resource.faviconWarning());
         ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
         ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(okButton, noButton);
