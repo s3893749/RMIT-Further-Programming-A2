@@ -1,41 +1,48 @@
+//**** PACKAGE ****\\
 package com.jackgharris.cosc2288.a2.controllers.components;
 
+//**** PACKAGE IMPORTS ****\\
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Record;
-import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
-import com.jackgharris.cosc2288.a2.utility.Resource;
 import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.io.IOException;
-
+//**** START RECORD WITH LINE CHART CONTROLLER CLASS ****\\
 public class RecordWithLineChartController extends RecordPageController{
 
 
+    //**** FXML IMPORTS ****\\
+    //The follow class variables match the id's of the match fxml objects for this scene
+    //this allows the class and its method to interact with them in an easy capacity.
+
+    //Add record input field, accepts the new record value
     @FXML
     private TextField addRecordInput;
 
+    //Add record button, is the button that triggers a new record to be added
     @FXML
     private Button addRecordButton;
 
+    //Line chart, shows all the record values in a chart
     @FXML
     private LineChart<String, Float> recordChart;
 
+    //Value input value, shows what type of record is currently shown
     @FXML
     private Label valueInputLabel;
 
-
+    //**** CONSTRUCT METHOD ***\\
+    //This method is processed after the record is set as is the constructor for the controller.
     @Override
     public void construct() {
+
+        //set the static instance to this instance
         this.setInstance(this);
 
         //set our selection buttons and input to be disabled by default
@@ -50,19 +57,26 @@ public class RecordWithLineChartController extends RecordPageController{
         Callback<DatePicker, DateCell> dayCellFactory  = this.disableUsedDates();
         this.addRecordDatePicker.setDayCellFactory(dayCellFactory);
 
+        //set our table resize, data and value property factories
         this.recordTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         this.valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
 
+        //set the record to for the input label
         this.valueInputLabel.setText(this.recordType);
+
+        //update our models
         this.updateModels();
     }
 
-
+    //**** DATE PICKER UPDATED METHOD ****\\
+    //This method will update the record input to enable it once a date has been selected
     public void datePickerUpdated(){
         this.addRecordInput.setDisable(false);
     }
 
+    //**** VALUE INPUT UPDATED METHOD ****\\
+    //This method will validate the value input once it's updated via a keypress
     public void valueInputUpdated(){
 
         if(!Validation.isFloat(this.addRecordInput.getText())){
@@ -76,17 +90,20 @@ public class RecordWithLineChartController extends RecordPageController{
         }
     }
 
+    //**** ADD RECORD METHOD ****\\
     @Override
     public void addRecord(){
 
+        //add the new record
         Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText(), this.addRecordDatePicker.getValue().toString()));
+        //update the models
         this.updateModels();
 
+        //reset all our inputs and buttons to default, null & disabled if required
         this.addRecordButton.setDisable(true);
         this.addRecordInput.setText(null);
         this.addRecordInput.setDisable(true);
         this.addRecordDatePicker.setValue(null);
-
         this.addRecordInput.setDisable(true);
     }
 
@@ -124,30 +141,5 @@ public class RecordWithLineChartController extends RecordPageController{
             Record.where("type",this.recordType).withCurrentUser().sort("date").updateCache().get();
         }
     }
-
-
-    @Override
-    public void showRecord() throws IOException {
-
-        if(!MyHealth.isStageShown("showRecord")){
-            Stage stage = new Stage();
-            stage.getProperties().put("id","showRecord");
-            stage.setResizable(false);
-            FXMLLoader loader = new FXMLLoader(FXMLUtility.showRecord);
-            Scene scene = new Scene(loader.load());
-            stage.setTitle("MyHealth Record | Show/Edit/Delete");
-            stage.getIcons().add(Resource.favicon());
-            ShowRecordController controller = loader.getController();
-            controller.setRecord(this.recordTable.getSelectionModel().getSelectedItem());
-            stage.setScene(scene);
-            stage.show();
-        }else{
-            MyHealth.getStageById("showRecord").requestFocus();
-        }
-
-    }
-
-
-
 
 }
