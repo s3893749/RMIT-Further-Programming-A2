@@ -65,4 +65,11 @@ public class Activity {
         return output;
     }
 
+    public static boolean delete(Activity activity){
+
+        String sql =  "DELETE FROM activities WHERE time='"+activity.getTime()+"' AND description='"+activity.getDescription()+"'";
+
+        return Database.queryWithBooleanResult(sql);
+    }
+
 }
