@@ -10,9 +10,10 @@ public class Database {
 
     private static final String jdbcURL = "jdbc:sqlite:C:\\Users\\st_tu\\Documents\\RMIT\\Further Programming\\A2\\A2\\src\\main\\resources\\MyHealth.db";
 
+    private static int queryCount = 0;
 
     public static Vector<HashMap<String,String>> query(String query){
-
+        Database.queryCount ++;
         Connection connection = null;
         ResultSet resultSet = null;
         Vector<HashMap<String,String>> data = new Vector<>();
@@ -49,6 +50,7 @@ public class Database {
     public static boolean queryWithBooleanResult(String query){
         Connection connection = null;
         boolean outcome;
+        Database.queryCount ++;
 
         System.out.println(query);
 
@@ -68,5 +70,13 @@ public class Database {
 
 
         return outcome;
+    }
+
+    public static int getQueryCount(){
+        return Database.queryCount;
+    }
+
+    public static void resetQueryCount(){
+        Database.queryCount = 0;
     }
 }
