@@ -69,6 +69,12 @@ public class Record {
         return Database.queryWithBooleanResult(query);
     }
 
+    public static RecordCollection withCurrentUser(){
+
+        return new RecordCollection().where("user_id",String.valueOf(MyHealth.getInstance().getUser().getId()));
+
+    }
+
     public static RecordCollection where(String key, String value){
         return new RecordCollection().where(key, value);
     }
