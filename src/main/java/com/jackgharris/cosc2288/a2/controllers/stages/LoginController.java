@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.IOException;
-
+import java.util.Objects;
 
 
 public class LoginController {
@@ -34,7 +34,7 @@ public class LoginController {
     public void registerButtonPress(ActionEvent event) throws IOException {
         System.out.println("Back Button Pressed!");
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(FXMLUtility.loadScene(FXMLUtility.registrationFXML,stage, MyHealth.launcherCSS));
+        stage.setScene(FXMLUtility.loadScene(FXMLUtility.registrationFXML,stage, Objects.requireNonNull(MyHealth.class.getResource("login.css")).toExternalForm()));
         stage.getProperties().put("id","registration");
         stage.show();
     }
@@ -77,7 +77,7 @@ public class LoginController {
             dashboardStage.getProperties().put("controller",fxmlLoader.getController());
             dashboardStage.setResizable(true);
             dashboardStage.setMaximized(true);
-            dashboardStage.setTitle(MyHealth.title);
+            dashboardStage.setTitle(MyHealth.getInstance().getTitle());
             dashboardStage.getIcons().add(Resource.favicon());
             dashboardStage.show();
             controller.loadLastPage();
