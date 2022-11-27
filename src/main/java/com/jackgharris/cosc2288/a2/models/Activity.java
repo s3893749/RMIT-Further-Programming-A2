@@ -42,7 +42,19 @@ public class Activity {
     }
 
     public static boolean add(Activity activity){
-        String sql = "INSERT INTO activities (user_id, description, time) VALUES ('"+MyHealth.getInstance().getUser().getId()+"', '"+activity.getDescription()+"','"+activity.getTime()+"')";
+
+        char[] noteCharacters = activity.getDescription().toCharArray();
+
+        int i = 0;
+        for (char character : noteCharacters) {
+
+            if((int)character == 39){
+                noteCharacters[i] = ' ';
+            }
+            i++;
+        }
+
+        String sql = "INSERT INTO activities (user_id, description, time) VALUES ('"+MyHealth.getInstance().getUser().getId()+"', '"+new String(noteCharacters)+"','"+activity.getTime()+"')";
 
         return Database.queryWithBooleanResult(sql);
     }
