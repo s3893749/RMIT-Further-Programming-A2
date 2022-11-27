@@ -97,7 +97,7 @@ public class RecordWithAreaChartController extends RecordPageController{
 
         //cast all our records to blood pressure objects
         records.forEach((n) -> {
-            bloodPressures.add(new BloodPressure(n.getId(), n.getType(), n.getUserId(), n.getValue(), n.getDate().toString(), Time.now()));
+            bloodPressures.add(new BloodPressure(n.getId(), n.getType(), n.getUserId(), n.getValue(), n.getDate().toString(), n.getTime()));
         });
 
         //-------------------------------------------------------------\\

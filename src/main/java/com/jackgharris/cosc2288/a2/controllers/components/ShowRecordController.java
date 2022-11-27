@@ -63,6 +63,10 @@ public class ShowRecordController {
     @FXML
     private Button saveButton;
 
+    //Label
+    @FXML
+    private Label timeStamp;
+
     //**** CLASS VARIABLES ****\\
 
     //The static show record controller instance is a reference back to the controller
@@ -268,6 +272,7 @@ public class ShowRecordController {
         this.recordTypeLabel.setText(record.getType()+" Record");
         this.recordDatePicker.setValue(record.getDate());
         this.recordValueTextField.setText(record.getValue());
+        this.timeStamp.setText(this.timeStamp.getText()+" "+record.getDateTime());
 
         //get the comment if it exists
         ObservableList<Comment> comment = Comment.get(MyHealth.getInstance().getUser().getId(),this.record.getId());
