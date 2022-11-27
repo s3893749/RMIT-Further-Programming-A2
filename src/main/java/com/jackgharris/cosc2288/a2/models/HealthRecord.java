@@ -22,8 +22,8 @@ public class HealthRecord extends Record{
 
     private static ObservableList<HealthRecord> cache;
 
-    public HealthRecord(int id, String type, int userId, String value, String date) {
-        super(id, type, userId, value, date);
+    public HealthRecord(int id, String type, int userId, String value, String date, String time) {
+        super(id, type, userId, value, date, time);
 
         String[] values = value.split(",");
         this.temperature = Float.parseFloat(values[0]);
@@ -35,7 +35,7 @@ public class HealthRecord extends Record{
         this.weightRecord = Record.where("type","Weight").withCurrentUser().where("date",date).get().get(0);
         this.temperatureRecord = Record.where("type","Temperature").withCurrentUser().where("date",date).get().get(0);
         Record bloodPressureRaw = Record.where("type","BloodPressure").withCurrentUser().where("date",date).get().get(0);
-        this.bloodPressureRecord = new BloodPressure(bloodPressureRaw.getId(),bloodPressureRaw.getType(),bloodPressureRaw.getUserId(),bloodPressureRaw.getValue(),bloodPressureRaw.getDate().toString());
+        this.bloodPressureRecord = new BloodPressure(bloodPressureRaw.getId(),bloodPressureRaw.getType(),bloodPressureRaw.getUserId(),bloodPressureRaw.getValue(),bloodPressureRaw.getDate().toString(), bloodPressureRaw.getTime());
     }
 
     public Record getWeightRecord(){
@@ -102,7 +102,7 @@ public class HealthRecord extends Record{
 
         healthRecords.forEach((k,v)->{
             String value = v.get(0).getValue()+","+v.get(1).getValue()+","+v.get(2).getValue();
-            models.add(new HealthRecord(models.size(),"HealthRecord", MyHealth.getInstance().getUser().getId(),value,k));
+            models.add(new HealthRecord(models.size(),"HealthRecord", MyHealth.getInstance().getUser().getId(),value,k,null));
         });
 
         HealthRecord.cache = models;
