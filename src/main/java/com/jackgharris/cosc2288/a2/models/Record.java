@@ -14,6 +14,8 @@ public class Record {
     protected String value;
     private String date;
     private String time;
+
+    private String dateTime;
     private static ObservableList<Record> cache;
 
     public static int lastAddedId = -1;
@@ -25,6 +27,11 @@ public class Record {
         this.value = value;
         this.date = date;
         this.time = time;
+        this.dateTime = time+" on "+date;
+    }
+
+    public String getDateTime(){
+        return this.dateTime;
     }
 
     public int getUserId(){
