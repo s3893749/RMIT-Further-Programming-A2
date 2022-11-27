@@ -51,6 +51,14 @@ public class ImportPreviewWindowController {
     @FXML
     private AnchorPane parent;
 
+    //The import type should be static as it is needed to be accessed via a table row
+    //callback
+    private static String importType;
+
+    //The block records on import array is used to store the values that already exist in
+    //the database, these will be blocked on import attempt.
+    private static ArrayList<Record> blockRecordsOnImport;
+
     //**** CLASS VARIABLES ****\\
 
     //The controller reference will point back to the settings controller that opened this window
@@ -99,7 +107,7 @@ public class ImportPreviewWindowController {
                 }
 
                 //check if a record exists for it, if so then set the style, else remove any set style
-                if(Record.where("type", MyHealth.getInstance().getImportType()).where("date", item.getDate().toString()).get().size() != 0){
+                if(Record.where("type", ImportPreviewWindowController.importType).where("date", item.getDate().toString()).get().size() != 0){
                     this.setStyle("-fx-background-color: -fx-error");
                 }else{
                     this.setStyle("");
@@ -119,7 +127,7 @@ public class ImportPreviewWindowController {
         //for each of the items in our preview table we check to ensure it's not block, if it is we then increment
         //the block or if not we increment the imported and then add the record to the system.
         this.previewTable.getItems().forEach((record -> {
-            if(MyHealth.getInstance().getBlockedRecordsForImport().contains(record)){
+            if(ImportPreviewWindowController.blockRecordsOnImport.contains(record)){
                 blocked.getAndIncrement();
             }else{
                 canImport.getAndIncrement();
@@ -165,6 +173,7 @@ public class ImportPreviewWindowController {
     //**** BUILD RECORDS METHOD ****\\
     //This method will build all the record objects for the data contained in the CSV file.
     private void buildRecords(){
+        ImportPreviewWindowController.blockRecordsOnImport = new ArrayList<>();
 
         //Declare our records array list
         ArrayList<Record> records = new ArrayList<>();
@@ -205,7 +214,7 @@ public class ImportPreviewWindowController {
 
                 //if we do then add the record to a blocked list
                 if(existing.size() != 0){
-                    MyHealth.getInstance().blockRecordOnImport(record);
+                    ImportPreviewWindowController.blockRecordsOnImport.add(record);
                 }
             }
 
@@ -215,7 +224,8 @@ public class ImportPreviewWindowController {
         }
 
         //Finally set the import type to the record type detected and update the preview table of items.
-        MyHealth.getInstance().setImportType(recordType);
+        ImportPreviewWindowController.importType = recordType;
         this.previewTable.getItems().addAll(records);
     }
+
 }
