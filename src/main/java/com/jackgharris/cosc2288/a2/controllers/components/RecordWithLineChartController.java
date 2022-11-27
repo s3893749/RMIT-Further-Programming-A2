@@ -4,6 +4,7 @@ package com.jackgharris.cosc2288.a2.controllers.components;
 //**** PACKAGE IMPORTS ****\\
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.Record;
+import com.jackgharris.cosc2288.a2.utility.Time;
 import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -95,7 +96,7 @@ public class RecordWithLineChartController extends RecordPageController{
     public void addRecord(){
 
         //add the new record
-        Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText(), this.addRecordDatePicker.getValue().toString()));
+        Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText(), this.addRecordDatePicker.getValue().toString(), Time.now()));
         //update the models
         this.updateModels();
 

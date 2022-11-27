@@ -5,6 +5,7 @@ package com.jackgharris.cosc2288.a2.controllers.components;
 import com.jackgharris.cosc2288.a2.core.MyHealth;
 import com.jackgharris.cosc2288.a2.models.BloodPressure;
 import com.jackgharris.cosc2288.a2.models.Record;
+import com.jackgharris.cosc2288.a2.utility.Time;
 import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -96,7 +97,7 @@ public class RecordWithAreaChartController extends RecordPageController{
 
         //cast all our records to blood pressure objects
         records.forEach((n) -> {
-            bloodPressures.add(new BloodPressure(n.getId(), n.getType(), n.getUserId(), n.getValue(), n.getDate().toString()));
+            bloodPressures.add(new BloodPressure(n.getId(), n.getType(), n.getUserId(), n.getValue(), n.getDate().toString(), Time.now()));
         });
 
         //-------------------------------------------------------------\\
@@ -144,7 +145,7 @@ public class RecordWithAreaChartController extends RecordPageController{
     public void addRecord(){
 
         //create and add the new record
-        Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText()+"/"+this.addRecordInputTwo.getText(), this.addRecordDatePicker.getValue().toString()));
+        Record.add(new Record(0,this.recordType,MyHealth.getInstance().getUser().getId(),this.addRecordInput.getText()+"/"+this.addRecordInputTwo.getText(), this.addRecordDatePicker.getValue().toString(), Time.now()));
 
         //update the models to show the new record
         this.updateModels();
