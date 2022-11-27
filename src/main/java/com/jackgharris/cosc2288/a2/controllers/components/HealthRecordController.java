@@ -8,6 +8,7 @@ import com.jackgharris.cosc2288.a2.models.HealthRecord;
 import com.jackgharris.cosc2288.a2.models.Record;
 import com.jackgharris.cosc2288.a2.utility.FXMLUtility;
 import com.jackgharris.cosc2288.a2.utility.Resource;
+import com.jackgharris.cosc2288.a2.utility.Time;
 import com.jackgharris.cosc2288.a2.utility.Validation;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -167,7 +168,7 @@ public class HealthRecordController {
 
         //Check to see if the temperature has a record "isDisabled if record is present" if not then add it.
         if(!this.temperatureValueInput.isDisable()){
-            Record.add(new Record(0,"Temperature",user_id,this.temperatureValueInput.getText(),this.datePicker.getValue().toString()));
+            Record.add(new Record(0,"Temperature",user_id,this.temperatureValueInput.getText(),this.datePicker.getValue().toString(), Time.now()));
             added++;
         }
 
@@ -178,7 +179,7 @@ public class HealthRecordController {
 
         //Check to see if we need to add a weight record, if so add it
         if(!this.weightValueInput.isDisable()){
-            Record.add(new Record(0,"Weight",user_id,this.weightValueInput.getText(),this.datePicker.getValue().toString()));
+            Record.add(new Record(0,"Weight",user_id,this.weightValueInput.getText(),this.datePicker.getValue().toString(), Time.now()));
             added++;
         }
 
@@ -189,7 +190,7 @@ public class HealthRecordController {
 
         //Check to see if we need to add a blood pressure value and add it if so
         if(!this.bloodPressureValueInput.isDisable()){
-            Record.add(new Record(0,"BloodPressure",user_id,this.bloodPressureValueInput.getText(),this.datePicker.getValue().toString()));
+            Record.add(new Record(0,"BloodPressure",user_id,this.bloodPressureValueInput.getText(),this.datePicker.getValue().toString(), Time.now()));
             added++;
         }
 
