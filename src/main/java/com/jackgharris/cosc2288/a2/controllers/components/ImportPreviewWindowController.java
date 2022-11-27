@@ -192,9 +192,9 @@ public class ImportPreviewWindowController {
                 //Check if we are importing the records as the current user or as the user in the csv, if "-1" we use the current user else we
                 //import for the export user id only.
                 if(recordFields[1].equals("-1")){
-                    record = new Record(-1,recordFields[0],MyHealth.getInstance().getUser().getId(),recordFields[2],recordFields[3]);
+                    record = new Record(-1,recordFields[0],MyHealth.getInstance().getUser().getId(),recordFields[2],recordFields[3],null);
                 }else{
-                    record = new Record(-1,recordFields[0],Integer.parseInt(recordFields[1]),recordFields[2],recordFields[3]);
+                    record = new Record(-1,recordFields[0],Integer.parseInt(recordFields[1]),recordFields[2],recordFields[3],null);
                 }
 
                 //Add our new record to the array
