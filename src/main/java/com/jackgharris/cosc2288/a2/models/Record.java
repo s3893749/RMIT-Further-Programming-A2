@@ -13,16 +13,18 @@ public class Record {
     private int userId;
     protected String value;
     private String date;
+    private String time;
     private static ObservableList<Record> cache;
 
     public static int lastAddedId = -1;
 
-    public Record(int id, String type, int userId, String value, String date){
+    public Record(int id, String type, int userId, String value, String date, String time){
         this.id = id;
         this.type = type;
         this.userId = userId;
         this.value = value;
         this.date = date;
+        this.time = time;
     }
 
     public int getUserId(){
@@ -43,6 +45,14 @@ public class Record {
 
     public void setValue(String value){
         this.value = value;
+    }
+
+    public String getTime(){
+        if(!(this.time == null)){
+            return this.time;
+        }else{
+            return "time not set";
+        }
     }
 
     public String getType(){
@@ -91,7 +101,7 @@ public class Record {
 
         Activity.add(new Activity("New record added "+record.getValue()+" for type "+record.getType()));
 
-        String sql = "INSERT INTO records (type, user_id, value, date) VALUES ('"+record.getType()+"','"+ MyHealth.getInstance().getUser().getId()+"', '"+record.getValue()+"','"+record.getDate()+"')";
+        String sql = "INSERT INTO records (type, user_id, value, date, time) VALUES ('"+record.getType()+"','"+ MyHealth.getInstance().getUser().getId()+"', '"+record.getValue()+"','"+record.getDate()+"', '"+record.getTime()+"')";
 
         boolean outcome = Database.queryWithBooleanResult(sql);
 
