@@ -131,7 +131,8 @@ public class RecordCollection {
                     n.get("type"),
                     Integer.parseInt(n.get("user_id")),
                     n.get("value"),
-                    n.get("date")));
+                    n.get("date"),
+                    n.get("time")));
         });
 
 
