@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 //**** START MENU CONTROLLER CLASS ****|\\
 public class MenuController {
@@ -172,7 +173,7 @@ public class MenuController {
         Stage stage = new Stage();
 
         //set the stage scene
-        stage.setScene(FXMLUtility.loadScene(FXMLUtility.loginFXML, stage, MyHealth.launcherCSS));
+        stage.setScene(FXMLUtility.loadScene(FXMLUtility.loginFXML, stage, Objects.requireNonNull(MyHealth.class.getResource("login.css")).toExternalForm()));
 
         //make the window transparent and not resizable
         stage.initStyle(StageStyle.TRANSPARENT);

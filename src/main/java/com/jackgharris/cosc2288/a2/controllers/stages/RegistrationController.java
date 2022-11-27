@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.*;
+import java.util.Objects;
 
 public class RegistrationController {
 
@@ -54,7 +55,7 @@ public class RegistrationController {
         stage.setScene(new Scene(loader.load()));
         Scene scene = stage.getScene();
         scene.setFill(Color.TRANSPARENT);
-        scene.getStylesheets().add(MyHealth.launcherCSS);
+        scene.getStylesheets().add(Objects.requireNonNull(MyHealth.class.getResource("login.css")).toExternalForm());
 
         scene.setOnMousePressed(pressEvent ->{
             scene.setOnMouseDragged(dragEvent ->{
