@@ -5,6 +5,7 @@ import com.jackgharris.cosc2288.a2.core.MyHealth;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -18,7 +19,19 @@ public class Comment extends Record{
         String[] data = value.split("/");
         this.recordId = Integer.parseInt(data[0]);
         if(data.length == 2){
-            this.note = data[1];
+
+            char[] noteCharacters = data[1].toCharArray();
+
+            int i = 0;
+            for (char character : noteCharacters) {
+
+                if((int)character == 39){
+                    noteCharacters[i] = ' ';
+                }
+                i++;
+            }
+
+            this.note = new String(noteCharacters);
         }else{
             this.note = "";
         }
