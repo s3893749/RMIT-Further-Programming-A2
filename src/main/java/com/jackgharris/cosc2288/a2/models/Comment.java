@@ -14,7 +14,7 @@ public class Comment extends Record{
     private String note;
 
     public Comment(int id, String type, int userId, String value, String date) {
-        super(id, type, userId, value, date);
+        super(id, type, userId, value, date, null);
         String[] data = value.split("/");
         this.recordId = Integer.parseInt(data[0]);
         if(data.length == 2){
