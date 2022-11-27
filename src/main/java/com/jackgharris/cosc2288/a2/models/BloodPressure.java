@@ -6,8 +6,8 @@ public class BloodPressure extends Record{
     private int diastolic;
 
 
-    public BloodPressure(int id, String type, int userId, String value, String date) {
-        super(id, type, userId, value, date);
+    public BloodPressure(int id, String type, int userId, String value, String date, String time) {
+        super(id, type, userId, value, date, time);
 
         this.systolic = Integer.parseInt(this.value.split("/")[0]);
         this.diastolic = Integer.parseInt(this.value.split("/")[1]);
